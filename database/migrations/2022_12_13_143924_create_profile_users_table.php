@@ -21,15 +21,14 @@ class CreateProfileUsersTable extends Migration
                 ->on('users')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->string('nama');
-            $table->string('email');
+            $table->string('username');
+            $table->string('email')->nullable();
             $table->string('foto')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('gender')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('alamat')->nullable();
-            $table->string('instagram')->nullable();
-            $table->string('whatsapp')->nullable();
             $table->timestamps();
         });
     }
