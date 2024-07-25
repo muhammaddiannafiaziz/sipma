@@ -59,35 +59,57 @@ class LogAkunController extends Controller
                 'alamat' => 'required',
             ], $message);
 
-            $file = $a->file('foto');
-            if(file_exists($file)){
+            if ($a->hasFile('foto')) {
+                $file = $a->file('foto');
                 $nama_file = time() . "-" . $file->getClientOriginalName();
                 $namaFolder = 'foto profil';
-                $file->move($namaFolder,$nama_file);
-                $pathFoto = $namaFolder."/".$nama_file;
+                $file->move($namaFolder, $nama_file);
+                $pathFoto = $namaFolder . "/" . $nama_file;
             } else {
                 $pathFoto = $a->pathFoto;
             }
 
+            if ($a->hasFile('ftprestasi')) {
+                $fileftprestasi = $a->file('ftprestasi');
+                $nama_fileftprestasi = "Prestasi" . time() . "-" . $fileftprestasi->getClientOriginalName();
+                $namaFolderftprestasi = 'data pendaftar/' . $a->username;
+                $fileftprestasi->move($namaFolderftprestasi, $nama_fileftprestasi);
+                $pathPrestasi = $namaFolderftprestasi . "/" . $nama_fileftprestasi;
+            } else {
+                $pathPrestasi = null;
+            }
+
             ProfileUsers::where("user_id", Auth::user()->id)->update([
                 'nama' => $a->nama,
+                'username' => $a->username,
                 'foto' => $pathFoto,
+                'prodi' => $a->prodi,
+                'email' => $a->email,
                 'tempat_lahir' => $a->tempat,
                 'tanggal_lahir' => $a->tanggal,
                 'gender' => $a->jk,
+                'agama' => $a->agama,
                 'no_hp' => $a->hp,
-                'alamat' => $a->alamat,
-                'instagram' => $a->ig
+                // 'alamat' => $a->alamat,
+                'jalan' => $a->jalan,
+                'kelurahan' => $a->kelurahan,
+                'kecamatan' => $a->kecamatan,
+                'kabupaten' => $a->kabupaten,
+                'provinsi' => $a->provinsi,
+                'kode_pos' => $a->kode_pos,
+                'nama_ayah' => $a->ayah,
+                'pekerjaan_ayah' => $a->pekerjaanayah,
+                'pendidikan_ayah' => $a->pendidikanayah,
+                'nohp_ayah' => $a->noayah,
+                'nama_ibu' => $a->ibu,
+                'pekerjaan_ibu' => $a->pekerjaanibu,
+                'pendidikan_ibu' => $a->pendidikanibu,
+                'nohp_ibu' => $a->noibu,
+                'sekolah_sma' => $a->asalsekolah,
+                'prestasi' => $pathPrestasi
             ]);
             User::where("id", Auth::user()->id)->update([
-                'name' => $a->nama
-            ]);
-            Timeline::create([
-                'user_id' => Auth::user()->id,
-                'status' => 'Memperbaharui Profile Akun',
-                'pesan' => Auth::user()->id.'Memperbaharui Profile Akunnya',
-                'tgl_update' => now(),
-                'created_at' => now()
+                'name' => $a->nama,
             ]);
             return redirect('/profile')->with('success', 'Profil Akun Terubah!');
 
@@ -114,13 +136,7 @@ class LogAkunController extends Controller
             ]);
 
         }
-        Timeline::create([
-            'user_id' => Auth::user()->id,
-            'status' => 'Memperbaharui Kata Sandi',
-            'pesan' => Auth::user()->id.'Memperbaharui Kata Sandi Akunnya',
-            'tgl_update' => now(),
-            'created_at' => now()
-        ]);
+
         return redirect('/profile')->with('success', 'Kata Sandi Akun Terubah!');
     }
 }

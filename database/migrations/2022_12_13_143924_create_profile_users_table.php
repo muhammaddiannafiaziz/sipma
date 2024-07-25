@@ -52,6 +52,7 @@ class CreateProfileUsersTable extends Migration
             //     ->onUpdate('cascade')->onDelete('cascade');
 
             $table->string('kelurahan')->nullable();
+            $table->string('jalan')->nullable();
             $table->string('kode_pos')->nullable();
             // $table->foreign('kelurahan_id')
             //     ->references('id')

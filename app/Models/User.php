@@ -47,16 +47,9 @@ class User extends Authenticatable
     /**
     * @return \Illuminate\Database\Eloquent\Relations\HasMany
     */
-    public function socialAccounts()
-    {
-    return $this->hasMany(SocialAccount::class);
-    }
     public function profile()
     {
         return $this->hasOne(ProfileUsers::class);
     }
 
-    public function timeline(){
-        return $this->hasMany(Timeline::class);
-    }
 }
