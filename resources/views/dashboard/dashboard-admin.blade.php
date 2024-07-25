@@ -53,16 +53,16 @@
                                                 @endphp
                                             @endif
                                         @endforeach
-                                        @php
+                                        {{-- @php
                                             $hsl = $aa + $bb;
                                             $hslpersenanbaru = ($hsl * 100) / $jmlpendaftar;
-                                        @endphp
+                                        @endphp --}}
 
                                         <div id="redial"></div>
-                                        <span class="text-center d-block fs-18 font-w600">Sedang berlangsung
+                                        {{-- <span class="text-center d-block fs-18 font-w600">Sedang berlangsung
                                             <small class="text-orange"><span
                                                     id="progressnya">{{ $hslpersenanbaru }}</span>
-                                                %</small></span>
+                                                %</small></span> --}}
                                     </div>
                                 </div>
                             </div>
@@ -74,43 +74,6 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="row">
-                            <div class="col-xl-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body d-flex px-4 pb-0 justify-content-between">
-                                        <div>
-                                            <h4 class="fs-18 font-w600 mb-4 text-nowrap">Pendaftar
-                                            </h4>
-                                            <div class="d-flex align-items-center">
-                                                <h2 class="fs-32 font-w700 mb-0">{{ $jmlpendaftar }}</h2>
-                                                {{-- <span class="d-block ms-4">
-                                                            <svg width="21" height="11" viewbox="0 0 21 11" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M1.49217 11C0.590508 11 0.149368 9.9006 0.800944 9.27736L9.80878 0.66117C10.1954 0.29136 10.8046 0.291359 11.1912 0.661169L20.1991 9.27736C20.8506 9.9006 20.4095 11 19.5078 11H1.49217Z"
-                                                                    fill="#09BD3C"></path>
-                                                            </svg>
-                                                            <small
-                                                                class="d-block fs-16 font-w400 text-success">+0,5%</small>
-                                                        </span> --}}
-                                            </div>
-
-                                            <span class="fs-16 font-w400">Pendaftar saat ini </span>
-                                        </div>
-                                        @php
-                                            $no = 1;
-                                        @endphp
-                                        <div id="columnChart">
-                                            @foreach ($jmlpendaftarprodi as $x)
-                                                <span id="prodi{{ $no }}" style="color:transparent"
-                                                    aria-disabled>{{ $x->jmldaftarprodi }}</span>
-                                                @php
-                                                    $no++;
-                                                @endphp
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="col-xl-6 col-sm-6">
                                 <div class="card">
                                     <div class="card-body px-4 pb-0">
@@ -132,20 +95,20 @@
                                                     @endphp
                                                 @endif
                                             @endforeach
-                                            @php
+                                            {{-- @php
                                                 $hasil = $a + $b;
                                                 $hasilpersenan = ($hasil * 100) / $jmlpendaftar;
-                                            @endphp
-                                            <div class="progress-bar bg-gradient1 progress-animated"
+                                            @endphp --}}
+                                            {{-- <div class="progress-bar bg-gradient1 progress-animated"
                                                 style="width: {{ $hasilpersenan }}%; height:10px;"
                                                 role="progressbar">
-                                            </div>
+                                            </div> --}}
 
                                         </div>
-                                        <div class="d-flex align-items-end mt-2 pb-3 justify-content-between">
+                                        {{-- <div class="d-flex align-items-end mt-2 pb-3 justify-content-between">
                                             <span>{{ $hasil }} yang telah diberi <br> pengumuman</span>
                                             <h4 class="mb-0">{{ $hasil }}/{{ $jmlpendaftar }}</h4>
-                                        </div>
+                                        </div> --}}
 
                                     </div>
                                 </div>
@@ -181,50 +144,6 @@
                         </div>
 
                     </div>
-
-                    {{-- <div class="col-xl-12">
-                        <div class="card">
-                            <div class="card-header border-0 pb-0">
-                                <h4 class="card-title">Linimasa </h4>
-                            </div>
-                            <div class="card-body">
-                                <div id="DZ_W_TimeLine11" class="widget-timeline dlab-scroll style-1 height150">
-                                    <ul class="timeline">
-                                        @foreach ($timeline as $item)
-                                            <li> @php
-                                                $no = 1;
-                                            @endphp
-                                                @foreach ($viewDataUser as $x)
-                                                    @if ($x->user_id == $item->user_id && $no == 1)
-                                                        <div class="timeline-badge primary"></div>
-                                                        <a class="timeline-panel text-muted" href="#">
-                                                            <span>{{ $item->tgl_update }}</span>
-                                                            <h6 class="mb-0"><strong
-                                                                    class="text-primary">
-                                                                    #{{ $x->user->name }}
-                                                                </strong>,{{ $item->status_pendaftaran }}.
-                                                            </h6>
-                                                        </a>
-                                                    @elseif ($x->user_id != $item->user_id && $no == 1)
-                                                        <div class="timeline-badge warning">
-                                                        </div>
-                                                        <a class="timeline-panel text-muted" href="#">
-                                                            <span>{{ $item->tgl_update }}</span>
-                                                            <h6 class="mb-0">#{{ $item->user->name }},
-                                                                {{ $item->status_pendaftaran }}.</h6>
-                                                        </a>
-                                                    @endif
-                                                    @php
-                                                        $no++;
-                                                    @endphp
-                                                @endforeach
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
         </div>

@@ -36,22 +36,18 @@ class DashboardController extends Controller
         });
     }
     public function dashboard(){
-        $dataPendaftar = Pendaftaran::select( DB::raw('count(*) as jmlpendaftar'),'tahun_masuk')
-        ->groupBy('tahun_masuk')->get();
+        // $dataPendaftar = Pendaftaran::select( DB::raw('count(*) as jmlpendaftar'),'tahun_masuk')
+        // ->groupBy('tahun_masuk')->get();
         $data = Pendaftaran::select('status_pendaftaran', DB::raw('count(*) as jumlah'),)
         ->groupBy('status_pendaftaran')->get();
         $pendaftar = Pendaftaran::all();
         $jmlpendaftar = Pendaftaran::all()->count();
         $dataUser = User::all();
-        $timeline = Timeline::all()->sortBy('desc');
         $jmluser = User::all()->count();
         $jmlbayar = Pembayaran::where('status',true)->count();
-        $jmlpendaftarperprodi =  Pendaftaran::select('pil1',  DB::raw('count(*) as jmldaftarprodi'),)
-        ->groupBy('pil1')->get();
         $jmlpengumuman =  Pengumuman::select('hasil_seleksi', DB::raw('count(*) as jumlah'),)
         ->groupBy('hasil_seleksi')->get();
-        $prodi = ProgramStudi::limit(4)->get();
         // $datPembayaran = Pembayaran::where("id_pendaftaran",$pendaftar->id)->first();
-        return view ('dashboard',['timeline' => $timeline,'viewDataUser' => $dataUser,'viewTotal'=>$data,'viewTahunini'=>$dataPendaftar,'pendaftar'=>$pendaftar,'jmlpengumuman'=>$jmlpengumuman,'jmlpendaftar'=>$jmlpendaftar,'jmlpendaftarprodi'=>$jmlpendaftarperprodi,'jmluser'=>$jmluser,'prodi'=>$prodi,'jmlbayar'=>$jmlbayar]);
+        return view ('dashboard',['viewDataUser' => $dataUser,'viewTotal'=>$data,'pendaftar'=>$pendaftar,'jmlpengumuman'=>$jmlpengumuman,'jmlpendaftar'=>$jmlpendaftar,'jmluser'=>$jmluser,'jmlbayar'=>$jmlbayar]);
     }
 }

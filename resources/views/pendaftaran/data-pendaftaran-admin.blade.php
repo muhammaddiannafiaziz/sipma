@@ -90,8 +90,6 @@
 @section('content')
     <!--ADMIn-->
     @auth
-
-
         @if (auth()->user()->role == 'Administrator')
             <div class="row">
                 <div class="col-12">
@@ -242,7 +240,7 @@
                     </div>
                 </div>
             </div>
-        @elseif(auth()->user()->role == 'Calon Mahasiswa')
+        @elseif(auth()->user()->role == 'Calon Santri')
 
             <div class="project-page d-flex justify-content-between align-items-center flex-wrap">
                 <div class="project mb-4">
@@ -290,6 +288,19 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert"
                                 aria-label="btn-close">
                             </button>
+                        </div>
+                        <div class="alert alert-warning alert-dismissible fade show">
+                            <svg viewbox="0 0 24 24" width="24" height="24"
+                                stroke="currentColor" stroke-width="2" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="me-2">
+                                <path
+                                    d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                                </path>
+                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            Untuk melengkapi data akun silakan klik foto profil atau tombol kanan atas lalu profil.
                         </div>
                     @elseif ($no == 0)
                         <a href="form-registration" class="btn btn-primary btn-rounded fs-18">+ Daftar Seleksi</a>
