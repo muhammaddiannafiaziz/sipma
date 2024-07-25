@@ -10,7 +10,7 @@ class ProfileUsers extends Model
 {
     use HasFactory;
     protected $table = "profile_user";
-    protected $fillable = ['nama','username','foto','prodi','email','tempat_lahir','tanggal_lahir','gender','agama','no_hp','jalan','kelurahan','kecamatan','kabupaten','provinsi','kode_pos','nama_ayah','pekerjaan_ayah','pendidikan_ayah','nohp_ayah','nama_ibu','pekerjaan_ibu','pendidikan_ibu','nohp_ibu','sekolah_sma','prestasi'];
+    protected $fillable = ["user_id","nama","email","foto","tempat_lahir","tanggal_lahir","gender","no_hp","alamat","instagram","whatsapp"];
     public $timestamps = false;
     public $incrementing = false;
     protected $primaryKey= "id";
@@ -39,6 +39,6 @@ class ProfileUsers extends Model
     }
 
     public function user(){
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(Users::class,'user_id');
     }
 }

@@ -50,11 +50,9 @@ class PendaftaranController extends Controller
     }
 
     public function inputpendaftaran(){
-        $dataprod = ProgramStudi::all();
-        $datenow = date('Y-m-d');
-        $dataJadwal = JadwalKegiatan::where("tgl_mulai","<=",$datenow)->where("tgl_akhir",">",$datenow)->where("jenis_kegiatan","Pendaftaran")->get();
-        $dataSekolah = Sekolah::all();
-        return view ('pendaftaran.data-pendaftaran-input-admin',['viewDataJadwal' => $dataJadwal,'viewSekolah' => $dataSekolah,'viewProdi' => $dataprod]);
+        // $datenow = date('Y-m-d');
+        // $dataJadwal = JadwalKegiatan::where("tgl_mulai","<=",$datenow)->where("tgl_akhir",">",$datenow)->where("jenis_kegiatan","Pendaftaran")->get();
+        return view ('pendaftaran.data-pendaftaran-input-admin');
     }
 
     public function simpanpendaftaran(Request $a)
@@ -162,47 +160,13 @@ class PendaftaranController extends Controller
         Pendaftaran::create([
             'id_pendaftaran' => $kodependaftaran,
             'user_id' => Auth::user()->id,
-            'nisn' => $a->nisn,
-            'nik' => $a->nik,
+            'nim' => $a->nim,
             'nama_siswa' => $a->nama,
-            'jenis_kelamin' => $a->jk,
+            'prodi' => $a->prodi,
+            'gender' => $a->jk,
             'pas_foto' => $pathFoto,
             'tempat_lahir' => $a->tempatlahir,
             'tanggal_lahir' => $a->tanggallahir,
-            'agama' => $a->agama,
-
-            'email' => $a->email,
-            'hp' => $a->nohp,
-            
-            'alamat' => $a->alamat,
-
-            //pendaftaran
-            'gelombang' => $a->gelombang,
-            'tahun_masuk' => '2022',
-            'pil1' => $a->pil1,
-            'pil2' => $a->pil2,
-            
-            //ayahibu
-            'nama_ayah' => $a->ayah,
-            'nama_ibu' => $a->ibu,
-            'pekerjaan_ayah' => $a->pekerjaanayah,
-            'pekerjaan_ibu' => $a->pekerjaanibu,
-            //pendidikan
-            'nohp_ayah' => $a->noayah,
-            'nohp_ibu' => $a->noibu,
-            'penghasilan_ayah' => $a->penghasilan_ayah,
-            'penghasilan_ibu' => $a->penghasilan_ibu,
-            'berkas_ortu' =>  $pathOrtu,
-
-            'sekolah' => $a->sekolah,
-            'smt1' => $a->smt1,
-            'smt2' => $a->smt2,
-            'smt3' => $a->smt3,
-            'smt4' => $a->smt4,
-            'smt5' => $a->smt5,
-            'smt6' => $a->smt6,
-            'berkas_siswa' => $pathSiswa,
-            'prestasi' => $pathPrestasi,
             
             'status_pendaftaran' => 'Belum Terverifikasi',
             'tgl_pendaftaran' => now(),
@@ -234,14 +198,6 @@ class PendaftaranController extends Controller
             'hasil_seleksi' => "Belum Seleksi",
             'user_id' => $id_pendaftaran,
             'status' => false,
-        ]);
-
-        Timeline::create([
-            'user_id' => Auth::user()->id,
-            'status' => "Pendaftaran",    
-            'pesan' => "Melakukan pendaftaran penerimaan mahasiswa baru",
-            'tgl_update' => now(),
-            'created_at' => now()
         ]);
 
         return redirect('/data-registration')->with('success', 'Data Tersimpan!!');

@@ -59,22 +59,22 @@ class LogAkunController extends Controller
                 'alamat' => 'required',
             ], $message);
 
-            if ($a->hasFile('foto')) {
-                $file = $a->file('foto');
+            $file = $a->file('foto');
+            if(file_exists($file)){
                 $nama_file = time() . "-" . $file->getClientOriginalName();
                 $namaFolder = 'foto profil';
-                $file->move($namaFolder, $nama_file);
-                $pathFoto = $namaFolder . "/" . $nama_file;
+                $file->move($namaFolder,$nama_file);
+                $pathFoto = $namaFolder."/".$nama_file;
             } else {
                 $pathFoto = $a->pathFoto;
             }
 
-            if ($a->hasFile('ftprestasi')) {
-                $fileftprestasi = $a->file('ftprestasi');
-                $nama_fileftprestasi = "Prestasi" . time() . "-" . $fileftprestasi->getClientOriginalName();
-                $namaFolderftprestasi = 'data pendaftar/' . $a->username;
-                $fileftprestasi->move($namaFolderftprestasi, $nama_fileftprestasi);
-                $pathPrestasi = $namaFolderftprestasi . "/" . $nama_fileftprestasi;
+            $fileftprestasi = $a->file('ftprestasi');
+            if(file_exists($fileftprestasi)){
+                $nama_fileftprestasi = "Prestasi".time() . "-" . $fileftprestasi->getClientOriginalName();
+                $namaFolderftprestasi = 'data pendaftar/'.$a->username;
+                $fileftprestasi->move($namaFolderftprestasi,$nama_fileftprestasi);
+                $pathPrestasi = $namaFolderftprestasi."/".$nama_fileftprestasi;
             } else {
                 $pathPrestasi = null;
             }
@@ -90,7 +90,7 @@ class LogAkunController extends Controller
                 'gender' => $a->jk,
                 'agama' => $a->agama,
                 'no_hp' => $a->hp,
-                // 'alamat' => $a->alamat,
+                'alamat' => $a->alamat,
                 'jalan' => $a->jalan,
                 'kelurahan' => $a->kelurahan,
                 'kecamatan' => $a->kecamatan,
