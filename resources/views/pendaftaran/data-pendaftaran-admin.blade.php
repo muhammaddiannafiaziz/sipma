@@ -337,31 +337,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="col-xl-3  col-lg-6 col-sm-6 mb-sm-4 mb-0">
-                                                    <div class="d-flex project-image">
-                                                        <svg class="me-3" width="55" height="55" viewbox="0 0 55 55"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="27.5" cy="27.5" r="27.5" fill="#886CC0"></circle>
-                                                            <g clip-path="url(#clip0)">
-                                                                <path
-                                                                    d="M37.2961 23.6858C37.1797 23.4406 36.9325 23.2843 36.661 23.2843H29.6088L33.8773 16.0608C34.0057 15.8435 34.0077 15.5738 33.8826 15.3546C33.7574 15.1354 33.5244 14.9999 33.2719 15L27.2468 15.0007C26.9968 15.0008 26.7656 15.1335 26.6396 15.3495L18.7318 28.905C18.6049 29.1224 18.604 29.3911 18.7294 29.6094C18.8548 29.8277 19.0873 29.9624 19.3391 29.9624H26.3464L24.3054 38.1263C24.2255 38.4457 24.3781 38.7779 24.6725 38.9255C24.7729 38.9757 24.8806 39 24.9872 39C25.1933 39 25.3952 38.9094 25.5324 38.7413L37.2058 24.4319C37.3774 24.2215 37.4126 23.931 37.2961 23.6858Z"
-                                                                    fill="white"></path>
-                                                            </g>
-                                                            <defs>
-                                                                <clippath>
-                                                                    <rect width="24" height="24" fill="white"
-                                                                        transform="translate(16 15)"></rect>
-                                                                </clippath>
-                                                            </defs>
-                                                        </svg>
-                                                        <div>
-                                                            <small
-                                                                class="d-block fs-16 font-w400">{{ $x->pilihan1->nama_prodi }}</small>
-                                                            <span class="fs-18 font-w500">{{ $x->pilihan2->nama_prodi }}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <div class="col-xl-2  col-lg-6 col-sm-4 mb-sm-3 mb-3 text-end">
                                                     <div class="d-flex justify-content-end project-btn">
                                                         @if ($x->status_pendaftaran == 'Belum Terverifikasi')
@@ -437,31 +412,6 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-xl-3  col-lg-6 col-sm-6 mb-sm-4 mb-0">
-                                                        <div class="d-flex project-image">
-                                                            <svg class="me-3" width="55" height="55"
-                                                                viewbox="0 0 55 55" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <circle cx="27.5" cy="27.5" r="27.5" fill="#886CC0"></circle>
-                                                                <g clip-path="url(#clip0)">
-                                                                    <path
-                                                                        d="M37.2961 23.6858C37.1797 23.4406 36.9325 23.2843 36.661 23.2843H29.6088L33.8773 16.0608C34.0057 15.8435 34.0077 15.5738 33.8826 15.3546C33.7574 15.1354 33.5244 14.9999 33.2719 15L27.2468 15.0007C26.9968 15.0008 26.7656 15.1335 26.6396 15.3495L18.7318 28.905C18.6049 29.1224 18.604 29.3911 18.7294 29.6094C18.8548 29.8277 19.0873 29.9624 19.3391 29.9624H26.3464L24.3054 38.1263C24.2255 38.4457 24.3781 38.7779 24.6725 38.9255C24.7729 38.9757 24.8806 39 24.9872 39C25.1933 39 25.3952 38.9094 25.5324 38.7413L37.2058 24.4319C37.3774 24.2215 37.4126 23.931 37.2961 23.6858Z"
-                                                                        fill="white"></path>
-                                                                </g>
-                                                                <defs>
-                                                                    <clippath>
-                                                                        <rect width="24" height="24" fill="white"
-                                                                            transform="translate(16 15)"></rect>
-                                                                    </clippath>
-                                                                </defs>
-                                                            </svg>
-                                                            <div>
-                                                                <small
-                                                                    class="d-block fs-16 font-w400">{{ $x->pilihan1->nama_prodi }}</small>
-                                                                <span class="fs-18 font-w500">{{ $x->pilihan2->nama_prodi }}</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                     <div class="col-xl-2  col-lg-6 col-sm-4 mb-sm-3 mb-3 text-end">
                                                         <div class="d-flex justify-content-end project-btn">
                                                             @if ($x->status_pendaftaran == 'Belum Terverifikasi')
@@ -531,31 +481,6 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-xl-3  col-lg-6 col-sm-6 mb-sm-4 mb-0">
-                                                        <div class="d-flex project-image">
-                                                            <svg class="me-3" width="55" height="55"
-                                                                viewbox="0 0 55 55" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <circle cx="27.5" cy="27.5" r="27.5" fill="#886CC0"></circle>
-                                                                <g clip-path="url(#clip0)">
-                                                                    <path
-                                                                        d="M37.2961 23.6858C37.1797 23.4406 36.9325 23.2843 36.661 23.2843H29.6088L33.8773 16.0608C34.0057 15.8435 34.0077 15.5738 33.8826 15.3546C33.7574 15.1354 33.5244 14.9999 33.2719 15L27.2468 15.0007C26.9968 15.0008 26.7656 15.1335 26.6396 15.3495L18.7318 28.905C18.6049 29.1224 18.604 29.3911 18.7294 29.6094C18.8548 29.8277 19.0873 29.9624 19.3391 29.9624H26.3464L24.3054 38.1263C24.2255 38.4457 24.3781 38.7779 24.6725 38.9255C24.7729 38.9757 24.8806 39 24.9872 39C25.1933 39 25.3952 38.9094 25.5324 38.7413L37.2058 24.4319C37.3774 24.2215 37.4126 23.931 37.2961 23.6858Z"
-                                                                        fill="white"></path>
-                                                                </g>
-                                                                <defs>
-                                                                    <clippath>
-                                                                        <rect width="24" height="24" fill="white"
-                                                                            transform="translate(16 15)"></rect>
-                                                                    </clippath>
-                                                                </defs>
-                                                            </svg>
-                                                            <div>
-                                                                <small
-                                                                    class="d-block fs-16 font-w400">{{ $x->gelombang }}</small>
-                                                                <span class="fs-18 font-w500">{{ $x->pilihan1->nama_prodi }}</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                     <div class="col-xl-2  col-lg-6 col-sm-4 mb-sm-3 mb-3 text-end">
                                                         <div class="d-flex justify-content-end project-btn">
                                                             <a href="detail-registration/{{ $x->id_pendaftaran }}"
@@ -620,31 +545,6 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-xl-3  col-lg-6 col-sm-6 mb-sm-4 mb-0">
-                                                        <div class="d-flex project-image">
-                                                            <svg class="me-3" width="55" height="55"
-                                                                viewbox="0 0 55 55" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <circle cx="27.5" cy="27.5" r="27.5" fill="#886CC0"></circle>
-                                                                <g clip-path="url(#clip0)">
-                                                                    <path
-                                                                        d="M37.2961 23.6858C37.1797 23.4406 36.9325 23.2843 36.661 23.2843H29.6088L33.8773 16.0608C34.0057 15.8435 34.0077 15.5738 33.8826 15.3546C33.7574 15.1354 33.5244 14.9999 33.2719 15L27.2468 15.0007C26.9968 15.0008 26.7656 15.1335 26.6396 15.3495L18.7318 28.905C18.6049 29.1224 18.604 29.3911 18.7294 29.6094C18.8548 29.8277 19.0873 29.9624 19.3391 29.9624H26.3464L24.3054 38.1263C24.2255 38.4457 24.3781 38.7779 24.6725 38.9255C24.7729 38.9757 24.8806 39 24.9872 39C25.1933 39 25.3952 38.9094 25.5324 38.7413L37.2058 24.4319C37.3774 24.2215 37.4126 23.931 37.2961 23.6858Z"
-                                                                        fill="white"></path>
-                                                                </g>
-                                                                <defs>
-                                                                    <clippath>
-                                                                        <rect width="24" height="24" fill="white"
-                                                                            transform="translate(16 15)"></rect>
-                                                                    </clippath>
-                                                                </defs>
-                                                            </svg>
-                                                            <div>
-                                                                <small
-                                                                    class="d-block fs-16 font-w400">{{ $x->gelombang }}</small>
-                                                                <span class="fs-18 font-w500">{{ $x->pilihan1->nama_prodi }}</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                     <div class="col-xl-2  col-lg-6 col-sm-4 mb-sm-3 mb-3 text-end">
                                                         <div class="d-flex justify-content-end project-btn">
                                                             <a href="detail-registration/{{ $x->id_pendaftaran }}"

@@ -355,30 +355,7 @@ Detail Pendaftaran
                                     </div>
                                 </div>
                             </div>
-                            <div class="pt-4 border-bottom-1 pb-3">
-                                <h4 class="text-primary"><b>DATA REGISTRASI</b></h4>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-4 col-4">
-                                    <h5 class="f-w-400">Periode Pendaftaran</h5>
-                                    <div class="col-sm-9 col-7">
-                                        <h5 class="f-w-500">: {{ $viewData->gelombang }} / {{ $viewData->tahun_masuk }}</h5>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4 col-4">
-                                    <h5 class="f-w-400">Pilihan 1</h5>
-                                    <div class="col-sm-9 col-7">
-                                        <h5 class="f-w-500">: {{ $viewData->pilihan1->nama_prodi }}</h5>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4 col-4">
-                                    <h5 class="f-w-400">Pilihan 2</h5>
-                                    <div class="col-sm-9 col-7">
-                                        <h5 class="f-w-500">: {{ $viewData->pilihan2->nama_prodi }}</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pt-4 border-bottom-1 pb-3">
+                            {{-- <div class="pt-4 border-bottom-1 pb-3">
                                 <h4 class="text-primary"><b>DATA SEKOLAH DAN PENDIDIKAN SEBELUMNYA</b></h4>
                             </div>
                             <div class="row mb-3">
@@ -431,7 +408,7 @@ Detail Pendaftaran
                                         <small><i>*jika ada</i></small>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="row mb-3">
                                 <div class="col-sm-6 col-6">
                                     <h5 class="f-w-400">Berkas Calon Pendaftar <small>raport,ijazah</small></h5>

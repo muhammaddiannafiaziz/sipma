@@ -126,31 +126,18 @@ class PendaftaranController extends Controller
         // ], $message);
 
         $kodependaftaran = Pendaftaran::id();
-
+        $nimmahasiswa = Auth::user()->username;
         
         $file = $a->file('foto');
         $nama_file = "Pasfoto".time() . "-" . $file->getClientOriginalName();
-        $namaFolder = 'data pendaftar/'.$kodependaftaran;
+        $namaFolder = 'data pendaftar/'.$nimmahasiswa;
         $file->move($namaFolder,$nama_file);
         $pathFoto = $namaFolder."/".$nama_file;
-
-        $fileftberkas_ortu = $a->file('ftberkas_ortu');
-        $nama_fileftberkas_ortu = "BerkasOrtu".time() . "-" . $fileftberkas_ortu->getClientOriginalName();
-        $namaFolderftgaji = 'data pendaftar/'.$kodependaftaran;
-        $fileftberkas_ortu->move($namaFolderftgaji,$nama_fileftberkas_ortu);
-        $pathOrtu = $namaFolderftgaji."/".$nama_fileftberkas_ortu;
-
-
-        $fileftberkas_siswa = $a->file('ftberkas_siswa');
-        $nama_fileftberkas_siswa = "BerkasSiswa".time() . "-" . $fileftberkas_siswa->getClientOriginalName();
-        $namaFolderftraport = 'data pendaftar/'.$kodependaftaran;
-        $fileftberkas_siswa->move($namaFolderftraport,$nama_fileftberkas_siswa);
-        $pathSiswa = $namaFolderftraport."/".$nama_fileftberkas_siswa;
 
         $fileftprestasi = $a->file('ftprestasi');
         if(file_exists($fileftprestasi)){
             $nama_fileftprestasi = "Prestasi".time() . "-" . $fileftprestasi->getClientOriginalName();
-            $namaFolderftprestasi = 'data pendaftar/'.$kodependaftaran;
+            $namaFolderftprestasi = 'data pendaftar/'.$nimmahasiswa;
             $fileftprestasi->move($namaFolderftprestasi,$nama_fileftprestasi);
             $pathPrestasi = $namaFolderftprestasi."/".$nama_fileftprestasi;
         } else {
@@ -158,7 +145,7 @@ class PendaftaranController extends Controller
         }
 
         Pendaftaran::create([
-            'id_pendaftaran' => $kodependaftaran,
+            'id_pendaftaran' => "$kodependaftaran",
             'user_id' => Auth::user()->id,
             'nim' => $a->nim,
             'nama_siswa' => $a->nama,
@@ -212,13 +199,6 @@ class PendaftaranController extends Controller
         Pendaftaran::where("id_pendaftaran", "$id_pendaftaran")->update([
             'status_pendaftaran' => "Terverifikasi"
         ]);
-        Timeline::create([
-            'user_id' => Auth::user()->id,
-            'status' => "Pendaftaran",    
-            'pesan' => "Melakukan verifikasi pendaftaran ".$id_pendaftaran,
-            'tgl_update' => now(),
-            'created_at' => now()
-        ]);
         return redirect('/data-registration');
     }
 
@@ -226,13 +206,6 @@ class PendaftaranController extends Controller
         //$dataUser = ProfileUsers::all();
         Pendaftaran::where("id_pendaftaran", "$id_pendaftaran")->update([
             'status_pendaftaran' => "Belum Terverifikasi"
-        ]);
-        Timeline::create([
-            'user_id' => Auth::user()->id,
-            'status' => "Pendaftaran",    
-            'pesan' => "Melakukan perubahan verifikasi pendaftaran ".$id_pendaftaran." (Belum Terverifikasi)",
-            'tgl_update' => now(),
-            'created_at' => now()
         ]);
         return redirect('/data-registration');
     }
@@ -242,13 +215,6 @@ class PendaftaranController extends Controller
         Pendaftaran::where("id_pendaftaran", "$id_pendaftaran")->update([
             'status_pendaftaran' => "Tidak Sah"
         ]);
-        Timeline::create([
-            'user_id' => Auth::user()->id,
-            'status' => "Pendaftaran",    
-            'pesan' => "Melakukan perubahan verifikasi pendaftaran ".$id_pendaftaran." (Tidak Sah)",
-            'tgl_update' => now(),
-            'created_at' => now()
-        ]);
         return redirect('/data-registration');
     }
 
@@ -257,13 +223,6 @@ class PendaftaranController extends Controller
         Pendaftaran::where("id_pendaftaran", "$id_pendaftaran")->update([
             'status_pendaftaran' => "Selesai"
         ]);
-        Timeline::create([
-            'user_id' => Auth::user()->id,
-            'status' => "Pendaftaran",    
-            'pesan' => "Melakukan perubahan verifikasi pendaftaran ".$id_pendaftaran." (Umumkan)",
-            'tgl_update' => now(),
-            'created_at' => now()
-        ]);
         return redirect('/data-registration');
     }
 
@@ -271,12 +230,12 @@ class PendaftaranController extends Controller
     public function editpendaftaran($id_pendaftaran)
     {
         $dataUser = ProfileUsers::all();
-        $dataprod = ProgramStudi::all();
-        $dataSekolah = Sekolah::all();
+        // $dataprod = ProgramStudi::all();
+        // $dataSekolah = Sekolah::all();
         $datenow = date('Y-m-d');
         $dataJadwal = JadwalKegiatan::where("tgl_mulai","<=","$datenow")->where("tgl_akhir",">","$datenow")->where("jenis_kegiatan","Pendaftaran")->get();
         $data = Pendaftaran::where("id_pendaftaran",$id_pendaftaran)->first();
-        return view('pendaftaran.data-pendaftaran-edit-admin', ['viewDataJadwal' => $dataJadwal,'viewDataUser' => $dataUser,'viewData' => $data,'viewSekolah' => $dataSekolah,'viewProdi' => $dataprod]);
+        return view('pendaftaran.data-pendaftaran-edit-admin', ['viewDataJadwal' => $dataJadwal,'viewDataUser' => $dataUser,'viewData' => $data]);
     }
 
     public function updatependaftaran(Request $a, $id_pendaftaran){
@@ -349,41 +308,22 @@ class PendaftaranController extends Controller
         // ], $message);
 
         $kodependaftaran = Pendaftaran::id();
+        $nimmahasiswa = Auth::user()->username;
 
         $file = $a->file('foto');
         if(file_exists($file)){
             $nama_file = "Pasfoto".time() . "-" . $file->getClientOriginalName();
-            $namaFolder = 'data pendaftar/'.$kodependaftaran;
+            $namaFolder = 'data pendaftar/'.$nimmahasiswa;
             $file->move($namaFolder,$nama_file);
             $pathFoto = $namaFolder."/".$nama_file;
         } else {
             $pathFoto = $a->pathFoto;
         }
 
-        $fileftberkas_ortu = $a->file('ftberkas_ortu');
-        if(file_exists($fileftberkas_ortu)){
-            $nama_fileftberkas_ortu = "Slipgaji".time() . "-" . $fileftberkas_ortu->getClientOriginalName();
-            $namaFolderftgaji = 'data pendaftar/'.$kodependaftaran;
-            $fileftberkas_ortu->move($namaFolderftgaji,$nama_fileftberkas_ortu);
-            $pathOrtu = $namaFolderftgaji."/".$nama_fileftberkas_ortu;
-        } else {
-            $pathOrtu = $a->pathOrtu;
-        }
-
-        $fileftberkas_siswa = $a->file('ftberkas_siswa');
-        if(file_exists($fileftberkas_siswa)){
-            $nama_fileftberkas_siswa = "Raport".time() . "-" . $fileftberkas_siswa->getClientOriginalName();
-            $namaFolderftraport = 'data pendaftar/'.$kodependaftaran;
-            $fileftberkas_siswa->move($namaFolderftraport,$nama_fileftberkas_siswa);
-            $pathSiswa = $namaFolderftraport."/".$nama_fileftberkas_siswa;
-        } else {
-            $pathSiswa = $a->pathSiswa;
-        }
-
         $fileftprestasi = $a->file('ftprestasi');
         if(file_exists($fileftprestasi)){
             $nama_fileftprestasi = "Prestasi".time() . "-" . $fileftprestasi->getClientOriginalName();
-            $namaFolderftprestasi = 'data pendaftar/'.$kodependaftaran;
+            $namaFolderftprestasi = 'data pendaftar/'.$nimmahasiswa;
             $fileftprestasi->move($namaFolderftprestasi,$nama_fileftprestasi);
             $pathPrestasi = $namaFolderftprestasi."/".$nama_fileftprestasi;
         } else {
@@ -460,24 +400,20 @@ class PendaftaranController extends Controller
     public function detailpendaftaran($id_pendaftaran)
     {
         $dataUser = ProfileUsers::all();
-        $dataprod = ProgramStudi::all();
-        $dataSekolah = Sekolah::all();
         $data = Pendaftaran::where("id_pendaftaran",$id_pendaftaran)->first();
         $datPembayaran = Pembayaran::where("id_pendaftaran",$data->id)->first();
         $no=1;
         
         
         $datapembayaran = Pendaftaran::where("id_pendaftaran", $id_pendaftaran)->get();
-        return view('pendaftaran.data-pendaftaran-detail', ['viewDataUser' => $dataUser,'viewDataPembayaran' => $datPembayaran,'viewData' => $data,'viewSekolah' => $dataSekolah,'viewProdi' => $dataprod]);
+        return view('pendaftaran.data-pendaftaran-detail', ['viewDataUser' => $dataUser,'viewDataPembayaran' => $datPembayaran,'viewData' => $data]);
     }
 
     public function kartupendaftaran($id_pendaftaran)
     {
         $dataUser = ProfileUsers::all();
-        $dataprod = ProgramStudi::all();
-        $dataSekolah = Sekolah::all();
         // $data = Pendaftaran::find($id_pendaftaran);
         $data = Pendaftaran::where("id_pendaftaran",$id_pendaftaran)->first();
-        return view('pendaftaran.data-pendaftaran-kartu-admin', ['viewDataUser' => $dataUser,'viewData' => $data,'viewSekolah' => $dataSekolah,'viewProdi' => $dataprod]);
+        return view('pendaftaran.data-pendaftaran-kartu-admin', ['viewDataUser' => $dataUser,'viewData' => $data]);
     }
 }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use DB;
+use Illuminate\Support\Facades\DB;
 Use Illuminate\Support\Carbon;
 
 class Pendaftaran extends Model
@@ -32,38 +32,21 @@ class Pendaftaran extends Model
         'created_at'
     ];
   
-    // // relasi provinsi
-    // public function province()
-    // {
-    //     return $this->belongsTo(Province::class, 'provinsi_id');
-    // }
-
-    // // relasi kabupaten
-    // public function regency()
-    // {
-    //     return $this->belongsTo(Regency::class, 'kabupaten_id');
-    // }
-
-    // // relasi kecamatan
-    // public function district()
-    // {
-    //     return $this->belongsTo(District::class, 'kecamatan_id');
-    // }
-
-    // // relasi kelurahan
-    // public function village()
-    // {
-    //     return $this->belongsTo(Village::class, 'kelurahan_id');
-    // }
-
     public static function id()
     {
-        $data = DB::table('pendaftaran')->orderby('id_pendaftaran','DESC')->first();
-        $kodeakhir5 = substr($data->id_pendaftaran,-4);
-        $kodeku= (int)$kodeakhir5;
+        $data = DB::table('pendaftaran')->orderby('id_pendaftaran', 'DESC')->first();
+
+        // Penanganan jika tidak ada data di tabel
+        if ($data === null) {
+            $kodeku = 0;
+        } else {
+            $kodeakhir5 = substr($data->id_pendaftaran, -4);
+            $kodeku = (int)$kodeakhir5;
+        }
+
         $addNol = '';
         $kodetb = 'PENDPSB';
-        $kode = (int)$kodeku + 1;
+        $kode = $kodeku + 1;
 
         if (strlen($kode) == 1) {
             $addNol = "000";
@@ -71,11 +54,12 @@ class Pendaftaran extends Model
             $addNol = "00";
         } elseif (strlen($kode) == 3) {
             $addNol = "0";
-        } elseif (strlen($kode) == 4) {
-            $addNol = "";
         }
-        $kodeBaru = $kodetb.now()->format('y').$addNol.$kode;
-    	return $kodeBaru;
+
+        // Menggunakan Carbon untuk mendapatkan tahun dalam format 'y'
+        $kodeBaru = $kodetb . Carbon::now()->format('y') . $addNol . $kode;
+
+        return $kodeBaru;
     }
 
     public function user()
