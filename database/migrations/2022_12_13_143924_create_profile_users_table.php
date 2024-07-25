@@ -33,25 +33,26 @@ class CreateProfileUsersTable extends Migration
             $table->string('no_hp')->nullable();
             $table->string('alamat')->nullable();
            
-            $table->string('provinsi_id')->nullable();
+            $table->string('provinsi')->nullable();
             // $table->foreign('provinsi_id')
             //     ->references('id')
             //     ->on('provinces')
             //     ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->string('kabupaten_id')->nullable();
+            $table->string('kabupaten')->nullable();
             // $table->foreign('kabupaten_id')
             //     ->references('id')
             //     ->on('regencies')
             //     ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->string('kecamatan_id')->nullable();
+            $table->string('kecamatan')->nullable();
             // $table->foreign('kecamatan_id')
             //     ->references('id')
             //     ->on('districts')
             //     ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->string('kelurahan_id')->nullable();
+            $table->string('kelurahan')->nullable();
+            $table->string('kode_pos')->nullable();
             // $table->foreign('kelurahan_id')
             //     ->references('id')
             //     ->on('villages')
@@ -73,7 +74,7 @@ class CreateProfileUsersTable extends Migration
             // $table->string('sekolah_sd')->nullable();
             // $table->string('sekolah_smp')->nullable();
             $table->string('sekolah_sma')->nullable();
-            $table->string('berkas_siswa');//kk akte ijazah raport
+            // $table->string('berkas_siswa');//kk akte ijazah raport
             $table->string('prestasi')->nullable();
 
             $table->timestamps();

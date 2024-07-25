@@ -51,7 +51,7 @@
                     <h2 class="title">Masuk</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Masukkan NIM" name="email" value="{{ old('email') }}" autocomplete='off' />
+                        <input type="text" placeholder="Masukkan NIM" name="username" value="" autocomplete='off' />
                         
                     </div>
                     <div class="input-field">

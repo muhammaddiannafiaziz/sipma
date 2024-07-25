@@ -29,6 +29,7 @@ class UserSeeder extends Seeder
         ProfileUsers::create([
             'user_id' => 1,
             'nama' => 'Iam Admin',
+            'username' => 'Adminmahad',
             'email' => 'mahad.aljamiah@uinsaid.ac.id',
             'created_at' => now()
         ]);
@@ -71,7 +72,7 @@ class UserSeeder extends Seeder
             'created_at' => now()
         ]);
         ProfileUsers::create([
-            'user_id' => 3,
+            'user_id' => 4,
             'nama' => 'User Tiga',
             'username' => '100000003',
             'email' => 'user2@gmail.com',
