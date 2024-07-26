@@ -204,25 +204,18 @@
                                                 <tr border="5">
                                                     <th scope="row" width="50%">No Pendafataran</th>
                                                     <td  width="50%">{{ $viewIdPendaftaran->id_pendaftaran }}</td>
-                                                <tr>
-                                                <tr border="5">
-                                                    <th scope="row"  width="50%">NISN Siswa</th>
-                                                    <td width="50%">{{ $viewIdPendaftaran->nisn }}</td>
                                                 </tr>
                                                 <tr border="5">
                                                     <th scope="row"  width="50%">Nama Siswa</th>
                                                     <td  width="50%">{{ $viewIdPendaftaran->nama_siswa }}</td>
                                                 </tr>
                                                 <tr border="5">
-                                                    <th scope="row"  width="50%">Asal Sekolah</th>
-                                                    <td width="50%">
-                                                        {{-- {{$viewIdPendaftaran->skolah->nama_sekolah}} --}}
-                                                        @foreach ($viewSekolah as $item)
-                                                        @if ($viewIdPendaftaran->sekolah == $item->id)
-                                                         {{ $item->nama_sekolah }}
-                                                        @endif
-                                                        @endforeach
-                                                    </td>
+                                                    <th scope="row"  width="50%">NIM</th>
+                                                    <td width="50%">{{ $viewIdPendaftaran->nim }}</td>
+                                                </tr>
+                                                <tr border="5">
+                                                    <th scope="row"  width="50%">Program Studi</th>
+                                                    <td width="50%">{{ $viewIdPendaftaran->prodi }}</td>
                                                 </tr>
                                             </table>
                                         </td>

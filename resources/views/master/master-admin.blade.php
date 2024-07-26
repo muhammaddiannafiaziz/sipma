@@ -309,14 +309,16 @@
                         <ul class="navbar-nav header-right">
                             <li class="nav-item d-flex align-items-center">
                                 @php
-                                    $date = date('l, d F Y ');
+                                use Carbon\Carbon;
+                                $date = Carbon::now()->translatedFormat('l, d F Y');
+                                    // $date = date('l, d F Y ');
                                     //$date = date('l, Y-m-d ');
                                 @endphp
                                 <strong>{{ $date }} &nbsp;
                                     <span id="jamServer">
                                         @php
                                             date_default_timezone_set('Asia/Jakarta');
-                                            $datenow = date('H:i:s');
+                                            $datenow = Carbon::now()->format('H:i:s');
                                         @endphp
                                         <h6> <strong> {{ $datenow }}</strong></h6>
                                     </span>
@@ -327,14 +329,19 @@
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="javascript:void(0);" role="button"
                                     data-bs-toggle="dropdown">
-                                @if (auth()->user()->profile->foto != null)
-                                    <img class="avatar-lg rounded-circle img-thumbnail" src="{{ url('/' . auth()->user()->profile->foto) }}"
-                                        alt="" width="50px" />
-                                @else
+                                    @if(auth()->user()->profile->gender == "Perempuan")
                                     <img class="avatar-lg rounded-circle img-thumbnail"
-                                    src="{{ asset('sipenmaru/images/ava.png') }}" alt=""
-                                        width="50px" />
-                                @endif
+                                    src="{{ asset('sipenmaru/images/mahasantri02.png') }}" alt=""
+                                        width="75px" />
+                                    @elseif(auth()->user()->profile->gender == "Laki-laki")
+                                    <img class="avatar-lg rounded-circle img-thumbnail"
+                                    src="{{ asset('sipenmaru/images/mahasantri01.png') }}" alt=""
+                                        width="75px" />
+                                    @else
+                                    <img class="avatar-lg rounded-circle img-thumbnail"
+                                        src="{{ asset('sipenmaru/images/ava.png') }}" alt=""
+                                            width="75px" />
+                                    @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <a href="/profile" class="dropdown-item ai-icon">
@@ -378,14 +385,20 @@
                     <div class="sidebar-user text-center">
 
                         <a href="/profile">
-                                @if (auth()->user()->profile->foto != null)
-                                    <img class="avatar-lg rounded-circle img-thumbnail" src="{{ url('/' . auth()->user()->profile->foto) }}"
-                                        alt="" width="75px" />
-                                @else
-                                    <img class="avatar-lg rounded-circle img-thumbnail"
-                                    src="{{ asset('sipenmaru/images/ava.png') }}" alt=""
-                                        width="75px" />
-                                @endif
+                                
+                            @if(auth()->user()->profile->gender == "Perempuan")
+                            <img class="avatar-lg rounded-circle img-thumbnail"
+                            src="{{ asset('sipenmaru/images/mahasantri02.png') }}" alt=""
+                                width="75px" />
+                            @elseif(auth()->user()->profile->gender == "Laki-laki")
+                            <img class="avatar-lg rounded-circle img-thumbnail"
+                            src="{{ asset('sipenmaru/images/mahasantri01.png') }}" alt=""
+                                width="75px" />
+                            @else
+                            <img class="avatar-lg rounded-circle img-thumbnail"
+                                src="{{ asset('sipenmaru/images/ava.png') }}" alt=""
+                                    width="75px" />
+                            @endif
                         <div class="badge-bottom"><span class="badge badge-primary">@if (auth()->user()->role =="Administrator")
                             {{ auth()->user()->role }}
                         @else

@@ -21,46 +21,61 @@ class UserSeeder extends Seeder
         //create admin
         User::create([
             'name' => 'Iam Admin',
-            'password' => Hash::make('12345678'),
-            'email' => 'admin@gmail.com',
-            'email_verified_at' => now(),
+            'password' => Hash::make('admin@mahad2024'),
+            'username' => 'Adminmahad',
             'role' => 'Administrator',
             'created_at' => now()
         ]);
         ProfileUsers::create([
             'user_id' => 1,
             'nama' => 'Iam Admin',
-            'email' => 'admin@gmail.com',
+            'username' => 'Adminmahad',
+            'email' => 'mahad.aljamiah@uinsaid.ac.id',
             'created_at' => now()
         ]);
-        Timeline::create([
-            'user_id' => 1,
-            'status' => "Bergabung",
-            'pesan' => 'Membuat Akun baru',
-            'tgl_update' => now(),
-            'created_at' => now()
-        ]);
-
+   
         User::create([
-            'name' => 'Iam User',
+            'name' => 'User Satu',
             'password' => Hash::make('12345678'),
-            'email' => 'user@gmail.com',
-            'email_verified_at' => now(),
-            'role' => 'Calon Mahasiswa',
+            'username' => '100000001',
+            'role' => 'Calon Santri',
             'created_at' => now()
         ]);
-
         ProfileUsers::create([
             'user_id' => 2,
-            'nama' => 'Iam User',
-            'email' => 'user@gmail.com',
+            'nama' => 'User Satu',
+            'username' => '100000001',
+            'email' => 'user1@gmail.com',
             'created_at' => now()
         ]);
-        Timeline::create([
-            'user_id' => 2,
-            'status' => "Bergabung",
-            'pesan' => 'Membuat Akun baru',
-            'tgl_update' => now(),
+   
+        User::create([
+            'name' => 'User Dua',
+            'password' => Hash::make('12345678'),
+            'username' => '100000002',
+            'role' => 'Calon Santri',
+            'created_at' => now()
+        ]);
+        ProfileUsers::create([
+            'user_id' => 3,
+            'nama' => 'User Dua',
+            'username' => '100000002',
+            'email' => 'user2@gmail.com',
+            'created_at' => now()
+        ]);
+   
+        User::create([
+            'name' => 'User Tiga',
+            'password' => Hash::make('12345678'),
+            'username' => '100000003',
+            'role' => 'Calon Santri',
+            'created_at' => now()
+        ]);
+        ProfileUsers::create([
+            'user_id' => 4,
+            'nama' => 'User Tiga',
+            'username' => '100000003',
+            'email' => 'user2@gmail.com',
             'created_at' => now()
         ]);
 

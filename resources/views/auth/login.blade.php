@@ -51,7 +51,7 @@
                     <h2 class="title">Masuk</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Masukkan NIM" name="email" value="{{ old('email') }}" autocomplete='off' />
+                        <input type="text" placeholder="Masukkan NIM" name="username" value="" autocomplete='off' />
                         
                     </div>
                     <div class="input-field">
@@ -60,15 +60,7 @@
                         
                     </div>
                     <input type="submit" value="MASUK" class="btn solid" />
-                    <div class="content">
-                        <h3>Baru disini ?</h3>
-                        <p>
-                            Silahkan daftar akun untuk melanjutkan proses pendaftaran mahasiswa baru!
-                        </p>
-                        <button class="btn solid">
-                            <a href="/register" class="">DAFTAR</a>
-                        </button>
-                    </div>
+                    
                 </form>
             </div>
         </div>

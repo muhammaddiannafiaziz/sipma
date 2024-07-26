@@ -112,44 +112,20 @@
                                         <strong>NOMOR PESERTA</strong><br>
                                         <h5 style="text-indent: 0.5in"><strong>{{ $viewData->id_pendaftaran }}</strong>
                                         </h5>
+                                        <strong>NIM</strong><br>
+                                        <h5 style="text-indent: 0.5in"><strong>{{ $viewData->nim }}</strong></h5>
                                         <strong>NAMA PESERTA</strong><br>
                                         <h5 style="text-indent: 0.5in"><strong>{{ $viewData->nama_siswa }}</strong></h5>
                                         <strong>TANGGAL LAHIR</strong><br>
                                         <h5 style="text-indent: 0.5in"><strong>{{ $viewData->tanggal_lahir }}</strong>
                                         </h5>
-                                        <strong>NISN</strong><br>
-                                        <h5 style="text-indent: 0.5in"><strong>{{ $viewData->nisn }}</strong></h5>
                                         <strong>ASAL SEKOLAH</strong><br>
-                                        <h5 style="text-indent: 0.5in"><strong>
-                                            @foreach ($viewSekolah as $z)
-                                                    @if ($z->id == $viewData->sekolah)
-                                                    <h5 class="f-w-500">: {{ $z->nama_sekolah }}</h5>
-                                                    @endif
-                                            @endforeach
-                                            </strong></h5>
-
+                                        <h5 style="text-indent: 0.5in"><strong>{{ $viewDataProfil->sekolah_sma }}</strong></h5>
                                     </div>
                                 </div>
 
                             </div>
-                            <br>
-                            <div class="d-flex">
-                                <div class="col-lg-6" style="width: 50%">
-                                    <div class="mb-3 mb-4">
-                                        <strong>PILIHAN 1</strong><br>
-                                        <h5><strong>{{$viewData->pilihan1->nama_prodi}}
-                                            </strong></h5>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6" style="width: 50%">
-                                    <div class="mb-3 mb-4">
-                                        <strong>PILIHAN 2</strong><br>
-                                        <h5><strong>{{$viewData->pilihan2->nama_prodi}}
-                                            </strong></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            {{-- <br> --}}
+                            
                             <div class="mb-4">
                                 <h4><strong>PERNYATAAN</strong></h4>
                                 <h5 style="text-indent: 0.5in;text-align: justify;">Saya yang menyatakan bahwa data yang
