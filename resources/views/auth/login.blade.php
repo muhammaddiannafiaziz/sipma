@@ -60,15 +60,7 @@
                         
                     </div>
                     <input type="submit" value="MASUK" class="btn solid" />
-                    <div class="content">
-                        <h3>Baru disini ?</h3>
-                        <p>
-                            Silahkan daftar akun untuk melanjutkan proses pendaftaran mahasiswa baru!
-                        </p>
-                        <button class="btn solid">
-                            <a href="/register" class="">DAFTAR</a>
-                        </button>
-                    </div>
+                    
                 </form>
             </div>
         </div>

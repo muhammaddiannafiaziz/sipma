@@ -133,17 +133,6 @@ Pengumuman
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="iduser">Program Studi Penerima </label>
-                                                <select class="default-select form-control wide" title="penerima"
-                                                    name="penerima" required>
-                                                    <option value="-">Pilih Program Studi</option>
-                                                    <option value="TIDAK ADA">Tidak Ada</option>
-                                                    @foreach ($viewProdi as $z)
-                                                        <option value="{{ $z->id_prodi }}">{{ $z->nama_prodi }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-xl-6">
                                                         <label for="iduser">Nilai Interview</label>

@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 @foreach($viewData as $x)
-                @if (auth()->user()->email == $x->email)
+                @if (auth()->user()->username == $x->nim)
                 @if ($x->status_pendaftaran == 'Selesai')
                 <li><a href="view-announcement/{{ $x->id_pendaftaran }}" aria-expanded="false">
                         <i class="fa fa-file"></i>
@@ -266,7 +266,7 @@
                         $no = 0;
                     @endphp
                     @foreach ($viewData as $x)
-                        @if (auth()->user()->email == $x->email)
+                        @if (auth()->user()->username == $x->nim)
                             @php
                                 $no = $no + 1;
                             @endphp
@@ -311,7 +311,7 @@
                 $no = 0;
             @endphp
             @foreach ($viewData as $x)
-                @if (auth()->user()->email == $x->email)
+                @if (auth()->user()->username == $x->nim)
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="tab-content">

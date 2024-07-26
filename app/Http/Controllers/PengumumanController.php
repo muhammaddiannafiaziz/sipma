@@ -37,8 +37,7 @@ class PengumumanController extends Controller
         $dataUser = ProfileUsers::all();
         $data = Pengumuman::all();
         $dataid = Pendaftaran::all();
-        $dataprod = ProgramStudi::all();
-        return view ('pengumuman.data-pengumuman-admin',['viewDataUser' => $dataUser,'viewData' => $data,'viewIdPendaftaran' => $dataid,'viewProdi' => $dataprod]);
+        return view ('pengumuman.data-pengumuman-admin',['viewDataUser' => $dataUser,'viewData' => $data,'viewIdPendaftaran' => $dataid]);
     }
 
     public function lihatpengumuman(Request $a)
@@ -47,9 +46,8 @@ class PengumumanController extends Controller
         $dataditemukan = Pengumuman::where("id_pendaftaran", $a->id_pendaftaran)->first();
         $data = Pengumuman::all();
         $dataid = Pendaftaran::where("id_pendaftaran", $a->id_pendaftaran)->first();
-        $dataskl = Sekolah::all();
         $datPembayaran = Pembayaran::where("id_pendaftaran",$dataid->id)->first();
-        return view ('pengumuman.data-pengumuman-view',['viewDataUser' => $dataUser,'viewData' => $data,'viewIdPendaftaran' => $dataid,'viewDataPembayaran' => $datPembayaran,'viewID' => $dataditemukan,'viewSekolah' => $dataskl]);
+        return view ('pengumuman.data-pengumuman-view',['viewDataUser' => $dataUser,'viewData' => $data,'viewIdPendaftaran' => $dataid,'viewDataPembayaran' => $datPembayaran,'viewID' => $dataditemukan]);
     }
 
 
@@ -65,13 +63,6 @@ class PengumumanController extends Controller
                 'prodi_penerima' => $a->penerima,
                 'nilai_interview' => $a->interview,
                 'nilai_test' => $a->test
-            ]);
-            Timeline::create([
-                'user_id' => Auth::user()->id,
-                'status' => "Pengumuman",    
-                'pesan' => 'Membuat Pengumuman',
-                'tgl_update' => now(),
-                'created_at' => now()
             ]);
             return redirect('/data-announcement')->with('success', 'Data Tersimpan!!');
         } catch (\Exception $e){
@@ -99,13 +90,6 @@ class PengumumanController extends Controller
                     "status_pendaftaran"=>"Selesai"
                 ]);
             }
-            Timeline::create([
-                'user_id' => Auth::user()->id,
-                'status' => "Pengumuman",    
-                'pesan' => 'Memperbaharui Pengumuman',
-                'tgl_update' => now(),
-                'created_at' => now()
-            ]);
             return redirect('/data-announcement')->with('success', 'Data Terubah!!');
         } catch (\Exception $e){
             return redirect()->back()->with('error', 'Data Tidak Berhasil Diubah!');
