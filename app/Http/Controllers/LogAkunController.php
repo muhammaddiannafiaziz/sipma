@@ -36,7 +36,9 @@ class LogAkunController extends Controller
 
     //profil
     public function dataprofil(){
-        return view ('profil');
+        $nim = Auth::user()->username;
+        $dataProfil = ProfileUsers::where("username", $nim)->first();
+        return view ('profil',["viewDataProfil"=>$dataProfil]);
     }
 
     //
@@ -47,7 +49,7 @@ class LogAkunController extends Controller
                 'tanggal.required' => 'Tanggal lahir tidak boleh kosong',
                 'jk.required' => 'Jenis Kelamin harus dipilih',
                 'hp.required' => 'Family card cannot be empty',
-                'alamat.required' => 'School name must be filled',
+                // 'alamat.required' => 'School name must be filled',
             ];
 
             $cekValidasi = $a->validate([
@@ -56,22 +58,22 @@ class LogAkunController extends Controller
                 'tanggal' => 'required',
                 'jk' => 'required',
                 'hp' => 'required',
-                'alamat' => 'required',
+                // 'alamat' => 'required',
             ], $message);
 
-            $file = $a->file('foto');
-            if(file_exists($file)){
-                $nama_file = time() . "-" . $file->getClientOriginalName();
-                $namaFolder = 'foto profil';
-                $file->move($namaFolder,$nama_file);
-                $pathFoto = $namaFolder."/".$nama_file;
-            } else {
-                $pathFoto = $a->pathFoto;
-            }
+            // $file = $a->file('foto');
+            // if(file_exists($file)){
+            //     $nama_file = time() . "-" . $file->getClientOriginalName();
+            //     $namaFolder = 'foto profil';
+            //     $file->move($namaFolder,$nama_file);
+            //     $pathFoto = $namaFolder."/".$nama_file;
+            // } else {
+            //     $pathFoto = $a->pathFoto;
+            // }
 
             $fileftprestasi = $a->file('ftprestasi');
             if(file_exists($fileftprestasi)){
-                $nama_fileftprestasi = "Prestasi".time() . "-" . $fileftprestasi->getClientOriginalName();
+                $nama_fileftprestasi = "berkas".$a->username."-".time() . "-" . $fileftprestasi->getClientOriginalName();
                 $namaFolderftprestasi = 'data pendaftar/'.$a->username;
                 $fileftprestasi->move($namaFolderftprestasi,$nama_fileftprestasi);
                 $pathPrestasi = $namaFolderftprestasi."/".$nama_fileftprestasi;
@@ -79,10 +81,12 @@ class LogAkunController extends Controller
                 $pathPrestasi = null;
             }
 
+            $alamat = $a->jalan.", ".$a->kelurahan.", Kec. ".$a->kecamatan.", Kab. ".$a->kabupaten.", Prov. ".$a->provinsi." - Kode Pos : ".$a->kode_pos;
+
             ProfileUsers::where("user_id", Auth::user()->id)->update([
                 'nama' => $a->nama,
                 'username' => $a->username,
-                'foto' => $pathFoto,
+                // 'foto' => $pathFoto,
                 'prodi' => $a->prodi,
                 'email' => $a->email,
                 'tempat_lahir' => $a->tempat,
@@ -90,7 +94,7 @@ class LogAkunController extends Controller
                 'gender' => $a->jk,
                 'agama' => $a->agama,
                 'no_hp' => $a->hp,
-                'alamat' => $a->alamat,
+                'alamat' => $alamat,
                 'jalan' => $a->jalan,
                 'kelurahan' => $a->kelurahan,
                 'kecamatan' => $a->kecamatan,

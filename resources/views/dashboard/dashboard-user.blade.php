@@ -20,11 +20,15 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" src="{{ asset('sipenmaru/images/banner (1).png') }}"
+                            <img class="d-block w-100" src="{{ asset('sipenmaru/images/banner1.jpeg') }}"
                                 alt="First slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="{{ asset('sipenmaru/images/banner (2).png') }}"
+                            <img class="d-block w-100" src="{{ asset('sipenmaru/images/banner2.jpeg') }}"
+                                alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="{{ asset('sipenmaru/images/banner3.jpeg') }}"
                                 alt="Second slide">
                         </div>
                     </div>
@@ -42,52 +46,7 @@
             </div>
         </div>
     </div>
-    {{-- <div class="col-xl-5">
-        <div class="row">
-            <div class="card transparent-card">
-                <div class="widget-stat card bg-primary" style="border-radius: 0%">
-                    <div class="card-body  p-4">
-                        <div class="media">
-                            <span class="me-3">
-                                <i class="la la-users"></i>
-                            </span>
-                            <div class="media-body text-white">
-                                <p class="mb-1">Total Pendaftar</p>
-                                <h3 class="text-white">3280</h3>
-                                <div class="progress mb-2 bg-secondary">
-                                    <div class="progress-bar progress-animated bg-light" style="width: 80%"></div>
-                                </div>
-                                <small>ditahun ini</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row" style="margin-top: -2.7rem">
-            <div class="card transparent-card">
-                <div class="widget-stat card bg-warning" style="border-radius: 0%">
-                    <div class="card-body p-4">
-                        <div class="media">
-                            <span class="me-3">
-                                <i class="la la-user"></i>
-                            </span>
-                            <div class="media-body text-white">
-                                <p class="mb-1">Pendaftar Baru</p>
-                                <h3 class="text-white">245</h3>
-                                <div class="progress mb-2 bg-primary">
-                                    <div class="progress-bar progress-animated bg-light" style="width: 50%"></div>
-                                </div>
-                                <small>ditahun ini</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </div> --}}
-</div>
+    
 </div>
 
 

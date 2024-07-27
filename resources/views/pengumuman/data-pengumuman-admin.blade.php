@@ -139,11 +139,11 @@ Pengumuman
                                                         <input type="number" class="form-control" 
                                                             placeholder="Masukkan Nilai Interview" name="interview" required>
                                                     </div>
-                                                    <div class="col-xl-6">
+                                                    {{-- <div class="col-xl-6">
                                                         <label for="iduser">Nilai Test</label>
                                                         <input type="number" class="form-control" 
                                                             placeholder="Masukkan Nilai Test" name="test" required>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                             <div class="modal-footer border-top-0 d-flex">
@@ -166,10 +166,9 @@ Pengumuman
                                     <tr>
                                         <th>No</th>
                                         <th>Id Pendaftaran</th>
+                                        <th>Nama</th>
                                         <th>Hasil</th>
-                                        <th>Program Studi Penerima</th>
                                         <th>Nilai Interview</th>
-                                        <th>Nilai Tes</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -179,6 +178,10 @@ Pengumuman
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td><a href="detail-registration/{{ $x->id_pendaftaran }}">{{ $x->id_pendaftaran }}</a></td>
+                                            <td>{{ $x->pendaftaran->nama_siswa }}</td>
+                                            {{-- @php
+                                            dd($viewIdPendaftaran)
+                                            @endphp --}}
                                             <td>
                                                 @if ($x->hasil_seleksi == "LULUS" || $x->hasil_seleksi == "Lulus" || $x->hasil_seleksi == "lulus")
                                                     <span class="badge light badge-success">
@@ -196,7 +199,7 @@ Pengumuman
                                                 @endif
                                             </td>
                                             <td><strong>{{ $x->nilai_interview }}</strong></a></td>
-                                            <td><strong>{{ $x->nilai_test }}</strong></a></td>
+                                            {{-- <td><strong>{{ $x->nilai_test }}</strong></a></td> --}}
                                             <td>
                                                 <div class="d-flex">
                                                     <a class="btn btn-secondary shadow btn-xs sharp me-1"
@@ -278,18 +281,6 @@ Pengumuman
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="iduser">Program Studi Penerima </label>
-                                                                <select class="default-select form-control wide"
-                                                                    title="Recipient" name="prodi" required>
-                                                                    @if ($x->hasil_seleksi == "LULUS" || $x->hasil_seleksi == "Lulus" || $x->hasil_seleksi == "lulus") 
-                                                                    {{-- <option value="{{ $x->prodi_penerima }}" selected>{{ $x->prodi->nama_prodi }}</option> --}}
-                                                                    @endif
-                                                                    {{-- <option value="{{ $x->pendaftaran->pil1 }}">Pilihan 1 : {{ $x->pendaftaran->pilihan1->nama_prodi }}</option>
-                                                                    <option value="{{ $x->pendaftaran->pil2 }}">Pilihan 2 : {{ $x->pendaftaran->pilihan2->nama_prodi }}</option> --}}
-                                                                    <option value="tidak diterima0">Tidak DiTerima</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group">
                                                                 <div class="row">
                                                                     <div class="col-xl-6">
                                                                         <label for="iduser">Nilai Interview</label>
@@ -297,12 +288,12 @@ Pengumuman
                                                                             value="{{ $x->nilai_interview }}"
                                                                             name="interview" required>
                                                                     </div>
-                                                                    <div class="col-xl-6">
+                                                                    {{-- <div class="col-xl-6">
                                                                         <label for="iduser">Nilai Tes</label>
                                                                         <input type="number" class="form-control" id="nama"
                                                                             value="{{ $x->nilai_test }}" name="test"
                                                                             required>
-                                                                    </div>
+                                                                    </div> --}}
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer border-top-0 d-flex">

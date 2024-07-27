@@ -26,7 +26,8 @@
     <div class="container">
         <div class="forms-container">
             <div class="signin-signup">
-                <form method="POST" action="/login" class="sign-in-form">
+                
+                <form method="POST" action="login" class="sign-in-form">
                     {{ csrf_field() }}
 
                     @if (session()->has('loginError'))
@@ -47,7 +48,11 @@
                             <strong>Peringatan!</strong> {{ $message }}
                         </div>
                     @enderror
-                        
+                    <a href="{{route('welcome')}}">
+                        <img class=""
+                        src="{{ asset('sipenmaru/images/logoatas.png') }}" alt=""
+                            width="300px" />
+                    </a>
                     <h2 class="title">Masuk</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
@@ -57,10 +62,8 @@
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
                         <input type="password" placeholder="Masukkan kata sandi" name="password" autocomplete='off'/>
-                        
                     </div>
                     <input type="submit" value="MASUK" class="btn solid" />
-                    
                 </form>
             </div>
         </div>

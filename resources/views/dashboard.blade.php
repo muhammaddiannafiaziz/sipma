@@ -73,7 +73,7 @@
                     </a>
                 </li>
                 @foreach($pendaftar as $x)
-                @if (auth()->user()->email == $x->email)
+                @if (auth()->user()->username == $x->nim)
                 @if ($x->status_pendaftaran == "Selesai")
                 <li><a href="view-announcement/{{ $x->id_pendaftaran }}" aria-expanded="false">
                         <i class="fa fa-file"></i>
@@ -98,7 +98,7 @@
     @auth
         @if (auth()->user()->role == 'Administrator')
             @include('dashboard.dashboard-admin')
-        @elseif(auth()->user()->role == 'Calon Mahasiswa')
+        @elseif(auth()->user()->role == 'Calon Santri')
             @include('dashboard.dashboard-user')
         @endif
     @endauth

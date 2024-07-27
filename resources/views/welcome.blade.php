@@ -13,7 +13,7 @@
     <meta property="og:description" content="Ma'had Al-Jami'ah UIN Raden Mas Said Surkarta">
 
     <!-- PAGE TITLE HERE -->
-    <title>Pendaftaran Mahad Al Jamiah</title>
+    <title>SIPMA</title>
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <!-- FAVICONS ICON -->
     <link rel="shortcut icon" type="image/png" href="{{ asset('sipenmaru/images/logo.png') }}">
@@ -30,12 +30,21 @@
         <div class="container px-4 px-lg-5 h-100">
             <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-8 align-self-end">
-                    <h1 class="text-white font-weight-bold">Pendaftaran Santri <br> Ma'had Al-Jami'ah</h1>
+                    <h3 class="text-white font-weight-bold">Sistem Informasi Penerimaan Mahasantri Baru</h3>
+                    <h5 class="text-white font-weight-bold">Ma'had Al-Jami'ah (Pesantren Mahasiswa) Ronggowarsito</h5>
+                    <h5 class="text-white font-weight-bold">UIN Raden Mass Said Surakarta</h5>
+                    
                     <hr class="divider" />
                 </div>
                 <div class="col-lg-8 align-self-baseline">
-                    <p class="text-white-75 mb-5">Silahkan masuk menggunakan akun siakad!</p>
-                    <a class="btn btn-primary btn-xl" href="/login">MASUK</a>
+                    {{-- <p class="text-white-75 mb-5">Silahkan masuk menggunakan akun siakad!</p> --}}
+                    <a class="btn btn-success btn-xl" href="login">MASUK</a>
+                    <hr class="divider" />
+                </div>
+                <div class="col-lg-8 align-self-baseline">
+                    <p class="text-white-75 mb-5">Silahkan mendaftar terlebih dahulu!</p>
+                    <a class="btn btn-success btn-xl" href="register">DAFTAR</a>
+                    <hr class="divider" />
                 </div>
             </div>
         </div>

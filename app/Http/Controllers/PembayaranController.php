@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\ProfileUsers;
 use App\Models\Pembayaran;
 use App\Models\Pendaftaran;
+use App\Models\Pengumuman;
 use App\Models\Timeline;
 
 use File;
@@ -36,18 +37,20 @@ class PembayaranController extends Controller
         $dataUser = ProfileUsers::all();
         $data = Pembayaran::all();
         $dataid = Pendaftaran::all();
-        return view ('pembayaran.data-pembayaran-admin',['viewDataUser' => $dataUser,'viewData' => $data,'viewIdPendaftaran' => $dataid]);
+        $dataPengumuman = Pengumuman::all();
+        return view ('pembayaran.data-pembayaran-admin',['viewDataUser' => $dataUser,'viewData' => $data,'viewIdPendaftaran' => $dataid, 'viewPengumuman'=>$dataPengumuman]);
     }
 
     public function simpanpembayaran(Request $a)
     {
         try{
+        $nimmahasiswa = Auth::user()->username;
         //$dataUser = ProfileUsers::all();
         $kode = Pembayaran::id();
         $file = $a->file('bukti');
         $kodependaftaran = $a->id_pendaftaran;
         $nama_file = "payment-".time() . "-" . $file->getClientOriginalName();
-        $namaFolder = 'data pendaftar/'.$kodependaftaran;
+        $namaFolder = 'data pendaftar/'.$nimmahasiswa;
         $file->move($namaFolder,$nama_file);
         $pathBukti = $namaFolder."/".$nama_file;
         Pembayaran::create([
@@ -55,10 +58,6 @@ class PembayaranController extends Controller
             'bukti_pembayaran' => $pathBukti,
             'status'=> $a->status,
             'id_pendaftaran' =>$a->id_pendaftaran
-        ]);
-        Timeline::create([
-            'user_id' => $a->userid,
-            'status' => "Memperbaharui Pembayaran"
         ]);
         return redirect('/data-payment')->with('success', 'Data Tersimpan!!');
     } catch (\Exception $e){
@@ -72,8 +71,10 @@ class PembayaranController extends Controller
             $file = $a->file('bukti');
             if(file_exists($file)){
                 $kodependaftaran = $a->id_pendaftaran;
+                $nimmahasiswa = Auth::user()->username;
+
                 $nama_file = "payment-".time() . "-" . $file->getClientOriginalName();
-                $namaFolder = 'data pendaftar/'.$kodependaftaran;
+                $namaFolder = 'data pendaftar/'.$nimmahasiswa;
                 $file->move($namaFolder,$nama_file);
                 $pathBukti = $namaFolder."/".$nama_file;
             } else {
@@ -83,13 +84,6 @@ class PembayaranController extends Controller
             Pembayaran::where("id_pembayaran", $id_pembayaran)->update([
                 'bukti_pembayaran' => $pathBukti,
                 'status'=> $a->status
-            ]);
-            Timeline::create([
-                'user_id' => Auth::user()->id,
-                'status' => "Pembayaran",    
-                'pesan' => 'Memperbaharui Pembayaran',
-                'tgl_update' => now(),
-                'created_at' => now()
             ]);
             return redirect('/data-payment')->with('success', 'Data Terubah!!');
         
@@ -105,8 +99,10 @@ class PembayaranController extends Controller
             $file = $a->file('pem');
             if(file_exists($file)){
                 $kodependaftaran = $a->id_pendaftaran;
+                $nimmahasiswa = Auth::user()->username;
+
                 $nama_file = "payment-".time()."-".$file->getClientOriginalName();
-                $namaFolder = 'data pendaftar/'.$kodependaftaran;
+                $namaFolder = 'data pendaftar/'.$nimmahasiswa;
                 $file->move($namaFolder,$nama_file);
                 $pathBukti = $namaFolder."/".$nama_file;
             } else {
@@ -117,15 +113,8 @@ class PembayaranController extends Controller
                         'bukti_pembayaran' => $pathBukti,
                         'status'=> "Dibayar",
                     ]);
-                    Timeline::create([
-                        'user_id' => Auth::user()->id,
-                        'status' => "Pembayaran",    
-                        'pesan' => 'Mengunggah Bukti Pembayaran',
-                        'tgl_update' => now(),
-                        'created_at' => now()
-                    ]);
             
-            return redirect('/detail-registration'.'/'.$a->id_pendaftaran)->with('success', 'Data Terubah!!');
+            return redirect('/view-announcement'.'/'.$a->id_pendaftaran)->with('success', 'Data Terubah!!');
 
         } catch (\Exception $e){
             return redirect()->back()->with('error', 'Data Tidak Berhasil Diubah!' );
@@ -163,14 +152,6 @@ class PembayaranController extends Controller
         //$dataUser = ProfileUsers::all();
         Pembayaran::where("id_pembayaran", "$id_pembayaran")->update([
             'status' => "Belum Bayar"
-        ]);
-
-        Timeline::create([
-            'user_id' => Auth::user()->id,
-            'status' => "Pembayaran",    
-            'pesan' => 'Memperbaharui Status Pembayaran (Belum Bayar)',
-            'tgl_update' => now(),
-            'created_at' => now()
         ]);
         return redirect('/data-payment');
     }

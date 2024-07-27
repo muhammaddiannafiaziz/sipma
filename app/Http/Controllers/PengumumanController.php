@@ -35,7 +35,7 @@ class PengumumanController extends Controller
     public function datapengumuman()
     {
         $dataUser = ProfileUsers::all();
-        $data = Pengumuman::all();
+        $data = Pengumuman::with('pendaftaran')->get();
         $dataid = Pendaftaran::all();
         return view ('pengumuman.data-pengumuman-admin',['viewDataUser' => $dataUser,'viewData' => $data,'viewIdPendaftaran' => $dataid]);
     }
@@ -62,7 +62,7 @@ class PengumumanController extends Controller
                 'hasil_seleksi' => $a->hasil,
                 'prodi_penerima' => $a->penerima,
                 'nilai_interview' => $a->interview,
-                'nilai_test' => $a->test
+                // 'nilai_test' => $a->test
             ]);
             return redirect('/data-announcement')->with('success', 'Data Tersimpan!!');
         } catch (\Exception $e){
@@ -73,17 +73,12 @@ class PengumumanController extends Controller
     public function updatepengumuman(Request $a, $id_pengumuman){
         //$dataUser = ProfileUsers::all();
         try{
-            $prodi =  preg_replace("/[^0-9]/", "", $a->prodi);
-            if($prodi == 0)
-            {
-                $prodi = null;
-            }
+           
             Pengumuman::where("id_pengumuman", $id_pengumuman)->update([
                 'id_pendaftaran' => $a->id_pendaftaran,
                 'hasil_seleksi' => $a->hasil,
-                'prodi_penerima' => $prodi,
                 'nilai_interview' => $a->interview,
-                'nilai_test' => $a->test,
+                // 'nilai_test' => $a->test,
             ]);
             if($a->hasil =="LULUS" || $a->hasil =="TIDAK LULUS"){
                 Pendaftaran::where("id_pendaftaran", "$a->id_pendaftaran")->update([

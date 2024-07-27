@@ -4,9 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\SekolahController;
-use App\Http\Controllers\ProgramStudiController;
-use App\Http\Controllers\JadwalKegiatanController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PengumumanController;
@@ -24,7 +21,7 @@ use App\Http\Controllers\LogAkunController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 Route::post('regist', [UserController::class, 'insertRegis'])->name('regist');
 /**
  * socialite auth
@@ -47,24 +44,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit-user/{user_id}', [UserController::class, 'edituser'])->name('edit-user');
     Route::post('/update-user/{user_id}', [UserController::class, 'updateuser'])->name('update-user');
     Route::get('/delete-user/{user_id}', [UserController::class, 'hapususer'])->name('delete-user');
-
-    //sekolah
-    Route::get('/data-sekolah', [SekolahController::class, 'datasekolah'])->name('data-sekolah');
-    Route::post('/save-school', [SekolahController::class, 'simpansekolah']);
-    Route::post('/update-school/{NPSN}', [SekolahController::class, 'updatesekolah']);
-    Route::get('/delete-school/{NPSN}', [SekolahController::class, 'hapussekolah']);
-
-    //prodi
-    Route::get('/data-prodi', [ProgramStudiController::class, 'dataprodi'])->name('data-prodi');
-    Route::post('/save-prodi', [ProgramStudiController::class, 'simpanprodi']);
-    Route::post('/update-prodi/{id_prodi}', [ProgramStudiController::class, 'updateprodi']);
-    Route::get('/delete-prodi/{id_prodi}', [ProgramStudiController::class, 'hapusprodi']);
-
-    //jadwal
-    Route::get('/data-jadwal', [JadwalKegiatanController::class, 'datajadwal'])->name('data-jadwal');
-    Route::post('/save-jadwal', [JadwalKegiatanController::class, 'simpanjadwal']);
-    Route::post('/update-jadwal/{id}', [JadwalKegiatanController::class, 'updatejadwal']);
-    Route::get('/delete-jadwal/{id}', [JadwalKegiatanController::class, 'hapusjadwal']);
 
     //pendaftaran
     Route::get('/data-registration', [PendaftaranController::class, 'datapendaftaran'])->name('data-registration');

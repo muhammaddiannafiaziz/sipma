@@ -80,7 +80,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="/dashboard" class="brand-logo">
+            <a href="/sipma/dashboard" class="brand-logo">
                 <img alt="image" width="25" src="{{ asset('sipenmaru/images/logo.png') }}">
                 <div class="brand-title">
                     <h2 class="">Ma'had</h2>
@@ -95,202 +95,6 @@
         </div>
         <!--**********************************
             Nav header end
-        ***********************************-->
-
-        <!--**********************************
-            Chat box start
-        ***********************************-->
-        {{-- <div class="chatbox">
-            <div class="chatbox-close"></div>
-            <div class="custom-tab-1">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#notes">Notes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#alerts">Alerts</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane fade" id="alerts" role="tabpanel">
-                        <div class="card mb-sm-3 mb-md-0 contacts_card">
-                            <div class="card-header chat-list-header text-center">
-                                <a href="javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg"
-                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
-                                        viewbox="0 0 24 24" version="1.1">
-                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <rect x="0" y="0" width="24" height="24"></rect>
-                                            <circle fill="#000000" cx="5" cy="12" r="2"></circle>
-                                            <circle fill="#000000" cx="12" cy="12" r="2"></circle>
-                                            <circle fill="#000000" cx="19" cy="12" r="2"></circle>
-                                        </g>
-                                    </svg></a>
-                                <div>
-                                    <h6 class="mb-1">Notications</h6>
-                                    <p class="mb-0">Show All</p>
-                                </div>
-                                <a href="javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg"
-                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
-                                        viewbox="0 0 24 24" version="1.1">
-                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <rect x="0" y="0" width="24" height="24"></rect>
-                                            <path
-                                                d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
-                                                fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
-                                            <path
-                                                d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
-                                                fill="#000000" fill-rule="nonzero"></path>
-                                        </g>
-                                    </svg></a>
-                            </div>
-                            <div class="card-body contacts_body p-0 dlab-scroll" id="DLAB_W_Contacts_Body1">
-                                <ul class="contacts">
-                                    <li class="name-first-letter">SEVER STATUS</li>
-                                    <li class="active">
-                                        <div class="d-flex bd-highlight">
-                                            <div class="img_cont primary">KK</div>
-                                            <div class="user_info">
-                                                <span>David Nester Birthday</span>
-                                                <p class="text-primary">Today</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="name-first-letter">SOCIAL</li>
-                                    <li>
-                                        <div class="d-flex bd-highlight">
-                                            <div class="img_cont success">RU</div>
-                                            <div class="user_info">
-                                                <span>Perfection Simplified</span>
-                                                <p>Jame Smith commented on your status</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="name-first-letter">SEVER STATUS</li>
-                                    <li>
-                                        <div class="d-flex bd-highlight">
-                                            <div class="img_cont primary">AU</div>
-                                            <div class="user_info">
-                                                <span>AharlieKane</span>
-                                                <p>Sami is online</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="d-flex bd-highlight">
-                                            <div class="img_cont info">MO</div>
-                                            <div class="user_info">
-                                                <span>Athan Jacoby</span>
-                                                <p>Nargis left 30 mins ago</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-footer"></div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="notes">
-                        <div class="card mb-sm-3 mb-md-0 note_card">
-                            <div class="card-header chat-list-header text-center">
-                                <a href="javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg"
-                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
-                                        viewbox="0 0 24 24" version="1.1">
-                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <rect fill="#000000" x="4" y="11" width="16" height="2" rx="1"></rect>
-                                            <rect fill="#000000" opacity="0.3"
-                                                transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) "
-                                                x="4" y="11" width="16" height="2" rx="1"></rect>
-                                        </g>
-                                    </svg></a>
-                                <div>
-                                    <h6 class="mb-1">Notes</h6>
-                                    <p class="mb-0">Add New Nots</p>
-                                </div>
-                                <a href="javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg"
-                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
-                                        viewbox="0 0 24 24" version="1.1">
-                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <rect x="0" y="0" width="24" height="24"></rect>
-                                            <path
-                                                d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
-                                                fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
-                                            <path
-                                                d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
-                                                fill="#000000" fill-rule="nonzero"></path>
-                                        </g>
-                                    </svg></a>
-                            </div>
-                            <div class="card-body contacts_body p-0 dlab-scroll" id="DLAB_W_Contacts_Body2">
-                                <ul class="contacts">
-                                    <li class="active">
-                                        <div class="d-flex bd-highlight">
-                                            <div class="user_info">
-                                                <span>New order placed..</span>
-                                                <p>10 Aug 2020</p>
-                                            </div>
-                                            <div class="ms-auto">
-                                                <a href="javascript:void(0);"
-                                                    class="btn btn-primary btn-xs sharp me-1"><i
-                                                        class="fas fa-pencil-alt"></i></a>
-                                                <a href="javascript:void(0);" class="btn btn-danger btn-xs sharp"><i
-                                                        class="fa fa-trash"></i></a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="d-flex bd-highlight">
-                                            <div class="user_info">
-                                                <span>Youtube, a video-sharing website..</span>
-                                                <p>10 Aug 2020</p>
-                                            </div>
-                                            <div class="ms-auto">
-                                                <a href="javascript:void(0);"
-                                                    class="btn btn-primary btn-xs sharp me-1"><i
-                                                        class="fas fa-pencil-alt"></i></a>
-                                                <a href="javascript:void(0);" class="btn btn-danger btn-xs sharp"><i
-                                                        class="fa fa-trash"></i></a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="d-flex bd-highlight">
-                                            <div class="user_info">
-                                                <span>john just buy your product..</span>
-                                                <p>10 Aug 2020</p>
-                                            </div>
-                                            <div class="ms-auto">
-                                                <a href="javascript:void(0);"
-                                                    class="btn btn-primary btn-xs sharp me-1"><i
-                                                        class="fas fa-pencil-alt"></i></a>
-                                                <a href="javascript:void(0);" class="btn btn-danger btn-xs sharp"><i
-                                                        class="fa fa-trash"></i></a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="d-flex bd-highlight">
-                                            <div class="user_info">
-                                                <span>Athan Jacoby</span>
-                                                <p>10 Aug 2020</p>
-                                            </div>
-                                            <div class="ms-auto">
-                                                <a href="javascript:void(0);"
-                                                    class="btn btn-primary btn-xs sharp me-1"><i
-                                                        class="fas fa-pencil-alt"></i></a>
-                                                <a href="javascript:void(0);" class="btn btn-danger btn-xs sharp"><i
-                                                        class="fa fa-trash"></i></a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        <!--**********************************
-            Chat box End
         ***********************************-->
 
         <!--**********************************
@@ -344,7 +148,7 @@
                                     @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="/profile" class="dropdown-item ai-icon">
+                                    <a href="{{route('profile')}}" class="dropdown-item ai-icon">
                                         <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary"
                                             width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -353,7 +157,7 @@
                                         </svg>
                                         <span class="ms-2">Profil </span>
                                     </a>
-                                    <a href="/logout" class="dropdown-item ai-icon">
+                                    <a href="{{route('logout')}}" class="dropdown-item ai-icon">
                                         <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger"
                                             width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -384,7 +188,7 @@
                 @auth
                     <div class="sidebar-user text-center">
 
-                        <a href="/profile">
+                        <a href="{{route('profile')}}">
                                 
                             @if(auth()->user()->profile->gender == "Perempuan")
                             <img class="avatar-lg rounded-circle img-thumbnail"
@@ -414,28 +218,6 @@
                         </a>
                     </div>
                 @endauth
-                {{-- <div class="side-bar-profile">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="side-bar-profile-img">
-                                @if (auth()->user()->profile->foto != null)
-                                    <img class="avatar-lg rounded-circle img-thumbnail" src="{{ url('/' . auth()->user()->profile->Foto) }}"
-                                        alt=""  />
-                                @else
-                                    <img class="avatar-lg rounded-circle img-thumbnail"
-                                    src="{{ asset('sipenmaru/images/ava.png') }}" alt=""
-                                         />
-                                @endif
-                            <!--<img src="images/user.jpg" alt="">-->
-                        </div>
-                        <div class="profile-info1">
-                            <h4 class="fs-18 font-w500">{{ auth()->user()->name }}</h4>
-                            <span>{{ auth()->user()->email }}</span>
-                        </div>
-                        <div class="profile-button">
-                            <i class="fas fa-caret-down scale5 text-light"></i>
-                        </div>
-                    </div>
-                </div> --}}
                 @section('menu')@show
 
                 
@@ -507,36 +289,8 @@
     <!-- Required vendors -->
     <script src="{{ asset('sipenmaru/vendor/global/global.min.js') }}"></script>
 
-    <!-- Chart piety plugin files -->
-    {{-- <script src="{{ asset('sipenmaru/vendor/peity/jquery.peity.min.js') }}"></script> --}}
-    <!-- Dashboard 1 -->
-    {{-- <script src="{{ asset('sipenmaru/js/dashboard/dashboard-1.js') }}"></script> --}}
-
-    {{-- <script src="{{ asset('sipenmaru/vendor/owl-carousel/owl.carousel.js') }}"></script> --}}
-
-    <!-- Datatable -->
-    {{-- <script src="{{ asset('sipenmaru/vendor/datatables/js/jquery.dataTables.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('sipenmaru/js/plugins-init/datatables.init.js') }}"></script> --}}
-
-    <!-- Required datatable js -->
-    {{-- <script src="{{ asset('sipenmaru/vendor/d/atatables.net/js/jquery.dataTables.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('sipenmaru/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script> --}}
-    <!-- Datatable init js -->
-    {{-- <script src="{{ asset('sipenmaru/js/pages/datatables.init.js') }}"></script> --}}
-
-
-    <!-- Toastr -->
-    {{-- <script src="{{ asset('sipenmaru/vendor/toastr/js/toastr.min.js') }}"></script> --}}
-
-    <!-- All init script -->
-    {{-- <script src="{{ asset('sipenmaru/js/plugins-init/toastr-init.js') }}"></script> --}}
-
-    {{-- <script src="{{ asset('sipenmaru/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script> --}}
-
     <script src="{{ asset('sipenmaru/js/custom.min.js') }}"></script>
     <script src="{{ asset('sipenmaru/js/dlabnav-init.js') }}"></script>
-    {{-- <script src="{{ asset('sipenmaru/js/demo.js') }}"></script> --}}
-    {{-- <script src="{{ asset('sipenmaru/js/styleSwitcher.js') }}"></script> --}}
     <script>
         function cardsCenter() {
 

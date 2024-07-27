@@ -19,7 +19,7 @@ class Pengumuman extends Model
         "hasil_seleksi",
         "prodi_penerima",
         "nilai_interview",
-        "nilai_test",
+        // "nilai_test",
         "status"
     ];
     public $timestamps = false;
@@ -58,7 +58,7 @@ class Pengumuman extends Model
 
     public function pendaftaran()
     {
-        return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran');
+        return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran', 'id_pendaftaran');
     }
 
     public function user()

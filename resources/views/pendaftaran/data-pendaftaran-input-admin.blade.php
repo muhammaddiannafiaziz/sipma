@@ -78,7 +78,7 @@
 
 @section('content')
     <div class="row">
-        <form action="/save-registration" method="POST" enctype="multipart/form-data">
+        <form action="save-registration" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input type="hidden" name="userid" value="{{ auth()->user()->id }}">
             <div class="col-xl-12">
@@ -91,7 +91,7 @@
                                     </div>
                                     <div class="flex-grow-1 overflow-hidden">
                                         <h5 class="font-size-16 mb-1">Data Pribadi</h5>
-                                        <p class="text-muted text-truncate mb-0">NISN, NIK, Nama, Jenis Kelamin, Pas
+                                        <p class="text-muted text-truncate mb-0">NIM, Nama, Jenis Kelamin, Pas
                                             Photo, TTL, dsb</p>
                                     </div>
                                     <div class="flex-shrink-0"> <i
@@ -216,7 +216,7 @@
                                     <label class="form-label" for="billing-address">Alamat</label>
 
                                     @if (auth()->user()->profile->alamat != null)
-                                        <textarea class="form-control" id="billing-address" rows="3" name="alamat" required
+                                        <textarea class="form-control" id="billing-address" rows="3" name="alamat" readonly
                                             placeholder="Masukkan alamat lengkap">{{ auth()->user()->profile->alamat }}</textarea>
                                     @else
                                         <textarea class="form-control" id="billing-address" rows="3" name="alamat" required

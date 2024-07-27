@@ -73,6 +73,7 @@
                 </a>
             </li>
         @endif
+        
         <!--<li><a href="#" aria-expanded="false">
                 <i class="fa fa-download"></i>
                 <span class="nav-text">Pusat Unduhan</span>
@@ -116,10 +117,10 @@
                     <h5 class="mt-3 mb-1">
                         {{ auth()->user()->profile->nama }}
                     </h5>
-                    <div class="mt-4">
-                        <button type="button" class="btn btn-primary btn-sm"><i class="uil uil-envelope-alt me-2"></i>
+                    {{-- <div class="mt-4">
+                        <button type="button" class="btn btn-success btn-sm"><i class="uil uil-envelope-alt me-2"></i>
                             Kirim Pesan</button>
-                    </div>
+                    </div> --}}
                 </div>
                 <hr class="my-4">
                 <div class="text-muted">
@@ -186,7 +187,7 @@
                                                 </div>
                                             @endif
                                             <br>
-                                            <h4 class="text-primary mb-4">Informasi Pribadi</h4>
+                                            <h4 class="text-success mb-4">Informasi Pribadi</h4>
                                             <div class="row mb-2">
                                                 <div class="col-sm-3 col-5">
                                                     <h5 class="f-w-500">Nama </h5>
@@ -230,7 +231,7 @@
                                 </div>
                                 <div class="profile-about-me">
                                     <div class="pt-4 border-bottom-1 pb-3">
-                                        <h4 class="text-primary">Kontak Pribadi</h4>
+                                        <h4 class="text-success">Kontak Pribadi</h4>
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-sm-6 col-6">
@@ -246,18 +247,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="profile-about-me">
-                                    <div class="pt-4 border-bottom-1 pb-3">
-                                        <h4 class="text-primary">Sosial Media</h4>
-                                    </div>
-                                </div>
                             </div>
                             <div id="profile-settings" class="tab-pane fade">
                                 <div class="pt-3">
                                     <div class="settings-form">
                                         <br>
                                         <form action="edit-profile" method="POST" enctype="multipart/form-data">
-                                            <h4 class="text-primary">Pengaturan Profil</h4>
+                                            <h4 class="text-success">Pengaturan Profil</h4>
                                             @csrf
                                             <input type="hidden" name="userid" value="{{ auth()->user()->id}}">
                                             <div class="row">
@@ -356,7 +352,7 @@
                                                     </select>
                                                     @endif
                                                 </div>
-                                                <div class="mb-3 col-md-6">
+                                                {{-- <div class="mb-3 col-md-6">
                                                         <label class="form-label">Foto Profil</label>
                                                         <div class="input-group">
                                                             <span class="input-group-text">Upload</span>
@@ -378,7 +374,7 @@
                                                                 </div>
                                                             @enderror
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label" for="personal-data">Agama</label>
                                                     <select class="form-control wide" name="agama"
@@ -402,239 +398,236 @@
                                                     @enderror
                                                 </div>
                                                 <div class="row">
-                                                        <div class="mb-3 col-md-6">
-                                                            <label class="form-label">Tempat Lahir</label>
-                                                            <input type="text" value="{{ auth()->user()->profile->tempat_lahir }}" value="{{ old('tempat') }}"
-                                                                class="form-control" name="tempat">
-                                                            @error('tempat')
-                                                                <div class="alert alert-warning" role="alert">
-                                                                    <strong>Warning!</strong>
-                                                                    {{ $message }}
-                                                                </div>
-                                                            @enderror
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Tempat Lahir</label>
+                                                        <input type="text" value="{{ auth()->user()->profile->tempat_lahir }}" value="{{ old('tempat') }}"
+                                                            class="form-control" name="tempat">
+                                                        @error('tempat')
+                                                        <div class="alert alert-warning" role="alert">
+                                                            <strong>Warning!</strong>
+                                                            {{ $message }}
                                                         </div>
-                                                        <div class="mb-3 col-md-6">
-                                                            <label class="form-label">Tanggal Lahir</label>
-                                                            <input type="date" value="{{ auth()->user()->profile->tanggal_lahir }}" value="{{ old('tanggal') }}"
-                                                                class="form-control" name="tanggal">
-                                                            @error('tanggal')
-                                                                <div class="alert alert-warning" role="alert">
-                                                                    <strong>Warning!</strong>
-                                                                    {{ $message }}
-                                                                </div>
-                                                            @enderror
-                                                        </div>
+                                                        @enderror
                                                     </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Alamat</label>
-                                                        <textarea name="alamat" id="" cols="30" rows="5"
-                                                            class="form-control">{{ auth()->user()->profile->alamat }}</textarea>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Tanggal Lahir</label>
+                                                        <input type="date" value="{{ auth()->user()->profile->tanggal_lahir }}" value="{{ old('tanggal') }}"
+                                                            class="form-control" name="tanggal">
+                                                        @error('tanggal')
+                                                            <div class="alert alert-warning" role="alert">
+                                                                <strong>Warning!</strong>
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
                                                     </div>
-
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="row">
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">No HP</label>
+                                                        <input type="text" value="{{ auth()->user()->profile->no_hp }}" value="{{ old('hp') }}"
+                                                            class="form-control" name="hp">
+                                                            @error('hp')
+                                                            <div class="alert alert-warning" role="alert">
+                                                                <strong>Warning!</strong>
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                    {{-- <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Sosial Media
+                                                            Instagram</label>
+                                                        <input type="text" value="{{ auth()->user()->profile->instagram }}" value="{{ old('ig') }}"
+                                                            class="form-control" name="ig">
+                                                    </div> --}}
+                                                </div>
+                                                <div class="profile-about-me">
+                                                    <div class="pt-4 border-bottom-1 pb-3">
+                                                        <h4 class="text-success">Alamat Lengkap</h4>
+                                                    </div>
                                                     <div class="row">
                                                         <div class="mb-3 col-md-6">
-                                                            <label class="form-label">No HP</label>
-                                                            <input type="text" value="{{ auth()->user()->profile->no_hp }}" value="{{ old('hp') }}"
-                                                                class="form-control" name="hp">
-                                                                @error('hp')
+                                                            <label class="form-label">Jalan / Dusun</label>
+                                                            <input type="text" value="{{ auth()->user()->profile->jalan }}" value="{{ old('jalan') }}"
+                                                                class="form-control" name="jalan">
+                                                            @error('jalan')
+                                                            <div class="alert alert-warning" role="alert">
+                                                                <strong>Peringatan</strong>
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Desa / Kelurahan</label>
+                                                            <input type="text" value="{{ auth()->user()->profile->kelurahan }}" value="{{ old('kelurahan') }}"
+                                                                class="form-control" name="kelurahan" required>
+                                                            @error('kelurahan')
+                                                            <div class="alert alert-warning" role="alert">
+                                                                <strong>Peringatan</strong>
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>   
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Kecamatan</label>
+                                                            <input type="text" value="{{ auth()->user()->profile->kecamatan }}" value="{{ old('kecamatan') }}"
+                                                                class="form-control" name="kecamatan" required>
+                                                            @error('kecamatan')
+                                                            <div class="alert alert-warning" role="alert">
+                                                                <strong>Peringatan</strong>
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Kabupaten / Kota</label>
+                                                            <input type="text" value="{{ auth()->user()->profile->kabupaten }}" value="{{ old('kabupaten') }}"
+                                                                class="form-control" name="kabupaten" required>
+                                                            @error('kabupaten')
+                                                            <div class="alert alert-warning" role="alert">
+                                                                <strong>Peringatan</strong>
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>   
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Provinsi</label>
+                                                            <input type="text" value="{{ auth()->user()->profile->provinsi }}" value="{{ old('provinsi') }}"
+                                                                class="form-control" name="provinsi" required>
+                                                            @error('provinsi')
+                                                            <div class="alert alert-warning" role="alert">
+                                                                <strong>Peringatan</strong>
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Kode Pos</label>
+                                                            <input type="text" value="{{ auth()->user()->profile->kode_pos }}" value="{{ old('kode_pos') }}"
+                                                                class="form-control" name="kode_pos" required>
+                                                            @error('kode_pos')
+                                                            <div class="alert alert-warning" role="alert">
+                                                                <strong>Peringatan</strong>
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>   
+                                                    </div>
+                                                </div>
+                                                <div class="profile-about-me">
+                                                    <div class="pt-4 border-bottom-1 pb-3">
+                                                        <h4 class="text-success">Data Orang Tua</h4>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label" for="personal-data-name">Nama
+                                                                Ayah</label>
+                                                            <input type="text" class="form-control" id="personal-data-name"
+                                                                name="ayah" placeholder="Masukkan Nama Ayah"
+                                                                value="{{ auth()->user()->profile->nama_ayah }}" value="{{ old('ayah') }}" required>
+                                                            @error('ayah')
                                                                 <div class="alert alert-warning" role="alert">
-                                                                    <strong>Warning!</strong>
+                                                                    <strong>Peringatan!</strong>
                                                                     {{ $message }}
                                                                 </div>
                                                             @enderror
                                                         </div>
-                                                        {{-- <div class="mb-3 col-md-6">
-                                                            <label class="form-label">Sosial Media
-                                                                Instagram</label>
-                                                            <input type="text" value="{{ auth()->user()->profile->instagram }}" value="{{ old('ig') }}"
-                                                                class="form-control" name="ig">
-                                                        </div> --}}
-                                                    </div>
-                                                    <div class="profile-about-me">
-                                                        <div class="pt-4 border-bottom-1 pb-3">
-                                                            <h4 class="text-primary">Alamat Lengkap</h4>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="form-label">Jalan / Dusun</label>
-                                                                <input type="text" value="{{ auth()->user()->profile->jalan }}" value="{{ old('jalan') }}"
-                                                                    class="form-control" name="jalan">
-                                                                @error('jalan')
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Pekerjaan Ayah</label>
+                                                            <input type="text" value="{{ auth()->user()->profile->pekerjaan_ayah }}"
+                                                            class="form-control" name="pekerjaanayah">
+                                                            @error('pekerjaanayah')
                                                                 <div class="alert alert-warning" role="alert">
                                                                     <strong>Peringatan</strong>
                                                                     {{ $message }}
                                                                 </div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="form-label">Desa / Kelurahan</label>
-                                                                <input type="text" value="{{ auth()->user()->profile->kelurahan }}" value="{{ old('kelurahan') }}"
-                                                                    class="form-control" name="kelurahan" required>
-                                                                @error('kelurahan')
-                                                                <div class="alert alert-warning" role="alert">
-                                                                    <strong>Peringatan</strong>
-                                                                    {{ $message }}
-                                                                </div>
-                                                                @enderror
-                                                            </div>   
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="form-label">Kecamatan</label>
-                                                                <input type="text" value="{{ auth()->user()->profile->kecamatan }}" value="{{ old('kecamatan') }}"
-                                                                    class="form-control" name="kecamatan" required>
-                                                                @error('kecamatan')
-                                                                <div class="alert alert-warning" role="alert">
-                                                                    <strong>Peringatan</strong>
-                                                                    {{ $message }}
-                                                                </div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="form-label">Kabupaten / Kota</label>
-                                                                <input type="text" value="{{ auth()->user()->profile->kabupaten }}" value="{{ old('kabupaten') }}"
-                                                                    class="form-control" name="kabupaten" required>
-                                                                @error('kabupaten')
-                                                                <div class="alert alert-warning" role="alert">
-                                                                    <strong>Peringatan</strong>
-                                                                    {{ $message }}
-                                                                </div>
-                                                                @enderror
-                                                            </div>   
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="form-label">Provinsi</label>
-                                                                <input type="text" value="{{ auth()->user()->profile->provinsi }}" value="{{ old('provinsi') }}"
-                                                                    class="form-control" name="provinsi" required>
-                                                                @error('provinsi')
-                                                                <div class="alert alert-warning" role="alert">
-                                                                    <strong>Peringatan</strong>
-                                                                    {{ $message }}
-                                                                </div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="form-label">Kode Pos</label>
-                                                                <input type="text" value="{{ auth()->user()->profile->kode_pos }}" value="{{ old('kode_pos') }}"
-                                                                    class="form-control" name="kode_pos" required>
-                                                                @error('kode_pos')
-                                                                <div class="alert alert-warning" role="alert">
-                                                                    <strong>Peringatan</strong>
-                                                                    {{ $message }}
-                                                                </div>
-                                                                @enderror
-                                                            </div>   
+                                                            @enderror
                                                         </div>
                                                     </div>
-                                                    <div class="profile-about-me">
-                                                        <div class="pt-4 border-bottom-1 pb-3">
-                                                            <h4 class="text-primary">Data Orang Tua</h4>
+                                                    <div class="row">
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Pendidikan Ayah</label>
+                                                            <input type="text" value="{{ auth()->user()->profile->pendidikan_ayah }}"
+                                                            class="form-control" name="pendidikanayah">
+                                                            @error('pendidikanayah')
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    <strong>Peringatan</strong>
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="form-label" for="personal-data-name">Nama
-                                                                    Ayah</label>
-                                                                <input type="text" class="form-control" id="personal-data-name"
-                                                                    name="ayah" placeholder="Masukkan Nama Ayah"
-                                                                    value="{{ auth()->user()->profile->nama_ayah }}" value="{{ old('ayah') }}" required>
-                                                                @error('ayah')
-                                                                    <div class="alert alert-warning" role="alert">
-                                                                        <strong>Peringatan!</strong>
-                                                                        {{ $message }}
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="form-label">Pekerjaan Ayah</label>
-                                                                <input type="text" value="{{ auth()->user()->profile->pekerjaan_ayah }}"
-                                                                class="form-control" name="pekerjaanayah">
-                                                                @error('pekerjaanayah')
-                                                                    <div class="alert alert-warning" role="alert">
-                                                                        <strong>Peringatan</strong>
-                                                                        {{ $message }}
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="form-label">Pendidikan Ayah</label>
-                                                                <input type="text" value="{{ auth()->user()->profile->pendidikan_ayah }}"
-                                                                class="form-control" name="pendidikanayah">
-                                                                @error('pendidikanayah')
-                                                                    <div class="alert alert-warning" role="alert">
-                                                                        <strong>Peringatan</strong>
-                                                                        {{ $message }}
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="form-label">No HP Ayah</label>
-                                                                <input type="number" value="{{ auth()->user()->profile->nohp_ayah }}"
-                                                                class="form-control" name="noayah" id="personal-data-no">
-                                                                @error('noayah')
-                                                                    <div class="alert alert-warning" role="alert">
-                                                                        <strong>Peringatan</strong>
-                                                                        {{ $message }}
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="form-label" for="personal-data-name">Nama
-                                                                    Ibu</label>
-                                                                <input type="text" class="form-control" id="personal-data-name"
-                                                                    name="ibu" placeholder="Masukkan Nama Ibu"
-                                                                    value="{{ auth()->user()->profile->nama_ibu }}" value="{{ old('ibu') }}" required>
-                                                                @error('ibu')
-                                                                    <div class="alert alert-warning" role="alert">
-                                                                        <strong>Peringatan!</strong>
-                                                                        {{ $message }}
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="form-label">Pekerjaan Ibu</label>
-                                                                <input type="text" value="{{ auth()->user()->profile->pekerjaan_ibu }}"
-                                                                class="form-control" name="pekerjaanibu">
-                                                                @error('pekerjaanibu')
-                                                                    <div class="alert alert-warning" role="alert">
-                                                                        <strong>Peringatan</strong>
-                                                                        {{ $message }}
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="form-label">Pendidikan Ibu</label>
-                                                                <input type="text" value="{{ auth()->user()->profile->pendidikan_ibu }}"
-                                                                class="form-control" name="pendidikanibu">
-                                                                @error('pendidikanibu')
-                                                                    <div class="alert alert-warning" role="alert">
-                                                                        <strong>Peringatan</strong>
-                                                                        {{ $message }}
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="form-label">No HP Ibu</label>
-                                                                <input type="number" value="{{ auth()->user()->profile->nohp_ibu }}"
-                                                                class="form-control" name="noibu" id="personal-data-no">
-                                                                @error('noibu')
-                                                                    <div class="alert alert-warning" role="alert">
-                                                                        <strong>Peringatan</strong>
-                                                                        {{ $message }}
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">No HP Ayah</label>
+                                                            <input type="number" value="{{ auth()->user()->profile->nohp_ayah }}"
+                                                            class="form-control" name="noayah" id="personal-data-no">
+                                                            @error('noayah')
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    <strong>Peringatan</strong>
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
                                                         </div>
                                                     </div>
-                                                    <div class="profile-about-me">
-                                                <div class="pt-4 border-bottom-1 pb-3">
-                                                    <h4 class="text-primary">Data Sekolah</h4>
+                                                    <div class="row">
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label" for="personal-data-name">Nama
+                                                                Ibu</label>
+                                                            <input type="text" class="form-control" id="personal-data-name"
+                                                                name="ibu" placeholder="Masukkan Nama Ibu"
+                                                                value="{{ auth()->user()->profile->nama_ibu }}" value="{{ old('ibu') }}" required>
+                                                            @error('ibu')
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    <strong>Peringatan!</strong>
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Pekerjaan Ibu</label>
+                                                            <input type="text" value="{{ auth()->user()->profile->pekerjaan_ibu }}"
+                                                            class="form-control" name="pekerjaanibu">
+                                                            @error('pekerjaanibu')
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    <strong>Peringatan</strong>
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Pendidikan Ibu</label>
+                                                            <input type="text" value="{{ auth()->user()->profile->pendidikan_ibu }}"
+                                                            class="form-control" name="pendidikanibu">
+                                                            @error('pendidikanibu')
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    <strong>Peringatan</strong>
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">No HP Ibu</label>
+                                                            <input type="number" value="{{ auth()->user()->profile->nohp_ibu }}"
+                                                            class="form-control" name="noibu" id="personal-data-no">
+                                                            @error('noibu')
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    <strong>Peringatan</strong>
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="profile-about-me">
+                                                    <div class="pt-4 border-bottom-1 pb-3">
+                                                        <h4 class="text-success">Data Sekolah</h4>
+                                                    </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="mb-3 col-md-6">
@@ -649,13 +642,13 @@
                                                         @enderror
                                                     </div>
                                                     <div class="mb-3 col-md-6">
-                                                        <label class="form-label" for="billing-address">Prestasi <small>(jika
-                                                                ada)</small></label>
+                                                        <label class="form-label text-success" for="billing-address">BERKAS PENDAFTARAN</label>
+                                                        @if(auth()->user()->profile->prestasi == NULL)
                                                         <div class="input-group">
                                                             <span class="input-group-text">Upload</span>
                                                             <div class="form-file">
                                                                 <input type="file" class="form-file-input form-control"
-                                                                    name="ftprestasi" value="{{ old('ftprestasi') }}" accept="application/pdf" >
+                                                                    name="ftprestasi" value="{{ auth()->user()->profile->prestasi }}" accept="application/pdf" required>
                                                             </div>
                                                         </div>
                                                         @error('ftprestasi')
@@ -664,10 +657,15 @@
                                                                 {{ $message }}
                                                             </div>
                                                         @enderror
+                                                        @else
+                                                        <div class="col-sm-9 col-7">
+                                                            <a href="{{ asset($viewDataProfil->prestasi) }}"> <i class="fa fa-file-pdf" style="font-size:48px;color:red"></i></a>
+                                                        </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-primary" type="submit">Perbaharui Data</button>
+                                            <button class="btn btn-success" type="submit">Perbaharui Data</button>
                                         </form>
                                     </div>
                                 </div>
@@ -676,7 +674,7 @@
                                 <div class="pt-3">
                                     <div class="settings-form">
                                         <br>
-                                        <h4 class="text-primary">Pengaturan Profil</h4>
+                                        <h4 class="text-success">Pengaturan Profil</h4>
                                         <form action="edit-pw" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <input type="hidden" name="userid" value="{{ auth()->user()->id}}">
@@ -717,7 +715,7 @@
                                                             @enderror
                                                 </div>
                                             </div>
-                                            <button class="btn btn-primary" type="submit">Perbaharui Data</button>
+                                            <button class="btn btn-success" type="submit">Perbaharui Data</button>
                                         </form>
                                     </div>
                                 </div>

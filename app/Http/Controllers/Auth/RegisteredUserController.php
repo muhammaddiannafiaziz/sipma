@@ -37,15 +37,15 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'max:255', 'unique:users,username'],
             //'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'password' => ['required', 'confirmed'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
-            'role' => "Calon Mahasiswa",
+            'username' => $request->username,
+            'role' => "Calon Santri",
             'password' => Hash::make($request->password),
             'created_at' => now()
         ]);
@@ -53,14 +53,7 @@ class RegisteredUserController extends Controller
         ProfileUsers::create([
             'user_id' => $usersid->id,
             'nama' => $request->name,
-            'email' => $request->email,
-            'created_at' => now()
-        ]);
-        Timeline::create([
-            'user_id' => $usersid->id,
-            'status' => "Bergabung",
-            'pesan' => 'Membuat Akun baru',
-            'tgl_update' => now(),
+            'username' => $request->username,
             'created_at' => now()
         ]);
         event(new Registered($user));
@@ -72,13 +65,13 @@ class RegisteredUserController extends Controller
 
     public function insertRegis(Request $a){
         try{
-            $checkuser = User::where('email',$a->email)->first();
+            $checkuser = User::where('username',$a->username)->first();
             if($checkuser){
-                return redirect()->back()->with('warning', 'Email Telah Terdaftar!');
+                return redirect()->back()->with('warning', 'NIM Telah Terdaftar!');
             }
             User::create([
                 'name' => $a->nama,
-                'email' => $a->email,
+                'username' => $a->username,
                 'password' => Hash::make($a->password),
                 'role' => $a->level,
                 'created_at' => now()
@@ -87,14 +80,7 @@ class RegisteredUserController extends Controller
             ProfileUsers::create([
                 'user_id' => $usersid->id,
                 'nama' => $a->nama,
-                'email' => $a->email,
-                'created_at' => now()
-            ]);
-            Timeline::create([
-                'user_id' => $usersid->id,
-                'status' => "Bergabung",
-                'pesan' => 'Membuat Akun baru',
-                'tgl_update' => now(),
+                'username' => $a->username,
                 'created_at' => now()
             ]);
         return redirect('/login')->with('success', 'Berhasil Register!');

@@ -127,9 +127,9 @@
                                         @foreach ($viewData as $x)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $x->id_pendaftaran }}</td>
+                                                <td><a href="detail-registration/{{ $x->id_pendaftaran }}">{{ $x->id_pendaftaran }}</a></td>
                                                 <td>{{ $x->nama_siswa }}</td>
-                                                <td>{{ $x->jenis_kelamin }}</td>
+                                                <td>{{ $x->gender }}</td>
                                                 <td><strong>{{ $x->tgl_pendaftaran }}</strong></a></td>
                                                 <td>
                                                     <div class="row">
@@ -172,18 +172,18 @@
                                                                 <div class="dropdown-menu dropdown-menu-end border py-0"
                                                                     aria-labelledby="order-dropdown-7">
                                                                     <div class="py-2"><a class="dropdown-item"
-                                                                            href="/verified-registration/{{ $x->id_pendaftaran }}">Terverifikasi</a><a
+                                                                            href="/sipma/verified-registration/{{ $x->id_pendaftaran }}">Terverifikasi</a><a
                                                                             class="dropdown-item"
-                                                                            href="/notverified-registration/{{ $x->id_pendaftaran }}">Belum
+                                                                            href="/sipma/notverified-registration/{{ $x->id_pendaftaran }}">Belum
                                                                             Terverifikasi</a>
                                                                             <div class="dropdown-divider"></div><a
                                                                             class="dropdown-item text-success"
-                                                                            href="/finish-registration/{{ $x->id_pendaftaran }}">Selesai
+                                                                            href="/sipma/finish-registration/{{ $x->id_pendaftaran }}">Selesai
                                                                             </a>
                                                                     </div>
                                                                         <div class="dropdown-divider"></div><a
                                                                             class="dropdown-item text-danger"
-                                                                            href="/invalid-registration/{{ $x->id_pendaftaran }}">Tidak
+                                                                            href="/sipma/invalid-registration/{{ $x->id_pendaftaran }}">Tidak
                                                                             Sah</a>
                                                                     </div>
                                                                 </div>
@@ -272,7 +272,7 @@
                             @endphp
                         @endif
                     @endforeach
-                    @if (auth()->user()->profile->no_hp == null || auth()->user()->profile->tempat_lahir == null || auth()->user()->profile->gender == null || auth()->user()->profile->alamat == null)
+                    @if (auth()->user()->profile->no_hp == null || auth()->user()->profile->tempat_lahir == null || auth()->user()->profile->gender == null || auth()->user()->profile->alamat == null || auth()->user()->profile->prestasi == null)
                         <div class="alert alert-danger alert-dismissible fade show">
                             <svg viewbox="0 0 24 24" width="24" height="24"
                                 stroke="currentColor" stroke-width="2" fill="none"

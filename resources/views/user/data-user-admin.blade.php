@@ -186,9 +186,9 @@
                                 <tr>
                                     <th></th>
                                     <th>Nama</th>
+                                    <th>NIM</th>
+                                    <th>Prodi</th>
                                     <th>Jenis Kelamin</th>
-                                    <th>Telepon</th>
-                                    <th>Email</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -204,7 +204,9 @@
                                                     src="{{ asset('sipenmaru/images/ava.png') }}" alt="" width="45px" />
                                             @endif
                                         </td>
-                                        <td>{{ $x->profile->nama }}</td>
+                                        <td><strong>{{ $x->profile->nama }}</strong></td>
+                                        <td><strong>{{ $x->username }}</strong></td>
+                                        <td><strong>{{ $x->profile->prodi }}</strong></td>
                                         <td>
                                             @if ($x->profile->gender == 'Perempuan')
                                                 <span class="badge badge-secondary">Perempuan</span>
@@ -215,8 +217,6 @@
                                                 <span class="badge badge-warning">?</span>
                                             @endif
                                         </td>
-                                        <td><strong>{{ $x->profile->no_hp }}</strong></a></td>
-                                        <td><a href="javascript:void(0);"><strong>{{ $x->email }}</strong></a></td>
                                         <td>
                                             <div class="d-flex">
                                                 <a class="btn btn-light shadow btn-xs sharp me-1" title="Data Registration"

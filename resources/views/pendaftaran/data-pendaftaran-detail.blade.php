@@ -92,11 +92,11 @@ Detail Pendaftaran
                 <div class="row my-4">
                     <div class="col">
                         <div class="text-end mt-2 mt-sm-0">
-                            <a href="../../data-registration"><button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close </button></a>
+                            <a href="../data-registration"><button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close </button></a>
                             @if ($viewData->status_pendaftaran =='Belum Terverifikasi')
-                            <a href="../../verified-registration/{{$viewData->id_pendaftaran}}"><button type="button" class="btn btn-primary">Verified</button></a>
+                            <a href="../verified-registration/{{$viewData->id_pendaftaran}}"><button type="button" class="btn btn-primary">Verified</button></a>
                             @endif
-                            <a href="../../card-registration/{{$viewData->id_pendaftaran}}"><button type="button" class="btn btn-primary">View Card </button></a>
+                            <a href="../card-registration/{{$viewData->id_pendaftaran}}"><button type="button" class="btn btn-primary">View Card </button></a>
                         </div>
                     </div>
                     <!-- end col -->
@@ -119,7 +119,7 @@ Detail Pendaftaran
                 </div> --}}
                 @endif
                 {{-- <div class="text-end">
-                    <a href="../../card-registration/{{$viewData->id}}"><button type="button" class="btn btn-primary">Lihat Kartu Pendaftaran </button></a>
+                    <a href="../card-registration/{{$viewData->id}}"><button type="button" class="btn btn-primary">Lihat Kartu Pendaftaran </button></a>
                 </div> --}}
                 @endif
 
@@ -135,7 +135,7 @@ Detail Pendaftaran
                                 <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target=".upload"
                                 style="margin-bottom: 1rem;"><i class="mdi mdi-plus me-1"></i>Upload Pembayaran  </button>    
                                 @endif --}}
-                            <a href="../../card-registration/{{$viewData->id_pendaftaran}}"><button type="button" style="margin-bottom: 1rem;" class="btn btn-primary mb-4">Lihat Kartu Pendaftaran </button></a>
+                            <a href="https://chat.whatsapp.com/DEb9ZkYkzQ7KGbeHeU80T0"><button type="button" style="margin-bottom: 1rem;" class="btn btn-primary mb-4">Masuk Grup Whatsapp </button></a>
                             <button class="btn btn-success mb-4" style="margin-bottom: 1rem;" disabled>Terverifikasi</button>
                             @elseif ($viewData->status_pendaftaran == "Selesai")
                             <button class="btn btn-primary mb-4" style="margin-bottom: 1rem;" disabled>Selesai</button>
@@ -278,7 +278,7 @@ Detail Pendaftaran
                             </div>
                             <div class="col-lg-6">
                                 <div class="pt-4 border-bottom-1 pb-3">
-                                    <img src="{{ asset($viewData->pas_foto) }}" width="250px" height="300" alt="">
+                                    <img src="{{ asset($viewData->pas_foto) }}" height="300" alt="">
                                 </div>
                             </div>
                         </div>
@@ -353,9 +353,11 @@ Detail Pendaftaran
                                 </div> --}}
                                 <div class="col-sm-6 col-6">
                                     @if ($viewDataProfil->prestasi != null)
-                                        <h5 class="f-w-400">Prestasi <small><i>*jika ada</i></small></h5>
+                                        <div class="pt-4 border-bottom-1 pb-3">
+                                            <h4 class="text-primary"><b>BERKAS PENDAFTARAN</b></h4>
+                                        </div>
                                         <div class="col-sm-9 col-7">
-                                            <a href="{{ asset($viewData->berkas_siswa) }}"> <i class="fa fa-file-pdf" style="font-size:48px;color:red"></i></a>
+                                            <a href="{{ asset($viewDataProfil->prestasi) }}"> <i class="fa fa-file-pdf" style="font-size:48px;color:red"></i></a>
                                         </div>
                                     @endif
                                 </div>
