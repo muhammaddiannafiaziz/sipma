@@ -115,8 +115,6 @@ class UserController extends Controller
                 'tanggal.required' => 'Tanggal lahir tidak boleh kosong',
                 'jk.required' => 'Jenis Kelamin harus dipilih',
                 'hp.required' => 'Family card cannot be empty',
-                'alamat.required' => 'School name must be filled',
-                'ig.required' => 'Major must be filled',
             ];
 
             $cekValidasi = $a->validate([
@@ -124,35 +122,58 @@ class UserController extends Controller
                 'tanggal' => 'required',
                 'jk' => 'required',
                 'hp' => 'required',
-                'alamat' => 'required',
-                'ig' => 'required'
             ], $message);
 
-            $file = $a->file('foto');
-            if(file_exists($file)){
-                $nama_file = time() . "-" . $file->getClientOriginalName();
-                $namaFolder = 'foto profil';
-                $file->move($namaFolder,$nama_file);
-                $pathFoto = $namaFolder."/".$nama_file;
+            // $file = $a->file('foto');
+            // if(file_exists($file)){
+            //     $nama_file = time() . "-" . $file->getClientOriginalName();
+            //     $namaFolder = 'foto profil';
+            //     $file->move($namaFolder,$nama_file);
+            //     $pathFoto = $namaFolder."/".$nama_file;
+            // } else {
+            //     $pathFoto = $a->pathFoto;
+            // }
+            $fileftprestasi = $a->file('ftprestasi');
+            if(file_exists($fileftprestasi)){
+                $nama_fileftprestasi = "berkas".$a->username."-".time() . "-" . $fileftprestasi->getClientOriginalName();
+                $namaFolderftprestasi = 'data pendaftar/'.$a->username;
+                $fileftprestasi->move($namaFolderftprestasi,$nama_fileftprestasi);
+                $pathPrestasi = $namaFolderftprestasi."/".$nama_fileftprestasi;
             } else {
-                $pathFoto = $a->pathFoto;
+                $pathPrestasi = null;
             }
 
+            $alamat = $a->jalan.", ".$a->kelurahan.", Kec. ".$a->kecamatan.", Kab. ".$a->kabupaten.", Prov. ".$a->provinsi." - Kode Pos : ".$a->kode_pos;
+
+
             ProfileUsers::where("id", $id)->update([
-                'foto' => $pathFoto,
+                'nama' => $a->nama,
+                'username' => $a->username,
+                // 'foto' => $pathFoto,
+                'prodi' => $a->prodi,
+                'email' => $a->email,
                 'tempat_lahir' => $a->tempat,
                 'tanggal_lahir' => $a->tanggal,
                 'gender' => $a->jk,
+                'agama' => $a->agama,
                 'no_hp' => $a->hp,
-                'alamat' => $a->alamat,
-                'instagram' => $a->ig
-            ]);
-            Timeline::create([
-                'user_id' => $id,
-                'status' => "Mengedit User",
-                'pesan' => 'Membuat Akun baru',
-                'tgl_update' => now(),
-                'created_at' => now()
+                'alamat' => $alamat,
+                'jalan' => $a->jalan,
+                'kelurahan' => $a->kelurahan,
+                'kecamatan' => $a->kecamatan,
+                'kabupaten' => $a->kabupaten,
+                'provinsi' => $a->provinsi,
+                'kode_pos' => $a->kode_pos,
+                'nama_ayah' => $a->ayah,
+                'pekerjaan_ayah' => $a->pekerjaanayah,
+                'pendidikan_ayah' => $a->pendidikanayah,
+                'nohp_ayah' => $a->noayah,
+                'nama_ibu' => $a->ibu,
+                'pekerjaan_ibu' => $a->pekerjaanibu,
+                'pendidikan_ibu' => $a->pendidikanibu,
+                'nohp_ibu' => $a->noibu,
+                'sekolah_sma' => $a->asalsekolah,
+                'prestasi' => $pathPrestasi
             ]);
             return redirect('/data-user')->with("success",'Data Berhasil Diubah');
         }catch (\Exception $e){

@@ -166,7 +166,7 @@ Pengumuman
                                     <tr>
                                         <th>No</th>
                                         <th>Id Pendaftaran</th>
-                                        <th>Nama</th>
+                                        {{-- <th>Nama</th> --}}
                                         <th>Hasil</th>
                                         <th>Nilai Interview</th>
                                         <th>Aksi</th>
@@ -178,7 +178,7 @@ Pengumuman
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td><a href="detail-registration/{{ $x->id_pendaftaran }}">{{ $x->id_pendaftaran }}</a></td>
-                                            <td>{{ $x->pendaftaran->nama_siswa }}</td>
+                                            {{-- <td>{{ $x->pendaftaran->nama_siswa }}</td> --}}
                                             {{-- @php
                                             dd($viewIdPendaftaran)
                                             @endphp --}}

@@ -234,20 +234,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="profile-about-me">
-                                        <div class="pt-4 border-bottom-1 pb-3">
-                                            <h4 class="text-primary">Sosial Media</h4>
-                                        </div>
-                                        <div class="row mb-2">
-                                            <div class="col-sm-3 col-5">
-                                                <h2>
-                                                            <a href="https://www.instagram.com/{{ $viewData->instagram }}/"><i
-                                                                    class="fab fa-instagram" style="width: 50px"></i></a>
-                                                    
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div id="profile-settings" class="tab-pane fade">
                                     <div class="pt-3">
@@ -256,26 +242,78 @@
                                             <h4 class="text-primary">Pengaturan Profil</h4>
                                             <form action="{{route('update-user', $viewData->user_id )}}" method="POST" enctype="multipart/form-data">
                                                 @csrf
-                                                <input type="hidden" name="userid" value="{{ auth()->user()->id}}">
+                                                <input type="hidden" name="userid" value="{{ $viewData->id}}">
                                                 <div class="row">
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Nama</label>
                                                         <input type="text" value="{{ $viewData->nama }}"
-                                                            class="form-control" name="nama" readonly>
-                                                        
+                                                        class="form-control" name="nama">
+                                                        @error('nama')
+                                                            <div class="alert alert-warning" role="alert">
+                                                                <strong>Peringatan</strong>
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">NIM</label>
+                                                        <input type="text" value="{{ $viewData->username }}"
+                                                            class="form-control" name="username" readonly>
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" name="id" class="form-control-file"
+                                                value="{{ $viewData->user_id }}">
+                                                <div class="row">
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Program Studi</label>
+                                                        {{-- <input type="text" value="{{ $viewData->prodi }}"
+                                                        class="form-control" name="nama"> --}}
+                                                        <input class="form-control" list="datalistOptionsProdi"
+                                                            id="exampleDataList" placeholder="Masukkan Program Studi ..."
+                                                            name="prodi" value="{{ $viewData->prodi }}" required>
+                                                        <datalist id="datalistOptionsProdi">
+                                                            <option value="Bahasa dan Sastra Arab"></option>
+                                                            <option value="Pendidikan Bahasa Inggris"></option>
+                                                            <option value="Sastra Inggris"></option>
+                                                            <option value="Sejarah Peradaban Islam"></option>
+                                                            <option value="Tadris Bahasa Indonesia"></option>
+                                                            <option value="Ilmu Perpustakaan dan Informasi Islam"></option>
+                                                            <option value="Akuntansi Syariah"></option>
+                                                            <option value="Manajemen Bisnis Syariah"></option>
+                                                            <option value="Perbankan Syariah"></option>
+                                                            <option value="Ekonomi Syariah"></option>
+                                                            <option value="Aqidah dan Filsafat Islam"></option>
+                                                            <option value="Bimbingan dan Konseling Islam"></option>
+                                                            <option value="Ilmu Al-Qur'an dan Tafsir"></option>
+                                                            <option value="Komunikasi dan Penyiaran Islam"></option>
+                                                            <option value="Manajemen Dakwah"></option>
+                                                            <option value="Psikologi Islam"></option>
+                                                            <option value="Tasawuf dan Psikoterapi"></option>
+                                                            <option value="Pemikiran Politik Islam"></option>
+                                                            <option value="Hukum Ekonomi Syariah "></option>
+                                                            <option value="Hukum Keluarga Islam "></option>
+                                                            <option value="Hukum Pidana Islam"></option>
+                                                            <option value="Manajemen Zakat dan Wakaf"></option>
+                                                            <option value="Pendidikan Agama Islam"></option>
+                                                            <option value="Pendidikan Bahasa Arab"></option>
+                                                            <option value="Pendidikan Guru Madrasah Ibtidaiyah"></option>
+                                                            <option value="Pendidikan Islam Anak Usia Dini"></option>
+                                                            <option value="Manajemen Pendidikan Islam"></option>
+                                                            <option value="Tadris Matematika"></option>
+                                                            <option value="Tadris Biologi"></option>
+                                                            <option value="Ilmu Lingkungan"></option>
+                                                            <option value="Teknologi Pangan"></option>
+                                                            <option value="Sains Data"></option>
+                                                            <option value="Bioteknologi"></option>
+                                                        </datalist>
                                                     </div>
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Email</label>
-                                                        <input type="email" value="{{ $viewData->email }}"
-                                                            class="form-control" name="email" readonly>
-                                                    </div>
-                                                </div>
-                                                        <input type="hidden" name="id" class="form-control-file"
-                                                            value="{{ $viewData->user_id }}">
-                                                        <div class="row">
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="form-label">Jenis Kelamin</label>
-                                                                @if ($viewData->gender != null)
+                                                        <input type="email" value="{{ $viewData->email }}" class="form-control" name="email" required>
+                                                    </div> 
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Jenis Kelamin</label>
+                                                        @if ($viewData->gender != null)
                                                         @if ($viewData->gender == 'Perempuan')
                                                             <select class="form-control wide" name="jk"
                                                                 value="{{ old('jk') }}">
@@ -291,94 +329,329 @@
                                                                 <option value="Perempuan">Perempuan</option>
                                                             </select>
                                                         @endif
-                                                    @else
+                                                        @else
                                                         <select class="form-control wide" name="jk"
                                                             value="{{ old('jk') }}">
                                                             <option value="{{ old('jk') }}" disabled selected>Pilih
                                                                 Jenis Kelamin </option>
-                                                            <option value="Laki-laki">Laki-aki</option>
+                                                            <option value="Laki-laki">Laki-laki</option>
                                                             <option value="Perempuan">Perempuan</option>
                                                         </select>
-                                                    @endif
-                                                            </div>
-                                                            <div class="mb-3 col-md-6">
-                                                                <label class="form-label">Foto Profil</label>
-                                                                <div class="input-group">
-                                                                    <span class="input-group-text">Upload</span>
-                                                                    <div class="form-file">
-                                                                        <input type="file"
-                                                                            class="form-file-input form-control"
-                                                                            name="foto">
-                                                                    </div>
+                                                        @endif
+                                                    </div>
+                                                    {{-- <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Foto Profil</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Upload</span>
+                                                                <div class="form-file">
+                                                                    <input type="file"
+                                                                        class="form-file-input form-control"
+                                                                        name="foto">
                                                                 </div>
-                                                                <input type="hidden" name="pathFoto"
-                                                                    class="form-control-file" value="{{ $viewData->foto }}">
-                                                                <img class="avatar-lg rounded-circle img-thumbnail"
-                                                                    src="{{ url('/' . $viewData->foto) }}" width="75px"
-                                                                    height="auto" alt="">
+                                                            </div>
+                                                            <input type="hidden" name="pathFoto"
+                                                                class="form-control-file" value="{{ $viewData->foto }}">
+                                                            <img class="avatar-lg rounded-circle img-thumbnail"
+                                                                src="{{ url('/' . $viewData->foto) }}" width="75px"
+                                                                height="auto" alt="">
                                                                 @error('foto')
                                                                     <div class="alert alert-warning" role="alert">
                                                                         <strong>Warning!</strong>
                                                                         {{ $message }}
                                                                     </div>
                                                                 @enderror
+                                                        </div>
+                                                    </div> --}}
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label" for="personal-data">Agama</label>
+                                                        <select class="form-control wide" name="agama"
+                                                            value="{{ $viewData->agama }}">
+                                                            @if($viewData->agama = NULL)
+                                                            <option value="{{ $viewData->agama }}" disabled selected>Pilih agama
+                                                            </option>
+                                                            @endif
+                                                            <option value="Islam">Islam</option>
+                                                            <option value="Kristen">Kristen</option>
+                                                            <option value="Hindu">Hindu</option>
+                                                            <option value="Budha">Budha</option>
+                                                            <option value="Kong Hu Chu ">Kong Hu Chu</option>
+                                                            <option value="Lainnya">Etc</option>
+                                                        </select>
+                                                        @error('agama')
+                                                            <div class="alert alert-warning" role="alert">
+                                                                <strong>Peringatan!</strong>
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Tempat Lahir</label>
+                                                            <input type="text" value="{{ $viewData->tempat_lahir }}" value="{{ old('tempat') }}"
+                                                                class="form-control" name="tempat">
+                                                            @error('tempat')
+                                                            <div class="alert alert-warning" role="alert">
+                                                                <strong>Warning!</strong>
+                                                                {{ $message }}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Tanggal Lahir</label>
+                                                            <input type="date" value="{{ $viewData->tanggal_lahir }}" value="{{ old('tanggal') }}"
+                                                                class="form-control" name="tanggal">
+                                                            @error('tanggal')
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    <strong>Warning!</strong>
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">No HP</label>
+                                                            <input type="text" value="{{ $viewData->no_hp }}" value="{{ old('hp') }}"
+                                                                class="form-control" name="hp">
+                                                                @error('hp')
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    <strong>Warning!</strong>
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                        {{-- <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Sosial Media
+                                                                Instagram</label>
+                                                            <input type="text" value="{{ $viewData->instagram }}" value="{{ old('ig') }}"
+                                                                class="form-control" name="ig">
+                                                        </div> --}}
+                                                    </div>
+                                                    <div class="profile-about-me">
+                                                        <div class="pt-4 border-bottom-1 pb-3">
+                                                            <h4 class="text-success">Alamat Lengkap</h4>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label">Jalan / Dusun</label>
+                                                                <input type="text" value="{{ $viewData->jalan }}" value="{{ old('jalan') }}"
+                                                                    class="form-control" name="jalan">
+                                                                @error('jalan')
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    <strong>Peringatan</strong>
+                                                                    {{ $message }}
+                                                                </div>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label">Desa / Kelurahan</label>
+                                                                <input type="text" value="{{ $viewData->kelurahan }}" value="{{ old('kelurahan') }}"
+                                                                    class="form-control" name="kelurahan" required>
+                                                                @error('kelurahan')
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    <strong>Peringatan</strong>
+                                                                    {{ $message }}
+                                                                </div>
+                                                                @enderror
+                                                            </div>   
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label">Kecamatan</label>
+                                                                <input type="text" value="{{ $viewData->kecamatan }}" value="{{ old('kecamatan') }}"
+                                                                    class="form-control" name="kecamatan" required>
+                                                                @error('kecamatan')
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    <strong>Peringatan</strong>
+                                                                    {{ $message }}
+                                                                </div>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label">Kabupaten / Kota</label>
+                                                                <input type="text" value="{{ $viewData->kabupaten }}" value="{{ old('kabupaten') }}"
+                                                                    class="form-control" name="kabupaten" required>
+                                                                @error('kabupaten')
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    <strong>Peringatan</strong>
+                                                                    {{ $message }}
+                                                                </div>
+                                                                @enderror
+                                                            </div>   
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label">Provinsi</label>
+                                                                <input type="text" value="{{ $viewData->provinsi }}" value="{{ old('provinsi') }}"
+                                                                    class="form-control" name="provinsi" required>
+                                                                @error('provinsi')
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    <strong>Peringatan</strong>
+                                                                    {{ $message }}
+                                                                </div>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label">Kode Pos</label>
+                                                                <input type="text" value="{{ $viewData->kode_pos }}" value="{{ old('kode_pos') }}"
+                                                                    class="form-control" name="kode_pos" required>
+                                                                @error('kode_pos')
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    <strong>Peringatan</strong>
+                                                                    {{ $message }}
+                                                                </div>
+                                                                @enderror
+                                                            </div>   
+                                                        </div>
+                                                    </div>
+                                                    <div class="profile-about-me">
+                                                        <div class="pt-4 border-bottom-1 pb-3">
+                                                            <h4 class="text-success">Data Orang Tua</h4>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label" for="personal-data-name">Nama
+                                                                    Ayah</label>
+                                                                <input type="text" class="form-control" id="personal-data-name"
+                                                                    name="ayah" placeholder="Masukkan Nama Ayah"
+                                                                    value="{{ $viewData->nama_ayah }}" value="{{ old('ayah') }}" required>
+                                                                @error('ayah')
+                                                                    <div class="alert alert-warning" role="alert">
+                                                                        <strong>Peringatan!</strong>
+                                                                        {{ $message }}
+                                                                    </div>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label">Pekerjaan Ayah</label>
+                                                                <input type="text" value="{{ $viewData->pekerjaan_ayah }}"
+                                                                class="form-control" name="pekerjaanayah">
+                                                                @error('pekerjaanayah')
+                                                                    <div class="alert alert-warning" role="alert">
+                                                                        <strong>Peringatan</strong>
+                                                                        {{ $message }}
+                                                                    </div>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="mb-3 col-md-6">
-                                                                <label class="form-label">Tempat Lahir</label>
-                                                                <input type="text" value="{{ $viewData->tempat_lahir }}" value="{{ old('tempat') }}"
-                                                                    class="form-control" name="tempat">
-                                                                @error('tempat')
+                                                                <label class="form-label">Pendidikan Ayah</label>
+                                                                <input type="text" value="{{ $viewData->pendidikan_ayah }}"
+                                                                class="form-control" name="pendidikanayah">
+                                                                @error('pendidikanayah')
                                                                     <div class="alert alert-warning" role="alert">
-                                                                        <strong>Warning!</strong>
+                                                                        <strong>Peringatan</strong>
                                                                         {{ $message }}
                                                                     </div>
                                                                 @enderror
                                                             </div>
                                                             <div class="mb-3 col-md-6">
-                                                                <label class="form-label">Tanggal Lahir</label>
-                                                                <input type="date" value="{{ $viewData->tanggal_lahir }}" value="{{ old('tanggal') }}"
-                                                                    class="form-control" name="tanggal">
-                                                                @error('tanggal')
+                                                                <label class="form-label">No HP Ayah</label>
+                                                                <input type="number" value="{{ $viewData->nohp_ayah }}"
+                                                                class="form-control" name="noayah" id="personal-data-no">
+                                                                @error('noayah')
                                                                     <div class="alert alert-warning" role="alert">
-                                                                        <strong>Warning!</strong>
+                                                                        <strong>Peringatan</strong>
                                                                         {{ $message }}
                                                                     </div>
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Alamat</label>
-                                                            <textarea name="alamat" id="" cols="30" rows="5"
-                                                                class="form-control">{{ $viewData->alamat }}</textarea>
-                                                        </div>
-
                                                         <div class="row">
                                                             <div class="mb-3 col-md-6">
-                                                                <label class="form-label">No HP</label>
-                                                                <input type="text" value="{{ $viewData->no_hp }}" value="{{ old('hp') }}"
-                                                                    class="form-control" name="hp">
-                                                                 @error('hp')
+                                                                <label class="form-label" for="personal-data-name">Nama
+                                                                    Ibu</label>
+                                                                <input type="text" class="form-control" id="personal-data-name"
+                                                                    name="ibu" placeholder="Masukkan Nama Ibu"
+                                                                    value="{{ $viewData->nama_ibu }}" value="{{ old('ibu') }}" required>
+                                                                @error('ibu')
                                                                     <div class="alert alert-warning" role="alert">
-                                                                        <strong>Warning!</strong>
+                                                                        <strong>Peringatan!</strong>
                                                                         {{ $message }}
                                                                     </div>
                                                                 @enderror
                                                             </div>
                                                             <div class="mb-3 col-md-6">
-                                                                <label class="form-label">Sosial Media
-                                                                    Instagram</label>
-                                                                <input type="text" value="{{ $viewData->instagram }}" value="{{ old('ig') }}"
-                                                                    class="form-control" name="ig">
-                                                                @error('ig')
+                                                                <label class="form-label">Pekerjaan Ibu</label>
+                                                                <input type="text" value="{{ $viewData->pekerjaan_ibu }}"
+                                                                class="form-control" name="pekerjaanibu">
+                                                                @error('pekerjaanibu')
                                                                     <div class="alert alert-warning" role="alert">
-                                                                        <strong>Warning!</strong>
+                                                                        <strong>Peringatan</strong>
                                                                         {{ $message }}
                                                                     </div>
                                                                 @enderror
                                                             </div>
                                                         </div>
+                                                        <div class="row">
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label">Pendidikan Ibu</label>
+                                                                <input type="text" value="{{ $viewData->pendidikan_ibu }}"
+                                                                class="form-control" name="pendidikanibu">
+                                                                @error('pendidikanibu')
+                                                                    <div class="alert alert-warning" role="alert">
+                                                                        <strong>Peringatan</strong>
+                                                                        {{ $message }}
+                                                                    </div>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="mb-3 col-md-6">
+                                                                <label class="form-label">No HP Ibu</label>
+                                                                <input type="number" value="{{ $viewData->nohp_ibu }}"
+                                                                class="form-control" name="noibu" id="personal-data-no">
+                                                                @error('noibu')
+                                                                    <div class="alert alert-warning" role="alert">
+                                                                        <strong>Peringatan</strong>
+                                                                        {{ $message }}
+                                                                    </div>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="profile-about-me">
+                                                        <div class="pt-4 border-bottom-1 pb-3">
+                                                            <h4 class="text-success">Data Sekolah</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Asal Sekolah</label>
+                                                            <input type="text" value="{{ $viewData->sekolah_sma }}"
+                                                            class="form-control" name="asalsekolah" required>
+                                                            @error('asalsekolah')
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    <strong>Peringatan</strong>
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label text-success" for="billing-address">BERKAS PENDAFTARAN</label>
+                                                            @if($viewData->prestasi == NULL)
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Upload</span>
+                                                                <div class="form-file">
+                                                                    <input type="file" class="form-file-input form-control"
+                                                                        name="ftprestasi" value="{{ $viewData->prestasi }}" accept="application/pdf" required>
+                                                                </div>
+                                                            </div>
+                                                            @error('ftprestasi')
+                                                                <div class="alert alert-warning" role="alert">
+                                                                    <strong>Peringatan!</strong>
+                                                                    {{ $message }}
+                                                                </div>
+                                                            @enderror
+                                                            @else
+                                                            <div class="col-sm-9 col-7">
+                                                                <a href="{{ asset($viewData->prestasi) }}"> <i class="fa fa-file-pdf" style="font-size:48px;color:red"></i></a>
+                                                            </div>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <button class="btn btn-primary" type="submit">Perbaharui Data</button>
                                             </form>
                                         </div>

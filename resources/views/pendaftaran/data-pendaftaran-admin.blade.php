@@ -264,39 +264,31 @@
                 <div class="mb-4">
                     @php
                         $no = 0;
+                        $user = auth()->user();
+                        $profile = $user->profile;
                     @endphp
+                
                     @foreach ($viewData as $x)
-                        @if (auth()->user()->username == $x->nim)
+                        @if ($user->username == $x->nim)
                             @php
-                                $no = $no + 1;
+                                $no++;
                             @endphp
                         @endif
                     @endforeach
-                    @if (auth()->user()->profile->no_hp == null || auth()->user()->profile->tempat_lahir == null || auth()->user()->profile->gender == null || auth()->user()->profile->alamat == null || auth()->user()->profile->prestasi == null)
+                
+                    @if (is_null($profile->no_hp) || is_null($profile->tempat_lahir) || is_null($profile->gender) || is_null($profile->prestasi))
                         <div class="alert alert-danger alert-dismissible fade show">
-                            <svg viewbox="0 0 24 24" width="24" height="24"
-                                stroke="currentColor" stroke-width="2" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="me-2">
-                                <path
-                                    d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
-                                </path>
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
                                 <line x1="12" y1="9" x2="12" y2="13"></line>
                                 <line x1="12" y1="17" x2="12.01" y2="17"></line>
                             </svg>
                             <strong>Peringatan!</strong> Data belum lengkap. Silahkan lengkapi data akun sekarang.
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="btn-close">
-                            </button>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close"></button>
                         </div>
                         <div class="alert alert-warning alert-dismissible fade show">
-                            <svg viewbox="0 0 24 24" width="24" height="24"
-                                stroke="currentColor" stroke-width="2" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="me-2">
-                                <path
-                                    d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
-                                </path>
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
                                 <line x1="12" y1="9" x2="12" y2="13"></line>
                                 <line x1="12" y1="17" x2="12.01" y2="17"></line>
                             </svg>
@@ -306,6 +298,7 @@
                         <a href="form-registration" class="btn btn-primary btn-rounded fs-18">+ Daftar Seleksi</a>
                     @endif
                 </div>
+                
             </div>
             @php
                 $no = 0;
@@ -595,7 +588,7 @@
 
             @endforeach
             @if ($no == 0)
-            @if (auth()->user()->profile->no_hp == null || auth()->user()->profile->tempat_lahir == null || auth()->user()->profile->gender == null || auth()->user()->profile->alamat == null)
+            @if (auth()->user()->profile->no_hp == null || auth()->user()->profile->tempat_lahir == null || auth()->user()->profile->gender == null ||  auth()->user()->profile->prestasi == null)
             @else
                 <div class="alert alert-primary alert-dismissible alert-alt fade show">
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
