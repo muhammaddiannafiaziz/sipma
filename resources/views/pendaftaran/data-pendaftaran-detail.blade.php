@@ -136,6 +136,7 @@ Detail Pendaftaran
                                 style="margin-bottom: 1rem;"><i class="mdi mdi-plus me-1"></i>Upload Pembayaran  </button>    
                                 @endif --}}
                             {{-- <a href="https://chat.whatsapp.com/DEb9ZkYkzQ7KGbeHeU80T0"><button type="button" style="margin-bottom: 1rem;" class="btn btn-primary mb-4">Masuk Grup Whatsapp </button></a> --}}
+                            <a href="https://wa.me/62818780801?text=Assalamualaikum%2C%0A%0ASaya%20{{$viewNamaLengkap}}%2C%20mahasiswa%20baru%20Program%20Studi%20{{$viewProgramStudi}}.%20Saya%20ingin%20konfirmasi%20untuk%20mengikuti%20tes%20wawancara%20Ma'had%20Al-Jami'ah.%20Dokumen%20persyaratan%20sudah%20saya%20lengkapi.%20Terima%20kasih."><button type="button" style="margin-bottom: 1rem;" class="btn btn-primary mb-4">Konfirmasi Tes Wawancara</button></a>
                             <button class="btn btn-success mb-4" style="margin-bottom: 1rem;" disabled>Terverifikasi</button>
                             @elseif ($viewData->status_pendaftaran == "Selesai")
                             <button class="btn btn-primary mb-4" style="margin-bottom: 1rem;" disabled>Selesai</button>
