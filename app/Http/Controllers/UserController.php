@@ -173,9 +173,10 @@ class UserController extends Controller
                 'pendidikan_ibu' => $a->pendidikanibu,
                 'nohp_ibu' => $a->noibu,
                 'sekolah_sma' => $a->asalsekolah,
-                'prestasi' => $pathPrestasi
+                'prestasi' => $pathPrestasi,
+                'updated_at' => now()
             ]);
-            return redirect('/data-user')->with("success",'Data Berhasil Diubah');
+            return redirect('/edit-user/'.$id)->with("success",'Data Berhasil Diubah');
         }catch (\Exception $e){
             echo $e;
             //return redirect()->back()->with('error', 'Data Tidak Berhasil Diubah!');
@@ -215,13 +216,6 @@ class UserController extends Controller
                 'user_id' => $usersid->id,
                 'nama' => $a->name,
                 'email' => $a->email,
-                'created_at' => now()
-            ]);
-            Timeline::create([
-                'user_id' => $usersid->id,
-                'status' => "Bergabung",
-                'pesan' => 'Membuat Akun baru',
-                'tgl_update' => now(),
                 'created_at' => now()
             ]);
         return redirect('/')->with('success', 'Berhasil Register!');

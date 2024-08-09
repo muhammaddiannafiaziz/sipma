@@ -48,17 +48,18 @@ class LogAkunController extends Controller
                 'tempat.required' => 'Tempat lahir tidak boleh kosong',
                 'tanggal.required' => 'Tanggal lahir tidak boleh kosong',
                 'jk.required' => 'Jenis Kelamin harus dipilih',
-                'hp.required' => 'Family card cannot be empty',
-                // 'alamat.required' => 'School name must be filled',
+                'hp.required' => 'Nomor handphone tidak boleh kosong',
+                'ftprestasi.mimes' => 'File prestasi harus berupa file PDF',
+                'ftprestasi.max' => 'File prestasi maksimal berukuran 2 MB'
             ];
-
+            
             $cekValidasi = $a->validate([
                 'nama' => 'required',
                 'tempat' => 'required',
                 'tanggal' => 'required',
                 'jk' => 'required',
                 'hp' => 'required',
-                // 'alamat' => 'required',
+                'ftprestasi' => 'mimes:pdf|max:2000'
             ], $message);
 
             // $file = $a->file('foto');
@@ -110,7 +111,8 @@ class LogAkunController extends Controller
                 'pendidikan_ibu' => $a->pendidikanibu,
                 'nohp_ibu' => $a->noibu,
                 'sekolah_sma' => $a->asalsekolah,
-                'prestasi' => $pathPrestasi
+                'prestasi' => $pathPrestasi,
+                'created_at' => now()
             ]);
             User::where("id", Auth::user()->id)->update([
                 'name' => $a->nama,

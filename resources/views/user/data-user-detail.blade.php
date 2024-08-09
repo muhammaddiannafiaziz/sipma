@@ -648,6 +648,34 @@
                                                             <div class="col-sm-9 col-7">
                                                                 <a href="{{ asset($viewData->prestasi) }}"> <i class="fa fa-file-pdf" style="font-size:48px;color:red"></i></a>
                                                             </div>
+                                                            <a class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target=".update{{  $viewData->id }}"></i></a>
+                                                            <div class="modal fade update{{ $viewData->id }}" tabindex="-1"
+                                                                role="dialog" aria-hidden="true">
+                                                                <div class="modal-dialog modal-sm">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title">Hapus File</h5>
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal">
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body text-center"><i
+                                                                                class="fa fa-trash"></i><br> Apakah anda yakin ingin
+                                                                            menghapus data ini?<br> {{ $viewData->id }}
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-danger light"
+                                                                                data-bs-dismiss="modal">Batalkan</button>
+                                                                            <a href="{{route('update-user', $viewData->user_id )}}">
+                                                                                <button type="submit" class="btn btn-danger shadow">
+                                                                                    Ya, Hapus Data!
+                                                                                </button></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                             @endif
                                                         </div>
                                                     </div>
