@@ -232,11 +232,20 @@ class PendaftaranController extends Controller
         $dataProfil = ProfileUsers::where("username", $data->nim)->first();
         $datPembayaran = Pembayaran::where("id_pendaftaran",$data->id)->first();
         $no=1;
+        $namalengkap = urlencode(ucwords(strtolower($dataProfil->nama)));
+        $programstudi = urlencode(ucwords(strtolower($dataProfil->prodi)));
+
         
         
         $datapembayaran = Pendaftaran::where("id_pendaftaran", $id_pendaftaran)->get();
-        return view('pendaftaran.data-pendaftaran-detail', ['viewDataUser' => $dataUser,'viewDataProfil' => $dataProfil,
-        'viewDataPembayaran' => $datPembayaran,'viewData' => $data]);
+        return view('pendaftaran.data-pendaftaran-detail', [
+            'viewDataUser' => $dataUser,
+            'viewDataProfil' => $dataProfil,
+            'viewDataPembayaran' => $datPembayaran,
+            'viewData' => $data,
+            'viewNamaLengkap' => $namalengkap,
+            'viewProgramStudi' => $programstudi
+        ]);
     }
 
     public function kartupendaftaran($id_pendaftaran)
