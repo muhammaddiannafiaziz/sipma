@@ -154,8 +154,8 @@
                     <div class="d-flex align-items-center justify-content-between flex-wrap">
                         <div class="mb-3">
                             <h4 class="fs-24 font-w700">Pengumuman <br>Pendaftaran Mahasantri Baru</h4>
-                            <span>didaftarkan oleh <strong>{{ auth()->user()->name }}</strong> pada
-                                {{ $viewIdPendaftaran->tgl_pendaftaran }}</span>
+                            {{-- <span>didaftarkan oleh <strong>{{ auth()->user()->name }}</strong> pada
+                                {{ $viewIdPendaftaran->tgl_pendaftaran }}</span> --}}
                         </div>
                         <div class="mb-3">
                             <div class="d-flex align-items-center mb-4 pb-3 justify-content-end flex-wrap">
@@ -247,14 +247,26 @@
                                         @endforeach
                                     </th>
                                 </tr>
+                                {{-- @if ($viewDataPembayaran->status !="Gratis" && $viewDataPembayaran->status !="Dibayar" && $viewID->hasil_seleksi == "LULUS")
+                                    <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target=".upload"
+                                    style="margin-bottom: 1rem;"><i class="mdi mdi-plus me-1"></i>Tatacara </button>
+                                @endif
                                 @foreach ($viewData as $x)
-                                            @if ($x->hasil_seleksi == 'LULUS' && $x->id_pendaftaran== $viewIdPendaftaran->id_pendaftaran)
-                                            <tr>
-                                                <td scope="row" style="margin-top:-50px"><small>* Bawa Bukti Penerimaan Saat Melakukan Daftar Ulang</small></td>
-                                            </tr>
-                                            @endif
-                                @endforeach
-                                
+                                    @if ($x->hasil_seleksi == 'LULUS' && $x->id_pendaftaran== $viewIdPendaftaran->id_pendaftaran)
+                                    <tr>
+                                        <td scope="row" style="margin-top:-50px"><small>* Bawa Bukti Penerimaan Saat Melakukan Daftar Ulang</small></td>
+                                    </tr>
+                                    @endif
+                                @endforeach --}}
+                                @if ($viewDataPembayaran->status !="Gratis" && $viewDataPembayaran->status !="Dibayar" && $viewID->hasil_seleksi == "LULUS")
+                                <tr>
+                                    <td scope="row" style="margin-top:-50px"><small>* Pembayaran dilakukan tanggal 12 sampai 14 Agustus 2024 melalui transfer ke rekening BSI nomor <strong>7815557818</strong> a.n. <strong>RPL 028 BLU UIN RMS UNTUK DK</strong> dengan keterangan <strong>Mahad an. [Nama Lengkap]</strong></small></td>
+                                </tr>
+                                @elseif($viewDataPembayaran->status =="Dibayar")    
+                                <tr>
+                                    <td scope="row" style="margin-top:-50px"><small>* Bawa Bukti Penerimaan Saat Melakukan Daftar Ulang</small></td>
+                                </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>

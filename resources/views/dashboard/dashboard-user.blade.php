@@ -48,35 +48,42 @@
     </div>
 </div>
 <div class="row page-titles" style="border-radius: 0%">
-    <p>Alur Pendaftaran "PENERIMAAN MAHASANTRI BARU"</p>
+    <p>Panduan Pendaftaran Mahasantri Baru</p>
     <p><strong>Ma'had Al-Jami'ah (Pesantren Mahasiswa) Ronggowarsito</strong></p>
     <p>UIN Raden Mas Said Surakarta</p>
     <p>Tahun Akademik 2024/2025</p>
     <hr>
-    <p><strong>Berkas yang harus dipersiapkan</strong></p>
-    <p>1.<span style="font-family: Times New Roman;">&nbsp;&nbsp;&nbsp;</span>Screenshot data NIM di menu Cek UKT <strong><a href="https://registrasimaba.uinsaid.ac.id">registrasimaba.uinsaid.ac.id</a></strong></p>
-    <p>2.<span style="font-family: Times New Roman;">&nbsp;&nbsp;&nbsp;</span>Scan Bukti Pembayaran UKT</p>
-    <p>3.<span style="font-family: Times New Roman;">&nbsp;&nbsp;&nbsp;</span>Pakta Integritas&nbsp;(dapat diunduh di <strong><a href="https://bit.ly/PMBMahadAlJamiahUINSAID2024">bit.ly/PMBMahadAlJamiahUINSAID2024</a></strong>)</p>
-    <p>4.<span style="font-family: Times New Roman;">&nbsp;&nbsp;&nbsp;</span>Scan Sertifikat / Piagam Prestasi (bila ada)</p>
-    <p>5.<span style="font-family: Times New Roman;">&nbsp;&nbsp;&nbsp;</span>Foto Formal</p>
-    <p>keterangan : untuk berkas pendaftaran nomor 1 sampai 4 dijadikan satu file pdf</p>
+    <p><strong>Persyaratan Pendaftaran</strong></p>
+    <p>Agar proses pendaftaran berjalan lancar, calon Mahasantri baru diwajibkan menyiapkan dokumen-dokumen berikut dalam bentuk file PDF :</p>
+    <p>1. <strong>Bukti terdaftar sebagai Mahasiswa Baru</strong> UIN Raden Mas Said Surakarta. Tangkapan layar (screenshot) data Nomor Induk Mahasiswa (NIM) dari menu Cek UKT di <strong><a href="https://registrasimaba.uinsaid.ac.id">registrasimaba.uinsaid.ac.id</a></strong></p>
+    <p>2. <strong>Bukti pembayaran UKT</strong>. Scan atau foto bukti pembayaran Uang Kuliah Tunggal (UKT).</p>
+    <p>3. <strong>Pakta Integritas</strong>. Unduh dan isi Pakta Integritas melalui tautan berikut <strong><a href="https://bit.ly/PMBMahadAlJamiahUINSAID2024">bit.ly/PMBMahadAlJamiahUINSAID2024</a></strong>.</p>
+    <p>4. <strong>Sertifikat/Piagam Prestasi</strong> (Opsional). Jika memiliki, sertakan scan atau foto sertifikat/piagam prestasi yang telah diraih.</p>
+    <p>5. <strong>Foto Formal</strong>. Pasfoto berwarna dengan ukuran 3x4.</p>
+    <p>Catatan :</p>
+    <p>Satu File PDF: Gabungkan semua berkas di atas (nomor 1-4) menjadi satu file PDF.</p>
+    <p>Nama File: Beri nama file dengan format: [Nama Lengkap]_Pendaftaran_Mahad_UINSAID.</p>
     <p>&nbsp;</p>
     <p><strong>Langkah Pendaftaran</strong></p>
-    <p>1.<span style="font-family: Times New Roman;">&nbsp;&nbsp;&nbsp;</span>Kunjungi laman <strong><a href="https://mahad.uinsaid.ac.id/sipma/">mahad.uinsaid.ac.id/sipma</a></strong></p>
-    <p>2.<span style="font-family: Times New Roman;">&nbsp;&nbsp;&nbsp;</span>Klik 'DAFTAR' untuk membuat akun pendaftaran. Isikan sesuai dengan identitas.</p>
-    <p>3.<span style="font-family: Times New Roman;">&nbsp;&nbsp;&nbsp;</span>Setelah berhasil melakukan pembuatan akun, anda akan berada di halaman beranda.</p>
-    <p>4.<span style="font-family: Times New Roman;">&nbsp;&nbsp;&nbsp;</span>Klik menu / foto profil untuk melengkapi data akun. Pada isian upload berkas pendaftaran silakan unggah file berkas yang telah dipersiapkan.</p>
-    <p>5.<span style="font-family: Times New Roman;">&nbsp;&nbsp;&nbsp;</span>Setelah data akun lengkap, klik menu pendaftaran untuk melakukan pendaftaran.</p>
-    <p>6.<span style="font-family: Times New Roman;">&nbsp;&nbsp;&nbsp;</span>Klik 'Daftar Seleksi'. Kemudian anda akan diminta mengunggah foto formal. Lalu klik 'Buat Pendaftaran'.</p>
-    <p>7.<span style="font-family: Times New Roman;">&nbsp;&nbsp;&nbsp;</span>Setelah melakukan pendaftaran, mohon untuk menunggu sebentar hingga status pendaftaran 'Terverifikasi'.</p>
-    <p>8.<span style="font-family: Times New Roman;">&nbsp;&nbsp;&nbsp;</span>Jika status pendaftaran sudah terverifikasi, link 'Grup Whatsapp' akan muncul dan silakan masuk grup tersebut.</p>
-    <p>9.<span style="font-family: Times New Roman;">&nbsp;&nbsp;&nbsp;</span>Ujian seleksi akan diinformasikan di grup whatsapp.</p>
-    <p>10.Setelah mengikuti seleksi, tahap selanjutnya adalah pengumuman hasil seleksi.</p>
-    <p>11.Hasil Seleksi akan diumumkan di laman <strong><a href="https://mahad.uinsaid.ac.id/sipma/">mahad.uinsaid.ac.id/sipma</a></strong> pada menu 'pengumuman'.</p>
-    <p>12.Peserta yang lolos dapat melakukan pembayaran kafa'ah ma'hadiyah (biaya ma'had).</p>
-    <p>13.Setelah melakukan pembayaran, unggah scan bukti pembayaran di menu 'pengumuman'.</p>
-    <p>14.Langkah terakhir adalah mencetak 'Pengumuman Pendaftaran Mahaantri Baru' dalam ukuran A4 untuk melalukan daftar ulang ketika masuk ma'had.</p>
+    <p>1. <strong>Akses Portal Pendaftaran</strong> : Kunjungi laman resmi pendaftaran Ma'had Al-Jami'ah UIN Raden Mas Said Surakarta di <strong><a href="https://mahad.uinsaid.ac.id/sipma/">Sistem Informasi Penerimaan Mahasantri Baru (SIPMA).</a></strong></p>
+    <p>2. <strong>Buat Akun</strong> : Klik tombol "DAFTAR" untuk membuat akun pendaftaran baru. Lengkapi formulir pendaftaran dengan data yang valid.</p>
+    <p>3. <strong>Lengkap Profil</strong> : Setelah berhasil membuat akun, Anda akan diarahkan ke halaman beranda. Klik menu profil atau foto profil Anda untuk melengkapi data akun secara keseluruhan. Pastikan semua informasi yang Anda masukkan sudah benar, termasuk mengunggah berkas-berkas yang diperlukan.</p>
+    <p>4. <strong>Mulai Pendaftaran</strong> : Setelah profil Anda lengkap, lanjutkan proses pendaftaran dengan mengklik menu pendaftaran.</p>
+    <p>5. <strong>Daftar Seleksi</strong> : Pilih opsi "Daftar Seleksi" dan unggah foto formal sesuai dengan ketentuan yang berlaku. Klik "Buat Pendaftaran" untuk menyelesaikan langkah ini.</p>
+    <p>6. <strong>Konfirmasi Pendaftaran</strong> : Tunggu beberapa saat hingga status pendaftaran Anda berubah menjadi "Terverifikasi".</p>
+    <p>7. <strong>Konfirmasi Tes Wawancara</strong> : Setelah pendaftaran terverifikasi, Anda akan diminta untuk mengirimkan pesan kepada Contact Person yang telah ditentukan untuk mengkonfirmasi jadwal tes wawancara.</p>
+    <p>8. <strong>Tes Wawancara</strong> : Ikuti tes wawancara sesuai dengan jadwal yang telah disepakati.</p>
+    <p>9. <strong>Pengumuman Hasil Seleksi</strong> : Hasil seleksi akan diumumkan secara resmi melalui laman <strong><a href="https://mahad.uinsaid.ac.id/sipma/">Sistem Informasi Penerimaan Mahasantri Baru (SIPMA)</a></strong> pada menu 'Pengumuman'.</p>
+    <p>10. <strong>Pembayaran Kafa'ah Ma'hadiyah</strong> : Peserta yang dinyatakan lolos seleksi wajib melakukan pembayaran kafa'ah ma'hadiyah (biaya ma'had) sesuai dengan ketentuan yang berlaku.</p>
+    <p>11. <strong>Unggah Bukti Pembayaran</strong> : Setelah melakukan pembayaran, unggah scan bukti pembayaran Anda pada menu "Pengumuman".</p>
+    <p>12. <strong>Cetak Pengumuma Pendaftaran</strong> : Cetak "Pengumuman Pendaftaran Mahasantri Baru" dalam ukuran A4. Dokumen ini akan diperlukan saat Anda melakukan lapor diri di Ma'had Al-Jami'ah Ronggowarsito UIN Raden Mas Said Surakarta.</p>
+    <p>&nbsp;</p>
     <hr>
+    <p>Catatan :</p>
+    <p>Periksa Kembali Data: Pastikan semua data yang Anda masukkan sudah benar dan lengkap sebelum mengirimkan formulir pendaftaran.</p>
+    <p>Ikuti Petunjuk: Ikuti petunjuk yang tertera pada setiap langkah pendaftaran dengan seksama.</p>
+    <p>Tanyakan Jika Ada Pertanyaan: Jika Anda mengalami kesulitan atau memiliki pertanyaan, jangan ragu untuk menghubungi panitia pendaftaran.
+        Semoga panduan ini bermanfaat bagi Anda. Selamat bergabung di Ma'had Al-Jami'ah Ronggowarsito UIN Raden Mas Said Surakarta!</p>
     <p>Contact Person : <strong><a href="https://wa.me/62818780801">+62 818 780 801 (Muhammad Dian Nafi)</a></strong></p>
 
 </div>
