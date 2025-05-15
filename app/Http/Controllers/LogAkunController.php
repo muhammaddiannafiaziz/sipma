@@ -48,9 +48,7 @@ class LogAkunController extends Controller
                 'tempat.required' => 'Tempat lahir tidak boleh kosong',
                 'tanggal.required' => 'Tanggal lahir tidak boleh kosong',
                 'jk.required' => 'Jenis Kelamin harus dipilih',
-                'hp.required' => 'Nomor handphone tidak boleh kosong',
-                'ftprestasi.mimes' => 'File prestasi harus berupa file PDF',
-                'ftprestasi.max' => 'File prestasi maksimal berukuran 2 MB'
+                'hp.required' => 'Nomor handphone tidak boleh kosong'
             ];
             
             $cekValidasi = $a->validate([
@@ -59,18 +57,7 @@ class LogAkunController extends Controller
                 'tanggal' => 'required',
                 'jk' => 'required',
                 'hp' => 'required',
-                'ftprestasi' => 'mimes:pdf|max:2000'
             ], $message);
-
-            // $file = $a->file('foto');
-            // if(file_exists($file)){
-            //     $nama_file = time() . "-" . $file->getClientOriginalName();
-            //     $namaFolder = 'foto profil';
-            //     $file->move($namaFolder,$nama_file);
-            //     $pathFoto = $namaFolder."/".$nama_file;
-            // } else {
-            //     $pathFoto = $a->pathFoto;
-            // }
 
             $fileftprestasi = $a->file('ftprestasi');
             if(file_exists($fileftprestasi)){
@@ -87,7 +74,6 @@ class LogAkunController extends Controller
             ProfileUsers::where("user_id", Auth::user()->id)->update([
                 'nama' => $a->nama,
                 'username' => $a->username,
-                // 'foto' => $pathFoto,
                 'prodi' => $a->prodi,
                 'email' => $a->email,
                 'tempat_lahir' => $a->tempat,
@@ -102,25 +88,18 @@ class LogAkunController extends Controller
                 'kabupaten' => $a->kabupaten,
                 'provinsi' => $a->provinsi,
                 'kode_pos' => $a->kode_pos,
-                'nama_ayah' => $a->ayah,
-                'pekerjaan_ayah' => $a->pekerjaanayah,
-                'pendidikan_ayah' => $a->pendidikanayah,
-                'nohp_ayah' => $a->noayah,
-                'nama_ibu' => $a->ibu,
-                'pekerjaan_ibu' => $a->pekerjaanibu,
-                'pendidikan_ibu' => $a->pendidikanibu,
-                'nohp_ibu' => $a->noibu,
-                'sekolah_sma' => $a->asalsekolah,
-                'prestasi' => $pathPrestasi,
+                'nama_ortu' => $a->ortu,
+                'pekerjaan_ortu' => $a->pekerjaanortu,
+                'pendidikan_ortu' => $a->pendidikanortu,
+                'nohp_ortu' => $a->noortu,
                 'created_at' => now()
             ]);
             User::where("id", Auth::user()->id)->update([
                 'name' => $a->nama,
             ]);
             return redirect('/profile')->with('success', 'Profil Akun Terubah!');
-
     }
-
+ 
     public function editakun(Request $a){
         $dataUser = ProfileUsers::all();
         $message = [

@@ -45,6 +45,21 @@
                         <span class="nav-text">Pendaftaran </span>                    
                     </a>
                 </li>
+                    <!-- Menu Tahun Akademik -->
+                <li>
+                    <a href="{{ route('tahun-akademik') }}">
+                        <i class="fas fa-calendar-alt"></i> 
+                        <span class="nav-text">Tahun Akademik</span>
+                    </a>
+                </li>
+
+                <!-- Menu Gelombang -->
+                <li>
+                    <a href="{{ route('gelombang') }}">
+                        <i class="fas fa-layer-group"></i> 
+                        <span class="nav-text">Gelombang</span>
+                    </a>
+                </li>
                 {{-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="fa fa-database"></i>
                     <span class="nav-text">Data Transaksi</span>
@@ -149,7 +164,8 @@
                                                             @endif
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <div class="dropdown text-sans-serif"><button
+                                                            <div class="dropdown text-sans-serif">
+                                                                <button
                                                                     class="btn btn-primary tp-btn-light sharp" type="button"
                                                                     id="order-dropdown-7" data-bs-toggle="dropdown"
                                                                     data-boundary="viewport" aria-haspopup="true"
@@ -171,12 +187,14 @@
                                                                         </svg></span></button>
                                                                 <div class="dropdown-menu dropdown-menu-end border py-0"
                                                                     aria-labelledby="order-dropdown-7">
-                                                                    <div class="py-2"><a class="dropdown-item"
-                                                                            href="/sipma/verified-registration/{{ $x->id_pendaftaran }}">Terverifikasi</a><a
-                                                                            class="dropdown-item"
+                                                                    <div class="py-2">
+                                                                        <a class="dropdown-item"
+                                                                            href="/sipma/verified-registration/{{ $x->id_pendaftaran }}">Terverifikasi</a>
+                                                                            <a class="dropdown-item"
                                                                             href="/sipma/notverified-registration/{{ $x->id_pendaftaran }}">Belum
                                                                             Terverifikasi</a>
-                                                                            <div class="dropdown-divider"></div><a
+                                                                            <div class="dropdown-divider"></div>
+                                                                            <a
                                                                             class="dropdown-item text-success"
                                                                             href="/sipma/finish-registration/{{ $x->id_pendaftaran }}">Selesai
                                                                             </a>
@@ -276,26 +294,25 @@
                         @endif
                     @endforeach
                 
-                    @if (is_null($profile->no_hp) || is_null($profile->tempat_lahir) || is_null($profile->gender) || is_null($profile->prestasi))
+                    @if (is_null($profile->no_hp) || is_null($profile->tempat_lahir) || is_null($profile->gender))
                         <div class="alert alert-danger alert-dismissible fade show">
                             <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2">
                                 <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
                                 <line x1="12" y1="9" x2="12" y2="13"></line>
                                 <line x1="12" y1="17" x2="12.01" y2="17"></line>
                             </svg>
-                            <strong>Peringatan!</strong> Data belum lengkap. Silahkan lengkapi data akun sekarang.
+                            <strong>Peringatan!</strong> Data belum lengkap. Silahkan lengkapi data profil sekarang.
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close"></button>
                         </div>
-                        <div class="alert alert-warning alert-dismissible fade show">
-                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2">
-                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                                <line x1="12" y1="9" x2="12" y2="13"></line>
-                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                            </svg>
-                            Untuk melengkapi data akun silakan klik foto profil atau tombol kanan atas lalu profil.
+                        <div class="row">
+                            <div class="col text-center pt-3">
+                                <div class="dropdown-divider"></div>
+                                <p>Sebelum memulai pendaftaran, silakan melengkapi data profil terlebih dahulu.</p>
+                                <a href="{{route('profile')}}" class="btn btn-sm btn-primary btn-rounded fs-18">Lengkapi Profil</a>
+                            </div>
                         </div>
                     @elseif ($no == 0)
-                        <a href="form-registration" class="btn btn-primary btn-rounded fs-18">+ Daftar Seleksi</a>
+                        <a href="form-registration" class="btn btn-primary btn-rounded fs-18">Mulai Pendaftaran</a>
                     @endif
                 </div>
                 

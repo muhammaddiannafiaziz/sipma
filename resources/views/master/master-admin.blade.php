@@ -80,7 +80,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="/sipma/dashboard" class="brand-logo">
+            <a href="{{route('dashboard')}}" class="brand-logo">
                 <img alt="image" width="25" src="{{ asset('sipenmaru/images/logo.png') }}">
                 <div class="brand-title">
                     <h2 class="">Ma'had</h2>

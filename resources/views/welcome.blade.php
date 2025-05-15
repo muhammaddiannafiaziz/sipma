@@ -1,7 +1,6 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="h-100">
-
-<head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="Pendaftaran">
@@ -11,60 +10,84 @@
     <meta name="description" content="Ma'had Al-Jami'ah UIN Raden Mas Said Surkarta">
     <meta property="og:title" content="Pendaftaran Ma'had Al-Jami'ah">
     <meta property="og:description" content="Ma'had Al-Jami'ah UIN Raden Mas Said Surkarta">
-
-    <!-- PAGE TITLE HERE -->
     <title>SIPMA</title>
-    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-    <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png" href="{{ asset('sipenmaru/images/logo.png') }}">
-    {{-- <link href="{{ asset('sipenmaru/vendor/login/style.css') }}" rel="stylesheet"> --}}
-    <link href="{{ asset('sipenmaru/css/style.css') }}" rel="stylesheet">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/">
+
     <link href="{{ asset('sipenmaru/css/welcome.css') }}" rel="stylesheet">
 
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('sipenmaru/css/bootstrap.min.css') }}" rel="stylesheet">
 
-</head>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
 
-<body id="page-top">
-    <!-- Masthead-->
-    <header class="masthead">
-        <div class="container px-4 px-lg-5 h-100">
-            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
-                <div class="col-lg-8 align-self-end">
-                    <h3 class="text-white font-weight-bold">Sistem Informasi Penerimaan Mahasantri Baru</h3>
-                    <h5 class="text-white font-weight-bold">Ma'had Al-Jami'ah (Pesantren Mahasiswa) Ronggowarsito</h5>
-                    <h5 class="text-white font-weight-bold">UIN Raden Mass Said Surakarta</h5>
-                    
-                    <hr class="divider" />
-                </div>
-                <div class="col-lg-8 align-self-baseline">
-                    {{-- <p class="text-white-75 mb-5">Silahkan masuk menggunakan akun siakad!</p> --}}
-                    <a class="btn btn-success btn-xl" href="login">MASUK</a>
-                    <hr class="divider" />
-                </div>
-                <div class="col-lg-8 align-self-baseline">
-                    <p class="text-white-75 mb-5">Pendaftaran DITUTUP!</p>
-                    {{-- <a class="btn btn-success btn-xl" href="register">DAFTAR</a> --}}
-                    {{-- <hr class="divider" /> --}}
-                </div>
-            </div>
+      .custom-btn {
+        background-color:rgb(37, 102, 68); /* hijau gelap */
+        border: 2px solid #d4af37; /* warna emas */
+        border-radius: 30px; /* sudut membulat */
+        color:rgb(211, 255, 224); /* biru muda */
+        font-weight: 600;
+        padding: 5px 25px;
+        font-size: 1.1rem;
+        text-decoration: none;
+        display: inline-block;
+        transition: 0.3s;
+      }
+      .custom-btn:hover {
+        background-color:rgb(48, 121, 82); /* hijau lebih gelap saat hover */
+        color:rgb(255, 255, 255); /* biru muda lebih terang saat hover */
+        text-decoration: none;
+        font-size: 1.2rem;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+  </head>
+  <body class="d-flex h-100 text-center text-white bg-dark">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div class="justify-content-center">
+          <img src="{{ asset('sipenmaru/images/logoatas.png')}}" alt="Cover" style="max-width: 20rem;">
         </div>
-    </header>
-    
-    <!-- Footer-->
-    <footer class="bg-light py-5">
-        <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2024 - UPT Ma'had Al-Jami'ah</div></div>
-    </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- SimpleLightbox plugin JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-</body>
+      </header>
 
+      <main class="px-3">
+        <div class="mb-2 pb-2">
+            <h1>Selamat Datang</h1>
+            <p class="lead">Sistem Informasi Penerimaan Santri Baru <br><b> Ma'had Al-Jami'ah (Pesantren Mahasiswa) Ronggowarsito <br>UIN Raden Mass Said Surakarta</b></p>
+        </div>
+        
+        <div class="mt-2">
+          <a href="login" class="btn btn-lg btn-outline-success fw-bold  text-white ">Masuk</a>
+          <a href="https://s.id/KlikPendaftaranMahadUINSurakarta" class="btn btn-lg btn-outline-success text-white fw-bold  bg-success">Daftar</a>
+        </div>
+      </main>
+      <div class="container mt-auto">
+        <div class="row ">
+          <div class="col-12 mb-2">Silakan unduh booklet dan brosur untuk mengatahui informasi lebih lanjut.</div>
+          <div class="d-flex justify-content-center">
+            <a href="https://s.id/PSBMahadUINSurakarta" class="btn custom-btn" target="_blank">
+              s.id/PSBMahadUINSurakarta
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-auto text-white-50">
+        <p>&copy;2024 <a href="https://mahad.uinsaid.ac.id" class="text-white">UPT Ma'had Al-Jami'ah</a>.</p>
+      </footer>
+    </div>
+  </body>
 </html>

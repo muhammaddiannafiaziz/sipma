@@ -24,8 +24,6 @@ class CreateProfileUsersTable extends Migration
             $table->string('username');
             $table->string('prodi')->nullable();
             $table->string('email')->nullable();
-            $table->string('semester')->nullable();
-            $table->string('foto')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('gender')->nullable();
@@ -34,49 +32,16 @@ class CreateProfileUsersTable extends Migration
             $table->string('alamat')->nullable();
            
             $table->string('provinsi')->nullable();
-            // $table->foreign('provinsi_id')
-            //     ->references('id')
-            //     ->on('provinces')
-            //     ->onUpdate('cascade')->onDelete('cascade');
-
             $table->string('kabupaten')->nullable();
-            // $table->foreign('kabupaten_id')
-            //     ->references('id')
-            //     ->on('regencies')
-            //     ->onUpdate('cascade')->onDelete('cascade');
-
             $table->string('kecamatan')->nullable();
-            // $table->foreign('kecamatan_id')
-            //     ->references('id')
-            //     ->on('districts')
-            //     ->onUpdate('cascade')->onDelete('cascade');
-
             $table->string('kelurahan')->nullable();
             $table->string('jalan')->nullable();
             $table->string('kode_pos')->nullable();
-            // $table->foreign('kelurahan_id')
-            //     ->references('id')
-            //     ->on('villages')
-            //     ->onUpdate('cascade')->onDelete('cascade');
 
-             //data orang tua
-             $table->string('nama_ayah')->nullable();
-             $table->string('nama_ibu')->nullable();
-             $table->string('pekerjaan_ayah')->nullable();
-             $table->string('pekerjaan_ibu')->nullable();
-             $table->string('pendidikan_ayah')->nullable();
-             $table->string('pendidikan_ibu')->nullable();
-             $table->string('nohp_ayah')->nullable();
-             $table->string('nohp_ibu')->nullable();
- 
-            // $table->string('berkas_ortu');//kk akte ijazah raport penghasilan
-
-            //data asal sekolah
-            // $table->string('sekolah_sd')->nullable();
-            // $table->string('sekolah_smp')->nullable();
-            $table->string('sekolah_sma')->nullable();
-            // $table->string('berkas_siswa');//kk akte ijazah raport
-            $table->string('prestasi')->nullable();
+             $table->string('nama_ortu')->nullable();
+             $table->string('pekerjaan_ortu')->nullable();
+             $table->string('pendidikan_ortu')->nullable();
+             $table->string('nohp_ortu')->nullable();
 
             $table->timestamps();
         });

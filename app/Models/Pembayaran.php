@@ -29,6 +29,10 @@ class Pembayaran extends Model
         return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran');
     }
 
+    public function pengumuman() {
+        return $this->hasOne(Pengumuman::class, 'id_pendaftaran', 'id_pendaftaran');
+    }
+
     public static function id()
     {
         $data = DB::table('pembayaran')->orderby('id_pendaftaran', 'DESC')->first();

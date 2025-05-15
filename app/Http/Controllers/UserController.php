@@ -149,7 +149,6 @@ class UserController extends Controller
             ProfileUsers::where("id", $id)->update([
                 'nama' => $a->nama,
                 'username' => $a->username,
-                // 'foto' => $pathFoto,
                 'prodi' => $a->prodi,
                 'email' => $a->email,
                 'tempat_lahir' => $a->tempat,
@@ -164,16 +163,10 @@ class UserController extends Controller
                 'kabupaten' => $a->kabupaten,
                 'provinsi' => $a->provinsi,
                 'kode_pos' => $a->kode_pos,
-                'nama_ayah' => $a->ayah,
-                'pekerjaan_ayah' => $a->pekerjaanayah,
-                'pendidikan_ayah' => $a->pendidikanayah,
-                'nohp_ayah' => $a->noayah,
-                'nama_ibu' => $a->ibu,
-                'pekerjaan_ibu' => $a->pekerjaanibu,
-                'pendidikan_ibu' => $a->pendidikanibu,
-                'nohp_ibu' => $a->noibu,
-                'sekolah_sma' => $a->asalsekolah,
-                'prestasi' => $pathPrestasi,
+                'nama_ortu' => $a->ortu,
+                'pekerjaan_ortu' => $a->pekerjaanortu,
+                'pendidikan_ortu' => $a->pendidikanortu,
+                'nohp_ortu' => $a->noortu,
                 'updated_at' => now()
             ]);
             return redirect('/edit-user/'.$id)->with("success",'Data Berhasil Diubah');

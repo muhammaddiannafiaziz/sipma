@@ -28,16 +28,6 @@
                 <i class="fa fa-users"></i>
                 <span class="nav-text">Data User </span>
             </a>
-                {{-- <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <i class="fa fa-book"></i>
-                    <span class="nav-text">Data Master </span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{route('data-user')}}">Pengguna</a></li>
-                    <li><a href="{{route('data-sekolah')}}">Sekolah</a></li>
-                    <li><a href="{{route('data-prodi')}}">Program Studi</a></li>
-                    <li><a href="{{route('data-jadwal')}}">Jadwal Kegiatan</a></li>
-                </ul> --}}
             </li>
             <li>
                 <a href="{{route('data-registration')}}">
@@ -93,12 +83,14 @@
                 @if ($viewID->hasil_seleksi == "Belum Seleksi")
                 <button class="btn btn-primary mb-4" style="margin-bottom: 1rem;" disabled>Menunggu Pengumuman</button>
                 @else
-                    @if ($viewDataPembayaran->status !="Gratis" && $viewDataPembayaran->status !="Dibayar" && $viewID->hasil_seleksi == "LULUS")
+                    @if ($viewDataPembayaran->status == "Belum Bayar" && $viewID->hasil_seleksi == "LULUS")
                     <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target=".upload"
                     style="margin-bottom: 1rem;"><i class="mdi mdi-plus me-1"></i>Upload Pembayaran  </button>
-                    @elseif($viewDataPembayaran->status =="Dibayar")    
+                    @elseif($viewDataPembayaran->status =="Dibayar" && $viewDataPembayaran->verifikasi === 1)    
                     <button class="btn btn-info waves-effect waves-light mb-4" onclick="printDiv('cetak')"><i
                         class="fa fa-print"> </i></button>
+                    @elseif($viewDataPembayaran->status =="Dibayar" && $viewDataPembayaran->verifikasi === 0)
+                    <button class="btn btn-primary mb-4" style="margin-bottom: 1rem;" disabled>Menunggu Verifikasi</button>
                     {{-- @elseif ($viewDataPembayaran->status == "Belum Bayar")
                     <div>Belum Membayar</div> --}}
                     @endif
@@ -166,29 +158,12 @@
                                 <div class="me-3">
                                     <img src="{{ asset('sipenmaru/images/logo.png') }}" alt="" width="50px">
                                 </div>
-                                <!--
-                                        <div>
-                                            <div class="dropdown">
-                                                <div class="btn-link" data-bs-toggle="dropdown">
-                                                    <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <circle cx="12.4999" cy="3.5" r="2.5" fill="#A5A5A5"></circle>
-                                                        <circle cx="12.4999" cy="11.5" r="2.5" fill="#A5A5A5"></circle>
-                                                        <circle cx="12.4999" cy="19.5" r="2.5" fill="#A5A5A5"></circle>
-                                                    </svg>
-                                                </div>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="javascript:void(0)">Unduh Hasil Pendaftaran</a>
-                                                </div> 
-                                                DAFTAR DONLOT
-                                            </div>
-                                        </div>-->
-
                             </div>
                         </div>
                     </div>
                     <div>
                         <br>
-                        <div class="p-4 border-top">
+                        <div class="border-top">
                             <table class="table mb-0">
 
                                 <thead class="table-light col-lg-12">
@@ -206,7 +181,7 @@
                                                     <td  width="50%">{{ $viewIdPendaftaran->id_pendaftaran }}</td>
                                                 </tr>
                                                 <tr border="5">
-                                                    <th scope="row"  width="50%">Nama Siswa</th>
+                                                    <th scope="row"  width="50%">Nama</th>
                                                     <td  width="50%">{{ $viewIdPendaftaran->nama_siswa }}</td>
                                                 </tr>
                                                 <tr border="5">
@@ -219,7 +194,7 @@
                                                 </tr>
                                             </table>
                                         </td>
-                                        <td colspan="4"><img src="{{ url('/'.$viewIdPendaftaran->pas_foto) }}" alt="" width="180px" height="240"></td>
+                                        <td colspan="4"><img src="{{ url('/'.$viewIdPendaftaran->pas_foto) }}" alt="" width="180px" height=""></td>
                                     <tr>
                                     
                                     <tr border="5">
@@ -228,8 +203,8 @@
                                             @foreach ($viewData as $x)
                                                     @if($x->hasil_seleksi == 'TIDAK LULUS' && $x->id_pendaftaran== $viewIdPendaftaran->id_pendaftaran)
                                                     <div class="alert alert-danger solid alert-rounded" style="border-radius: 0%">
-                                                        <strong>Semangat!</strong> Anda TIDAK LULUS seleksi Penerimaan
-                                                        Santri Baru, Silahkan coba kembali, Jangan Menyerah Ya!
+                                                        <strong>Mohon maaf.</strong> Anda TIDAK LULUS seleksi Penerimaan
+                                                        Santri Baru.
                                                     </div>
                                                     @elseif ($x->hasil_seleksi == 'LULUS' && $x->id_pendaftaran== $viewIdPendaftaran->id_pendaftaran)
                                                         <div class="alert alert-success solid" style="border-radius: 0%">
@@ -258,11 +233,7 @@
                                     </tr>
                                     @endif
                                 @endforeach --}}
-                                @if ($viewDataPembayaran->status !="Gratis" && $viewDataPembayaran->status !="Dibayar" && $viewID->hasil_seleksi == "LULUS")
-                                <tr>
-                                    <td scope="row" style="margin-top:-50px"><small>* Pembayaran dilakukan tanggal 12 sampai 14 Agustus 2024 melalui transfer ke rekening BSI nomor <strong>7815557818</strong> a.n. <strong>RPL 028 BLU UIN RMS UNTUK DK</strong> dengan keterangan <strong>Mahad an. [Nama Lengkap]</strong></small></td>
-                                </tr>
-                                @elseif($viewDataPembayaran->status =="Dibayar")    
+                                @if($viewDataPembayaran->status =="Dibayar")    
                                 <tr>
                                     <td scope="row" style="margin-top:-50px"><small>* Bawa Bukti Penerimaan Saat Melakukan Daftar Ulang</small></td>
                                 </tr>

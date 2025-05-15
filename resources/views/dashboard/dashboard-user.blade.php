@@ -1,13 +1,12 @@
 
-<!--Buat Camaba-->
 <div class="row page-titles" style="border-radius: 0%">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" style="color: var(--primary)"><a href="dashboard"
+        <li class="breadcrumb-item active" style="color: var(--primary)"><a href="dashboard" class="fs-18 font-w600 mb-5 text-nowrap"
                 style="color: var(--primary)">Beranda</a></li>
-        <li class="breadcrumb-item"><a href="javascript:void(0)">Pendaftaran Mahad</a></li>
+        <li class="breadcrumb-item"><a href="javascript:void(0)" class="fs-18 mb-5 text-nowrap">Pendaftaran Mahad</a></li>
     </ol>
 </div>
-<div class="row">
+<!-- <div class="row">
     <div class="col-xl-8">
         <div class="card transparent-card">
             <div class="bootstrap-carousel">
@@ -46,45 +45,51 @@
             </div>
         </div>
     </div>
+</div> -->
+@if (auth()->user()->profile->alamat === null)
+<div class="row">
+    <div class="col text-center pt-3">
+        <div class="dropdown-divider"></div>
+        <p>Sebelum memulai pendaftaran, silakan melengkapi data profil terlebih dahulu.</p>
+        <a href="{{route('profile')}}" class="btn btn-sm btn-primary btn-rounded fs-18">Lengkapi Profil</a>
+    </div>
 </div>
-<div class="row page-titles" style="border-radius: 0%">
-    <p>Panduan Pendaftaran Mahasantri Baru</p>
-    <p><strong>Ma'had Al-Jami'ah (Pesantren Mahasiswa) Ronggowarsito</strong></p>
-    <p>UIN Raden Mas Said Surakarta</p>
-    <p>Tahun Akademik 2024/2025</p>
-    <hr>
-    <p><strong>Persyaratan Pendaftaran</strong></p>
-    <p>Agar proses pendaftaran berjalan lancar, calon Mahasantri baru diwajibkan menyiapkan dokumen-dokumen berikut dalam bentuk file PDF :</p>
-    <p>1. <strong>Bukti terdaftar sebagai Mahasiswa Baru</strong> UIN Raden Mas Said Surakarta. Tangkapan layar (screenshot) data Nomor Induk Mahasiswa (NIM) dari menu Cek UKT di <strong><a href="https://registrasimaba.uinsaid.ac.id">registrasimaba.uinsaid.ac.id</a></strong></p>
-    <p>2. <strong>Bukti pembayaran UKT</strong>. Scan atau foto bukti pembayaran Uang Kuliah Tunggal (UKT).</p>
-    <p>3. <strong>Pakta Integritas</strong>. Unduh dan isi Pakta Integritas melalui tautan berikut <strong><a href="https://bit.ly/PMBMahadAlJamiahUINSAID2024">bit.ly/PMBMahadAlJamiahUINSAID2024</a></strong>.</p>
-    <p>4. <strong>Sertifikat/Piagam Prestasi</strong> (Opsional). Jika memiliki, sertakan scan atau foto sertifikat/piagam prestasi yang telah diraih.</p>
-    <p>5. <strong>Foto Formal</strong>. Pasfoto berwarna dengan ukuran 3x4.</p>
-    <p>Catatan :</p>
-    <p>Satu File PDF: Gabungkan semua berkas di atas (nomor 1-4) menjadi satu file PDF.</p>
-    <p>Nama File: Beri nama file dengan format: [Nama Lengkap]_Pendaftaran_Mahad_UINSAID.</p>
-    <p>&nbsp;</p>
-    <p><strong>Langkah Pendaftaran</strong></p>
-    <p>1. <strong>Akses Portal Pendaftaran</strong> : Kunjungi laman resmi pendaftaran Ma'had Al-Jami'ah UIN Raden Mas Said Surakarta di <strong><a href="https://mahad.uinsaid.ac.id/sipma/">Sistem Informasi Penerimaan Mahasantri Baru (SIPMA).</a></strong></p>
-    <p>2. <strong>Buat Akun</strong> : Klik tombol "DAFTAR" untuk membuat akun pendaftaran baru. Lengkapi formulir pendaftaran dengan data yang valid.</p>
-    <p>3. <strong>Lengkap Profil</strong> : Setelah berhasil membuat akun, Anda akan diarahkan ke halaman beranda. Klik menu profil atau foto profil Anda untuk melengkapi data akun secara keseluruhan. Pastikan semua informasi yang Anda masukkan sudah benar, termasuk mengunggah berkas-berkas yang diperlukan.</p>
-    <p>4. <strong>Mulai Pendaftaran</strong> : Setelah profil Anda lengkap, lanjutkan proses pendaftaran dengan mengklik menu pendaftaran.</p>
-    <p>5. <strong>Daftar Seleksi</strong> : Pilih opsi "Daftar Seleksi" dan unggah foto formal sesuai dengan ketentuan yang berlaku. Klik "Buat Pendaftaran" untuk menyelesaikan langkah ini.</p>
-    <p>6. <strong>Konfirmasi Pendaftaran</strong> : Tunggu beberapa saat hingga status pendaftaran Anda berubah menjadi "Terverifikasi".</p>
-    <p>7. <strong>Konfirmasi Tes Wawancara</strong> : Setelah pendaftaran terverifikasi, Anda akan diminta untuk mengirimkan pesan kepada Contact Person yang telah ditentukan untuk mengkonfirmasi jadwal tes wawancara.</p>
-    <p>8. <strong>Tes Wawancara</strong> : Ikuti tes wawancara sesuai dengan jadwal yang telah disepakati.</p>
-    <p>9. <strong>Pengumuman Hasil Seleksi</strong> : Hasil seleksi akan diumumkan secara resmi melalui laman <strong><a href="https://mahad.uinsaid.ac.id/sipma/">Sistem Informasi Penerimaan Mahasantri Baru (SIPMA)</a></strong> pada menu 'Pengumuman'.</p>
-    <p>10. <strong>Pembayaran Kafa'ah Ma'hadiyah</strong> : Peserta yang dinyatakan lolos seleksi wajib melakukan pembayaran kafa'ah ma'hadiyah (biaya ma'had) sesuai dengan ketentuan yang berlaku.</p>
-    <p>11. <strong>Unggah Bukti Pembayaran</strong> : Setelah melakukan pembayaran, unggah scan bukti pembayaran Anda pada menu "Pengumuman".</p>
-    <p>12. <strong>Cetak Pengumuma Pendaftaran</strong> : Cetak "Pengumuman Pendaftaran Mahasantri Baru" dalam ukuran A4. Dokumen ini akan diperlukan saat Anda melakukan lapor diri di Ma'had Al-Jami'ah Ronggowarsito UIN Raden Mas Said Surakarta.</p>
-    <p>&nbsp;</p>
-    <hr>
-    <p>Catatan :</p>
-    <p>Periksa Kembali Data: Pastikan semua data yang Anda masukkan sudah benar dan lengkap sebelum mengirimkan formulir pendaftaran.</p>
-    <p>Ikuti Petunjuk: Ikuti petunjuk yang tertera pada setiap langkah pendaftaran dengan seksama.</p>
-    <p>Tanyakan Jika Ada Pertanyaan: Jika Anda mengalami kesulitan atau memiliki pertanyaan, jangan ragu untuk menghubungi panitia pendaftaran.
-        Semoga panduan ini bermanfaat bagi Anda. Selamat bergabung di Ma'had Al-Jami'ah Ronggowarsito UIN Raden Mas Said Surakarta!</p>
-    <p>Contact Person : <strong><a href="https://wa.me/62818780801">+62 818 780 801 (Muhammad Dian Nafi)</a></strong></p>
+@endif
+@php
+$currentUsername = auth()->user()->username;
+$isRegistered = $pendaftar->contains('nim', $currentUsername);
+@endphp
 
-</div>
-
+@if (!$isRegistered && auth()->user()->profile->alamat !== null)
+    <div class="alert alert-warning">Anda belum mendaftar.</div>
+    <div class="pt-3">
+        <a href="{{route('data-registration')}}" class="btn btn-sm btn-primary btn-rounded fs-18">Mulai Pendaftaran</a>
+    </div>
+@endif
+@foreach ($pendaftar as $x)
+    @if (auth()->user()->username == $x->nim)
+        <div>
+            @if ($x->status_pendaftaran == "Belum Terverifikasi")
+            <!-- <button class="btn btn-warning mb-4" style="margin-bottom: 1rem;" disabled>Belum Terverifikasi</button> -->
+            @elseif ($x->status_pendaftaran == "Terverifikasi")
+                {{-- @if ($viewDataPembayaran->status !="Gratis" && $viewDataPembayaran->status !="Dibayar")
+                <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target=".upload"
+                style="margin-bottom: 1rem;"><i class="mdi mdi-plus me-1"></i>Upload Pembayaran  </button>    
+                @endif --}}
+            {{-- <a href="https://chat.whatsapp.com/DEb9ZkYkzQ7KGbeHeU80T0"><button type="button" style="margin-bottom: 1rem;" class="btn btn-primary mb-4">Masuk Grup Whatsapp </button></a> --}}
+            <div class="row">
+                <div class="col text-center pt-3">
+                    <div class="dropdown-divider"></div>
+                    <p>Pendaftaran telah terverifikasi. Langkah selanjutnya adalah tes wawancara. Klik tombol di bawah untuk konfirmasi tes wawancara.</p>
+                    <a href="https://wa.me/62818780801?text=Assalamualaikum%2C%0A%0ASaya%20{{$x->nama_siswa}}%2C%20mahasiswa%20baru%20Program%20Studi%20{{$x->prodi}}.%20Saya%20ingin%20konfirmasi%20untuk%20mengikuti%20tes%20wawancara%20Ma'had%20Al-Jami'ah.%20Dokumen%20persyaratan%20sudah%20saya%20lengkapi.%20Terima%20kasih."><button type="button" style="margin-bottom: 1rem;" class="btn btn-primary mb-4">Konfirmasi Tes Wawancara</button></a>
+                </div>
+            </div>
+                        <!-- <button class="btn btn-success mb-4" style="margin-bottom: 1rem;" disabled>Terverifikasi</button> -->
+            @elseif ($x->status_pendaftaran == "Selesai")
+            <button class="btn btn-primary mb-4" style="margin-bottom: 1rem;" disabled>Selesai</button>
+            @else
+            <span class="badge badge-danger">Data Tidak Sah</span>
+            @endif
+        </div>
+    @endif
+@endforeach

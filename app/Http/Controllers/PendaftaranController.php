@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gelombang;
 use Illuminate\Http\Request;
 use App\Models\ProfileUsers;
 use App\Models\User;
 use App\Models\Pendaftaran;
 use App\Models\Pembayaran;
 use App\Models\Pengumuman;
+use App\Models\TahunAkademik;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Exceptions\PostTooLargeException;
@@ -42,13 +45,16 @@ class PendaftaranController extends Controller
         $dataUser = ProfileUsers::all();
         $data = Pendaftaran::all();
         $datapembayaran = Pembayaran::all();
-        return view ('pendaftaran.data-pendaftaran-admin',['viewDataPembayaran' => $datapembayaran, 'viewDataUser' => $dataUser,'viewData' => $data]);
+        return view ('pendaftaran.data-pendaftaran-admin',['viewDataPembayaran' => $datapembayaran,
+                                                            'viewDataUser' => $dataUser,
+                                                            'viewData' => $data
+                                                        ]);
     }
 
     public function inputpendaftaran(){
-        // $datenow = date('Y-m-d');
-        // $dataJadwal = JadwalKegiatan::where("tgl_mulai","<=",$datenow)->where("tgl_akhir",">",$datenow)->where("jenis_kegiatan","Pendaftaran")->get();
-        return view ('pendaftaran.data-pendaftaran-input-admin');
+        $tahunaktif = TahunAkademik::where('status', 'open')->get();
+        $gelombangaktif = Gelombang::where('status', 'open')->get();
+        return view ('pendaftaran.data-pendaftaran-input-admin', compact('tahunaktif','gelombangaktif'));
     }
 
     public function simpanpendaftaran(Request $a)
@@ -57,41 +63,73 @@ class PendaftaranController extends Controller
         $dataUser = ProfileUsers::all();
 
         $kodependaftaran = Pendaftaran::id();
-        $nimmahasiswa = Auth::user()->username;
         
+        // Validasi unggah foto
+        $message = [
+            'foto.required' => 'Harap unggah foto.',
+            'foto.image' => 'File yang diunggah harus berupa gambar.',
+            'foto.mimes' => 'Hanya file dengan ekstensi jpg dan png yang diperbolehkan.',
+            'foto.max' => 'Ukuran foto tidak boleh lebih dari 300KB.',
+            'berkas_siswa.mimes' => 'Berkas Pendaftaran harus berupa file PDF',
+            'berkas_siswa.max' => 'Berkas Pendaftaran maksimal berukuran 2 MB',
+            
+        ];
+
+        $a->validate([
+            'foto' => ['required', 'image', 'mimes:jpg,png', 'max:300'], // 300 KB
+            'berkas_siswa' => 'mimes:pdf|max:2000',
+        ], $message);
+
+        // Proses unggah foto
         $file = $a->file('foto');
-        $nama_file = "Pasfoto".time() . "-" . $file->getClientOriginalName();
+        $nama_file = "Pasfoto-".uniqid()."-".$file->getClientOriginalName();
+        $nimmahasiswa = Auth::user()->username;
         $namaFolder = 'data pendaftar/'.$nimmahasiswa;
+
         $file->move($namaFolder,$nama_file);
         $pathFoto = $namaFolder."/".$nama_file;
 
-        $fileftprestasi = $a->file('ftprestasi');
-        if(file_exists($fileftprestasi)){
-            $nama_fileftprestasi = "Prestasi".time() . "-" . $fileftprestasi->getClientOriginalName();
-            $namaFolderftprestasi = 'data pendaftar/'.$nimmahasiswa;
-            $fileftprestasi->move($namaFolderftprestasi,$nama_fileftprestasi);
-            $pathPrestasi = $namaFolderftprestasi."/".$nama_fileftprestasi;
+        $fileberkas_siswa = $a->file('berkas_siswa');
+        if(file_exists($fileberkas_siswa)){
+            $nama_fileberkas_siswa = "Berkas".time() . "-" . $fileberkas_siswa->getClientOriginalName();
+            $namaFolderberkas_siswa = 'data pendaftar/'.$nimmahasiswa;
+            $fileberkas_siswa->move($namaFolderberkas_siswa,$nama_fileberkas_siswa);
+            $pathBerkas = $namaFolderberkas_siswa."/".$nama_fileberkas_siswa;
         } else {
-            $pathPrestasi = null;
+            $pathBerkas = null;
         }
 
         Pendaftaran::create([
-            'id_pendaftaran' => "$kodependaftaran",
+            'id_pendaftaran' => $kodependaftaran,
             'user_id' => Auth::user()->id,
             'nim' => $a->nim,
             'nama_siswa' => $a->nama,
             'prodi' => $a->prodi,
             'gender' => $a->jk,
-            'pas_foto' => $pathFoto,
             'tempat_lahir' => $a->tempatlahir,
             'tanggal_lahir' => $a->tanggallahir,
             
+            'asal_sekolah' => $a->asalsekolah,
+            'pernah_mondok' => $a->pernah_mondok,
+            'nama_pondok' => $a->nama_pondok,
+            'lama' => $a->lama,
+            'prestasi' => $a->prestasi,
+
+            'berkas_siswa' => $pathBerkas,
+            'pas_foto' => $pathFoto,
             'status_pendaftaran' => 'Belum Terverifikasi',
             'tgl_pendaftaran' => now(),
+            'tahun_masuk' => $a->tahun_masuk,
+            'gelombang' => $a->gelombang,
             'created_at' => now()
         ]);
+        // ProfileUsers::where("user_id", Auth::user()->id)->update([
+        //     'sekolah_sma' => $a->asalsekolah,
+        //     'prestasi' => $pathBerkas,
+        //     'updated_at' => now()
+        // ]);
         $pendaftaranbaru = Pendaftaran::orderBy('id','DESC')->first();
-        $id_pendaftaran = $pendaftaranbaru->id;
+        // $id_pendaftaran = $pendaftaranbaru->id;
         // $id_pendaftaran = $pendaftaranbaru->id_pendaftaran;
         
         //tambah insert
@@ -102,10 +140,10 @@ class PendaftaranController extends Controller
             //'bukti_pembayaran' => "NULL",
             'status'=> "Belum Bayar",
             'verifikasi'=> false,
-            'jatuh_tempo'  => now()->addDays(2)->format('Y-m-d'),
+            'jatuh_tempo'  => now()->addDays(7)->format('Y-m-d'),
             'tgl_pembayaran' => now(),
-            'total_bayar'  => 300000, 
-            'id_pendaftaran' =>$id_pendaftaran,
+            'total_bayar'  => 1800000, 
+            'id_pendaftaran' =>$kodependaftaran,
             'created_at' => now()
         ]);
 
@@ -114,14 +152,21 @@ class PendaftaranController extends Controller
             'id_pengumuman' => $kodepengumuman,
             'id_pendaftaran' => $kodependaftaran,
             'hasil_seleksi' => "Belum Seleksi",
-            'user_id' => $pendaftaranbaru->user_id,
+            'user_id' => Auth::user()->id,
             'status' => false,
         ]);
-
+        
         return redirect('/data-registration')->with('success', 'Data Tersimpan!!');
-        } catch (\Exception $e){
-            echo $e->getMessage();
-            //return redirect()->back()->with('error', 'Data Tidak Berhasil Tersimpan!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Jika validasi gagal, kembalikan ke halaman form dengan pesan kesalahan
+            return redirect('/form-registration')
+                ->withErrors($e->validator)
+                ->withInput(); // Mengembalikan input sebelumnya
+        } catch (\Exception $e) {
+            // Tangani error lain
+            return redirect('/form-registration')
+                ->with('error', 'Terjadi kesalahan saat menyimpan pendaftaran: ' . $e->getMessage())
+                ->withInput(); // Mengembalikan input sebelumnya
         }
     }
 
@@ -171,38 +216,41 @@ class PendaftaranController extends Controller
 
         try{
 
-        $kodependaftaran = Pendaftaran::id();
-        $nimmahasiswa = Auth::user()->username;
+        $nimmahasiswa = $a->nim;
 
         $file = $a->file('foto');
         if(file_exists($file)){
-            $nama_file = "Pasfoto".time() . "-" . $file->getClientOriginalName();
+            $nama_file = "Pasfoto-".uniqid()."-".$file->getClientOriginalName();
             $namaFolder = 'data pendaftar/'.$nimmahasiswa;
+    
             $file->move($namaFolder,$nama_file);
             $pathFoto = $namaFolder."/".$nama_file;
-        } else {
+
+            Pendaftaran::where("id_pendaftaran", $id_pendaftaran)->update([
+                'pas_foto' => $pathFoto
+            ]);
+        }else{
             $pathFoto = $a->pathFoto;
         }
 
-        $fileftprestasi = $a->file('ftprestasi');
-        if(file_exists($fileftprestasi)){
-            $nama_fileftprestasi = "Prestasi".time() . "-" . $fileftprestasi->getClientOriginalName();
-            $namaFolderftprestasi = 'data pendaftar/'.$nimmahasiswa;
-            $fileftprestasi->move($namaFolderftprestasi,$nama_fileftprestasi);
-            $pathPrestasi = $namaFolderftprestasi."/".$nama_fileftprestasi;
+        $fileberkas_siswa = $a->file('berkas_siswa');
+        if(file_exists($fileberkas_siswa)){
+            $nama_fileberkas_siswa = "Berkas".time() . "-" . $fileberkas_siswa->getClientOriginalName();
+            $namaFolderberkas_siswa = 'data pendaftar/'.$nimmahasiswa;
+            $fileberkas_siswa->move($namaFolderberkas_siswa,$nama_fileberkas_siswa);
+            $pathBerkas = $namaFolderberkas_siswa."/".$nama_fileberkas_siswa;
+
+            Pendaftaran::where("id_pendaftaran", $id_pendaftaran)->update([
+                'berkas_siswa' => $pathBerkas
+            ]);
         } else {
-            $pathPrestasi = $a->pathPrestasi;
+            $pathBerkas = $a->pathBerkas;
         }
 
         Pendaftaran::where("id_pendaftaran", $id_pendaftaran)->update([
-            'nim' => $a->nim,
-            'prodi' => $a->prodi,
-            'nama_siswa' => $a->nama,
-            'jenis_kelamin' => $a->jk,
-            'tempat_lahir' => $a->tempatlahir,
-            'tanggal_lahir' => $a->tanggallahir,
-            'alamat' => $a->alamat
+            'nama_siswa' => $a->nama
         ]);
+        
         return redirect('/data-registration')->with('success', 'Data Terubah!!');
         } catch (\Exception $e){
             echo $e;
@@ -213,12 +261,12 @@ class PendaftaranController extends Controller
     public function hapuspendaftaran($id_pendaftaran){
         //$dataUser = ProfileUsers::all();
         try{
-            $data = Pendaftaran::find($id_pendaftaran);
-            
-            $dataPembayaran = Pembayaran::where("id_pendaftaran",$id_pendaftaran)->first();
-            File::delete($dataPembayaran->bukti_pembayaran);
-            $data->delete();
-            $dataPembayaran->delete();
+            // $data = Pendaftaran::find($id_pendaftaran);
+            $dataPendaftaran = Pendaftaran::where("id_pendaftaran",$id_pendaftaran)->first();
+            // $dataPembayaran = Pembayaran::where("id_pendaftaran",$id_pendaftaran)->first();
+            // File::delete($dataPembayaran->bukti_pembayaran);
+            $dataPendaftaran->delete();
+            // $dataPembayaran->delete();
             return redirect('/data-registration')->with('success', 'Data Terhapus!!');
         } catch (\Exception $e){
             return redirect()->back()->with('error', 'Data Tidak Berhasil Dihapus!');
@@ -230,7 +278,7 @@ class PendaftaranController extends Controller
         $dataUser = ProfileUsers::all();
         $data = Pendaftaran::where("id_pendaftaran",$id_pendaftaran)->first();
         $dataProfil = ProfileUsers::where("username", $data->nim)->first();
-        $datPembayaran = Pembayaran::where("id_pendaftaran",$data->id)->first();
+        $datPembayaran = Pembayaran::where("id_pendaftaran",$data->id_pendaftaran)->first();
         $no=1;
         $namalengkap = urlencode(ucwords(strtolower($dataProfil->nama)));
         $programstudi = urlencode(ucwords(strtolower($dataProfil->prodi)));

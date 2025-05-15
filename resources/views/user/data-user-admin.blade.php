@@ -20,7 +20,7 @@
         <ul class="metismenu" id="menu">
             <li><a href="dashboard">
                     <i class="fas fa-home"></i>
-                    <span class="nav-text">Pengguna</span>
+                    <span class="nav-text">Beranda</span>
                 </a>
             </li>
             @if (auth()->user()->role == 'Administrator')
@@ -43,6 +43,18 @@
                 <a href="{{route('data-registration')}}">
                     <i class="fa fa-book"></i>
                     <span class="nav-text">Pendaftaran </span>                    
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('tahun-akademik') }}">
+                    <i class="fas fa-calendar-alt"></i> 
+                    <span class="nav-text">Tahun Akademik</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('gelombang') }}">
+                    <i class="fas fa-layer-group"></i> 
+                    <span class="nav-text">Gelombang</span>
                 </a>
             </li>
             {{-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -92,8 +104,6 @@
                         <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target=".modal"
                             style="margin-bottom: 1rem;"><i class="mdi mdi-plus me-1"></i>Tambahkan Pengguna</button>
                     </div>
-
-
                     <div class="modal fade modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog modal-dialog-scrollable">

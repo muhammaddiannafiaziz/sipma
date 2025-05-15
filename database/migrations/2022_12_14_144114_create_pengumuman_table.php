@@ -17,6 +17,10 @@ class CreatePengumumanTable extends Migration
             $table->id();
             $table->string('id_pengumuman')->unique();
             $table->string('id_pendaftaran');
+            $table->foreign('id_pendaftaran')
+                ->references('id_pendaftaran')
+                ->on('pendaftaran')
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->string('user_id')->nullable();
             $table->string('hasil_seleksi')->nullable();
             $table->integer('nilai_interview')->nullable();

@@ -11,8 +11,6 @@
                                     <h2>Selamat Datang, @auth
                                             {{ auth()->user()->name }}
                                         @endauth</h2>
-                                    {{-- <span>Terus pantau kegiatan penerimaan mahasiswa baru politeknik enjinering
-                                        indorama</span> --}}
                                     <a href="{{route('data-registration')}}" class="btn btn-rounded  fs-18 font-w500">Lihat
                                         pendaftar</a>
                                 </div>

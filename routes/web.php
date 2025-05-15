@@ -8,6 +8,8 @@ use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\LogAkunController;
+use App\Http\Controllers\TahunAkademikController;
+use App\Http\Controllers\GelombangController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,9 +32,20 @@ Route::get('/auth/{provider}', [SocialiteController::class, 'redirectToProvider'
 Route::get('/auth/{provider}/callback', [SocialiteController::class, 'handleProvideCallback']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');    
-
-
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    
+    // Tahun Akademik
+    Route::get('/tahun-akademik', [TahunAkademikController::class, 'datatahunakademik'])->name('tahun-akademik');
+    Route::post('/save-tahun-akademik', [TahunAkademikController::class, 'simpantahunakademik'])->name('save-tahun-akademik');
+    Route::get('/open-tahun-akademik/{ta_id}', [TahunAkademikController::class, 'bukatahunakademik'])->name('open-tahun-akademik');
+    Route::get('/close-tahun-akademik/{ta_id}', [TahunAkademikController::class, 'tutuptahunakademik'])->name('close-tahun-akademik');
+    Route::delete('/delete-tahun-akademik/{ta_id}', [TahunAkademikController::class, 'hapustahunakademik'])->name('delete-tahun-akademik');
+    // Gelombang
+    Route::get('/gelombang', [GelombangController::class, 'datagelombang'])->name('gelombang');
+    Route::post('/save-gelombang', [GelombangController::class, 'simpangelombang'])->name('save-gelombang');
+    Route::get('/open-gelombang/{id}', [GelombangController::class, 'bukagelombang'])->name('open-gelombang');
+    Route::get('/close-gelombang/{id}', [GelombangController::class, 'tutupgelombang'])->name('close-gelombang');
+    Route::get('/delete-gelombang/{id}', [GelombangController::class, 'hapusgelombang'])->name('delete-gelombang');
     //akun
     Route::get('/profile', [LogAkunController::class, 'dataprofil'])->name("profile");
     Route::post('/edit-profile', [LogAkunController::class, 'editprofil']);

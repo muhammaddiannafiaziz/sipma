@@ -28,16 +28,6 @@ Detail Pendaftaran
                 <i class="fa fa-users"></i>
                 <span class="nav-text">Data User </span>
             </a>
-                {{-- <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <i class="fa fa-book"></i>
-                    <span class="nav-text">Data Master </span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{route('data-user')}}">Pengguna</a></li>
-                    <li><a href="{{route('data-sekolah')}}">Sekolah</a></li>
-                    <li><a href="{{route('data-prodi')}}">Program Studi</a></li>
-                    <li><a href="{{route('data-jadwal')}}">Jadwal Kegiatan</a></li>
-                </ul> --}}
             </li>
             <li>
                 <a href="{{route('data-registration')}}">
@@ -45,15 +35,6 @@ Detail Pendaftaran
                     <span class="nav-text">Pendaftaran </span>                    
                 </a>
             </li>
-            {{-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                <i class="fa fa-database"></i>
-                <span class="nav-text">Data Transaksi</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{route('data-registration')}}">Pendaftaran</a></li>
-                    <li><a href="{{route('data-pembayaran')}}">Pembayaran</a></li>
-                </ul>
-            </li> --}}
             <li><a href="{{route('data-pengumuman')}}" aria-expanded="false">
                     <i class="fa fa-file"></i>
                     <span class="nav-text">Pengumuman</span>
@@ -106,7 +87,7 @@ Detail Pendaftaran
                 @if ($viewData->status_pendaftaran=="Belum Terverifikasi")
                 <div class="alert alert-success alert-dismissible fade show">
                     <svg viewbox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="me-2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
-                    <strong>Sukses!</strong> Data pendaftaranmu terkirim. Sebelum melakukan ujian seleksi, tunggu administrator memverifikasi datamu ya.
+                    <strong>Sukses!</strong> Data pendaftaranmu terkirim. Sebelum melakukan tes wawancara, tunggu administrator memverifikasi datamu ya.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
                     </button>
                 </div>
@@ -136,7 +117,7 @@ Detail Pendaftaran
                                 style="margin-bottom: 1rem;"><i class="mdi mdi-plus me-1"></i>Upload Pembayaran  </button>    
                                 @endif --}}
                             {{-- <a href="https://chat.whatsapp.com/DEb9ZkYkzQ7KGbeHeU80T0"><button type="button" style="margin-bottom: 1rem;" class="btn btn-primary mb-4">Masuk Grup Whatsapp </button></a> --}}
-                            <a href="https://wa.me/62818780801?text=Assalamualaikum%2C%0A%0ASaya%20{{$viewNamaLengkap}}%2C%20mahasiswa%20baru%20Program%20Studi%20{{$viewProgramStudi}}.%20Saya%20ingin%20konfirmasi%20untuk%20mengikuti%20tes%20wawancara%20Ma'had%20Al-Jami'ah.%20Dokumen%20persyaratan%20sudah%20saya%20lengkapi.%20Terima%20kasih."><button type="button" style="margin-bottom: 1rem;" class="btn btn-primary mb-4">Konfirmasi Tes Wawancara</button></a>
+                            <a href="https://wa.me/628558600091?text=Assalamualaikum%2C%0A%0ASaya%20{{$viewNamaLengkap}}%2C%20mahasiswa%20baru%20Program%20Studi%20{{$viewProgramStudi}}.%20Saya%20ingin%20konfirmasi%20untuk%20mengikuti%20tes%20wawancara%20Ma'had%20Al-Jami'ah.%20Dokumen%20persyaratan%20sudah%20saya%20lengkapi.%20Terima%20kasih."><button type="button" style="margin-bottom: 1rem;" class="btn btn-primary mb-4">Konfirmasi Tes Wawancara</button></a>
                             <button class="btn btn-success mb-4" style="margin-bottom: 1rem;" disabled>Terverifikasi</button>
                             @elseif ($viewData->status_pendaftaran == "Selesai")
                             <button class="btn btn-primary mb-4" style="margin-bottom: 1rem;" disabled>Selesai</button>
@@ -190,17 +171,23 @@ Detail Pendaftaran
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
                     </div><!-- /.modal --> --}}
+                    
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="row mb-2">
                                     <div class="pt-4 border-bottom-1 pb-3">
-                                        <h4 class="text-primary"><b>PROFIL SISWA</b></h4>
+                                        <h4 class="text-primary"><b>PROFIL MAHASISWA</b></h4>
                                     </div>
-                                    <div class="col-sm-4 col-5">
+                                    <div class="col-sm-12">
+                                        <div class="pt-2 border-bottom-1 pb-3">
+                                            <img src="{{ asset($viewData->pas_foto) }}" height="300" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-6">
                                         <h5 class="f-w-400">ID Pendaftaran</h5>
                                     </div>
-                                    <div class="col-sm-8 col-7">
+                                    <div class="col-sm-8 col-6">
                                         <h5 class="f-w-500">: {{ $viewData->id_pendaftaran }}</h5>
                                     </div>
                                 </div>
@@ -270,101 +257,100 @@ Detail Pendaftaran
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-sm-4 col-6">
-                                        <h5 class="f-w-400">Telepon/What'sApp</h5>
+                                        <h5 class="f-w-400">Telepon/WhatsApp</h5>
                                     </div>
                                     <div class="col-sm-8 col-6">
                                         <h5 class="f-w-500">: {{ $viewDataProfil->no_hp }}</h5>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="pt-4 border-bottom-1 pb-3">
+                            <h4 class="text-primary"><b>ORANG TUA / WALI</b></h4>
+                        </div>
+                        <div class="row">
                             <div class="col-lg-6">
-                                <div class="pt-4 border-bottom-1 pb-3">
-                                    <img src="{{ asset($viewData->pas_foto) }}" height="300" alt="">
+                                <div class="row mb-2">
+                                    <div class="col-sm-4 col-6">
+                                        <h5 class="f-w-400">Nama Lengkap</h5>
+                                    </div>
+                                    <div class="col-sm-8 col-6">
+                                        <h5 class="f-w-500">: {{ $viewDataProfil->nama_ortu }}</h5>
+                                    </div>
+                                    <div class="col-sm-4 col-6">
+                                        <h5 class="f-w-400">Pekerjaan</h5>
+                                    </div>
+                                    <div class="col-sm-8 col-6">
+                                        <h5 class="f-w-500">: {{ $viewDataProfil->pekerjaan_ortu }}</h5>
+                                    </div>
+                                    <div class="col-sm-4 col-6">
+                                        <h5 class="f-w-400">Pendidikan</h5>
+                                    </div>
+                                    <div class="col-sm-8 col-6">
+                                        <h5 class="f-w-500">: {{ $viewDataProfil->pendidikan_ortu }}</h5>
+                                    </div>
+                                    <div class="col-sm-4 col-6">
+                                        <h5 class="f-w-400">No Handphone</h5>
+                                    </div>
+                                    <div class="col-sm-8 col-6">
+                                        <h5 class="f-w-500">: {{ $viewDataProfil->nohp_ortu }}</h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-
-                            
-                            <div class="pt-4 border-bottom-1 pb-3">
-                                <h4 class="text-primary"><b>DATA ORANG TUA</b></h4>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="row mb-2">
-                                        <div class="col-sm-3 col-6">
-                                            <h5 class="f-w-400">Nama Ayah</h5>
-                                        </div>
-                                        <div class="col-sm-9 col-6">
-                                            <h5 class="f-w-500">: {{ $viewDataProfil->nama_ayah }}</h5>
-                                        </div>
-                                        <div class="col-sm-3 col-6">
-                                            <h5 class="f-w-400">Pekerjaan Ayah</h5>
-                                        </div>
-                                        <div class="col-sm-9 col-6">
-                                            <h5 class="f-w-500">: {{ $viewDataProfil->pekerjaan_ayah }}</h5>
-                                        </div>
-                                        <div class="col-sm-3 col-6">
-                                            <h5 class="f-w-400">No Handphone</h5>
-                                        </div>
-                                        <div class="col-sm-9 col-6">
-                                            <h5 class="f-w-500">: {{ $viewDataProfil->nohp_ayah }}</h5>
-                                        </div>
+                        <div class="pt-4 border-bottom-1 pb-3">
+                            <h4 class="text-primary"><b>PENDIDIKAN</b></h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="row mb-2">
+                                    <div class="col-sm-4 col-6">
+                                        <h5 class="f-w-400">Asal Sekolah</h5>
                                     </div>
-                                </div>
-                                <!--kiri-->
-                                <div class="col-lg-6">
-                                    <div class="row mb-2">
-                                        <div class="col-sm-3 col-6">
-                                            <h5 class="f-w-400">Nama Ibu</h5>
-                                        </div>
-                                        <div class="col-sm-9 col-6">
-                                            <h5 class="f-w-500">: {{ $viewDataProfil->nama_ibu }}</h5>
-                                        </div>
-                                        <div class="col-sm-3 col-6">
-                                            <h5 class="f-w-400">Pekerjaan Ibu</h5>
-                                        </div>
-                                        <div class="col-sm-9 col-6">
-                                            <h5 class="f-w-500">: {{ $viewDataProfil->pekerjaan_ibu }}</h5>
-                                        </div>
-                                        <div class="col-sm-3 col-6">
-                                            <h5 class="f-w-400">No Handphone</h5>
-                                        </div>
-                                        <div class="col-sm-9 col-6">
-                                            <h5 class="f-w-500">: {{ $viewDataProfil->nohp_ibu }}</h5>
-                                        </div>
+                                    <div class="col-sm-8 col-6">
+                                        <h5 class="f-w-500">: {{ $viewData->asal_sekolah }}</h5>
                                     </div>
-                                </div>
-                                {{-- <div class="row mb-3">
-                                    <div class="col-sm-12 col-12">
-                                        <h5 class="f-w-400">Berkas Orang Tua <small>kk,slip gaji</small></h5>
-                                        <div class="col-sm-9 col-7">
-                                            <a href="{{ asset($viewData->berkas_siswa) }}"> <i class="fa fa-file-pdf" style="font-size:48px;color:red"></i></a>
-                                        </div>
+                                    @if( $viewData->pernah_mondok == 'pernah' )
+                                    <div class="col-sm-4 col-6">
+                                        <h5 class="f-w-400">Nama Pesantren</h5>
                                     </div>
-                                </div> --}}
-                            </div>
-                            
-                            <div class="row mb-3">
-                                {{-- <div class="col-sm-6 col-6">
-                                    <h5 class="f-w-400">Berkas Calon Pendaftar <small>raport,ijazah</small></h5>
-                                    <div class="col-sm-9 col-7">
-                                        <a href="{{ asset($viewData->berkas_siswa) }}"> <i class="fa fa-file-pdf" style="font-size:48px;color:red"></i></a>
+                                    <div class="col-sm-8 col-6">
+                                        <h5 class="f-w-500">: {{ $viewData->nama_pondok }}</h5>
                                     </div>
-                                </div> --}}
-                                <div class="col-sm-6 col-6">
-                                    @if ($viewDataProfil->prestasi != null)
-                                        <div class="pt-4 border-bottom-1 pb-3">
-                                            <h4 class="text-primary"><b>BERKAS PENDAFTARAN</b></h4>
-                                        </div>
-                                        <div class="col-sm-9 col-7">
-                                            <a href="{{ asset($viewDataProfil->prestasi) }}"> <i class="fa fa-file-pdf" style="font-size:48px;color:red"></i></a>
-                                        </div>
+                                    <div class="col-sm-4 col-6">
+                                        <h5 class="f-w-400">Lama</h5>
+                                    </div>
+                                    <div class="col-sm-8 col-6">
+                                        <h5 class="f-w-500">: {{ $viewData->lama }}</h5>
+                                    </div>
+                                    @endif
+                                    @if( $viewData->prestasi !== null )
+                                    <div class="col-sm-4 col-6">
+                                        <h5 class="f-w-400">Prestasi</h5>
+                                    </div>
+                                    <div class="col-sm-8 col-6">
+                                        <h5 class="f-w-500">: {{ $viewData->prestasi }}</h5>
+                                    </div>
                                     @endif
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-sm-6 col-6">
+                                @if ($viewData->berkas_siswa != null)
+                                    <div class="pt-4 border-bottom-1 pb-3">
+                                        <h4 class="text-primary"><b>BERKAS PENDAFTARAN</b></h4>
+                                    </div>
+                                    <div class="col-sm-9 col-7">
+                                        <a href="{{ asset($viewData->berkas_siswa) }}"> <i class="fa fa-file-pdf" style="font-size:48px;color:red"></i></a>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
                     </div>
+                </div>
                 <!-- end row-->
             </div>
         </div>

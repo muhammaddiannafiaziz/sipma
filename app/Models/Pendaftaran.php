@@ -23,12 +23,19 @@ class Pendaftaran extends Model
         'nama_siswa',
         'prodi',
         'gender',
-        'pas_foto',
         'tempat_lahir',
         'tanggal_lahir',
-
+        'asal_sekolah',
+        'pernah_mondok',
+        'nama_pondok',
+        'lama',
+        'prestasi',
+        'berkas_siswa',
+        'pas_foto',
         'status_pendaftaran',
         'tgl_pendaftaran',
+        'tahun_masuk',
+        'gelombang',
         'created_at'
     ];
   

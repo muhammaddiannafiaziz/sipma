@@ -10,7 +10,27 @@ class ProfileUsers extends Model
 {
     use HasFactory;
     protected $table = "profile_user";
-    protected $fillable = ['user_id','nama','username','foto','prodi','email','tempat_lahir','tanggal_lahir','gender','agama','no_hp','jalan','kelurahan','kecamatan','kabupaten','provinsi','kode_pos','nama_ayah','pekerjaan_ayah','pendidikan_ayah','nohp_ayah','nama_ibu','pekerjaan_ibu','pendidikan_ibu','nohp_ibu','sekolah_sma','prestasi'];
+    protected $fillable = ['user_id',
+                            'nama',
+                            'username',
+                            'prodi',
+                            'email',
+                            'tempat_lahir',
+                            'tanggal_lahir',
+                            'gender',
+                            'agama',
+                            'no_hp',
+                            'jalan',
+                            'kelurahan',
+                            'kecamatan',
+                            'kabupaten',
+                            'provinsi',
+                            'kode_pos',
+                            'nama_ortu',
+                            'pekerjaan_ortu',
+                            'pendidikan_ortu',
+                            'nohp_ortu'
+                        ];
     public $timestamps = false;
     public $incrementing = false;
     protected $primaryKey= "id";

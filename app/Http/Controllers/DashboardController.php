@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\ProgramStudi;
-use App\Models\Sekolah;
 use App\Models\Pendaftaran;
 use App\Models\Pembayaran;
 use App\Models\Pengumuman;
-use App\Models\Timeline;
-use App\Models\JadwalKegiatan;
+use App\Models\TahunAkademik;
+use App\Models\Gelombang;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Exceptions\PostTooLargeException;
@@ -48,6 +46,12 @@ class DashboardController extends Controller
         $jmlpengumuman =  Pengumuman::select('hasil_seleksi', DB::raw('count(*) as jumlah'),)
         ->groupBy('hasil_seleksi')->get();
         // $datPembayaran = Pembayaran::where("id_pendaftaran",$pendaftar->id)->first();
-        return view ('dashboard',['viewDataUser' => $dataUser,'viewTotal'=>$data,'pendaftar'=>$pendaftar,'jmlpengumuman'=>$jmlpengumuman,'jmlpendaftar'=>$jmlpendaftar,'jmluser'=>$jmluser,'jmlbayar'=>$jmlbayar]);
+        return view ('dashboard',['viewDataUser' => $dataUser,
+                                    'viewTotal'=>$data,
+                                    'pendaftar'=>$pendaftar,
+                                    'jmlpengumuman'=>$jmlpengumuman,
+                                    'jmlpendaftar'=>$jmlpendaftar,
+                                    'jmluser'=>$jmluser,
+                                    'jmlbayar'=>$jmlbayar,]);
     }
 }

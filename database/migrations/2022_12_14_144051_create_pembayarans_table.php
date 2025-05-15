@@ -22,9 +22,9 @@ class CreatePembayaransTable extends Migration
             $table->integer('total_bayar')->nullable();
             $table->date('jatuh_tempo')->nullable();
             $table->date('tgl_pembayaran')->nullable();
-            $table->unsignedBigInteger('id_pendaftaran');
+            $table->string('id_pendaftaran');
             $table->foreign('id_pendaftaran')
-                ->references('id')
+                ->references('id_pendaftaran')
                 ->on('pendaftaran')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

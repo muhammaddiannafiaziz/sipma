@@ -38,7 +38,11 @@ class PembayaranController extends Controller
         $data = Pembayaran::all();
         $dataid = Pendaftaran::all();
         $dataPengumuman = Pengumuman::all();
-        return view ('pembayaran.data-pembayaran-admin',['viewDataUser' => $dataUser,'viewData' => $data,'viewIdPendaftaran' => $dataid, 'viewPengumuman'=>$dataPengumuman]);
+        return view ('pembayaran.data-pembayaran-admin',['viewDataUser' => $dataUser,
+                                                        'viewData' => $data,
+                                                        'viewIdPendaftaran' => $dataid,
+                                                        'viewPengumuman'=>$dataPengumuman
+                                                    ]);
     }
 
     public function simpanpembayaran(Request $a)
@@ -94,6 +98,17 @@ class PembayaranController extends Controller
         }
     }
     public function updatebuktipembayaran(Request $a){
+        $message = [
+            'pem.required' => 'Harap unggah foto.',
+            'pem.image' => 'File yang diunggah harus berupa gambar.',
+            'pem.mimes' => 'Hanya file dengan ekstensi jpg dan png yang diperbolehkan.',
+            'pem.max' => 'Ukuran foto tidak boleh lebih dari 300KB.',
+            
+        ];
+
+        $a->validate([
+            'pem' => ['required', 'image', 'mimes:jpg,png', 'max:300'], // 300 KB
+        ], $message);
         //$dataUser = ProfileUsers::all();
         try{
             $file = $a->file('pem');
@@ -109,7 +124,7 @@ class PembayaranController extends Controller
                $pathBukti = null;
             }
             $id= Pendaftaran::where("id_pendaftaran", $a->id_pendaftaran)->first();
-                    Pembayaran::where("id_pendaftaran", $id->id)->update([
+                    Pembayaran::where("id_pendaftaran", $id->id_pendaftaran)->update([
                         'bukti_pembayaran' => $pathBukti,
                         'status'=> "Dibayar",
                     ]);
@@ -124,8 +139,8 @@ class PembayaranController extends Controller
     public function hapuspembayaran($id_pembayaran){
         //$dataUser = ProfileUsers::all();
         try{
-            $data = Pembayaran::find($id_pembayaran);
-            $data->delete();
+            $dataPembayaran = Pembayaran::where("id_pembayaran",$id_pembayaran)->first();
+            $dataPembayaran->delete();
             return redirect('/data-payment')->with('success', 'Data Terhapus!!');
         } catch (\Exception $e){
             return redirect()->back()->with('error', 'Data Tidak Berhasil Dihapus!');
@@ -135,16 +150,10 @@ class PembayaranController extends Controller
     public function verifikasipembayaran($id_pembayaran){
         //$dataUser = ProfileUsers::all();
         Pembayaran::where("id_pembayaran", "$id_pembayaran")->update([
-            'status' => "Dibayar"
+            'status' => "Dibayar",
+            'verifikasi' => 1,
         ]);
 
-        Timeline::create([
-            'user_id' => Auth::user()->id,
-            'status' => "Pembayaran",    
-            'pesan' => 'Memperbaharui Status Pembayaran (Dibayar)',
-            'tgl_update' => now(),
-            'created_at' => now()
-        ]);
         return redirect('/data-payment');
     }
 

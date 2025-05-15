@@ -28,16 +28,6 @@
                 <i class="fa fa-users"></i>
                 <span class="nav-text">Data User </span>
             </a>
-                {{-- <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <i class="fa fa-book"></i>
-                    <span class="nav-text">Data Master </span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{route('data-user')}}">Pengguna</a></li>
-                    <li><a href="{{route('data-sekolah')}}">Sekolah</a></li>
-                    <li><a href="{{route('data-prodi')}}">Program Studi</a></li>
-                    <li><a href="{{route('data-jadwal')}}">Jadwal Kegiatan</a></li>
-                </ul> --}}
             </li>
             <li>
                 <a href="{{route('data-registration')}}">
@@ -45,15 +35,18 @@
                     <span class="nav-text">Pendaftaran </span>                    
                 </a>
             </li>
-            {{-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                <i class="fa fa-database"></i>
-                <span class="nav-text">Data Transaksi</span>
+            <li>
+                <a href="{{ route('tahun-akademik') }}">
+                    <i class="fas fa-calendar-alt"></i> 
+                    <span class="nav-text">Tahun Akademik</span>
                 </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{route('data-registration')}}">Pendaftaran</a></li>
-                    <li><a href="{{route('data-pembayaran')}}">Pembayaran</a></li>
-                </ul>
-            </li> --}}
+            </li>
+            <li>
+                <a href="{{ route('gelombang') }}">
+                    <i class="fas fa-layer-group"></i> 
+                    <span class="nav-text">Gelombang</span>
+                </a>
+            </li>
             <li><a href="{{route('data-pengumuman')}}" aria-expanded="false">
                     <i class="fa fa-file"></i>
                     <span class="nav-text">Pengumuman</span>
@@ -169,168 +162,182 @@
                                 <tr>
                                     <th>No</th>
                                     <th>ID Pendaftaran</th>
+                                    <th>Nama</th>
                                     <th>Tanggal Pembayaran</th>
                                     <th>Status</th>
                                     <th class="text-center">Bukti Pembayaran</th>
+                                    <th>Verifikasi</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php 
                                 $no = 1;
-                                $lulusPengumuman = $viewPengumuman->filter(function ($item) {
-                                    return $item->hasil_seleksi == 'LULUS';
-                                });
                                 @endphp
 
                                 @foreach ($viewData as $x)
-                                    @if ($lulusPengumuman->contains('id_pendaftaran', $x->pendaftaran->id_pendaftaran))
-                                        <tr>
-                                            <td>{{ $no++ }}</td>
-                                            <td><a href="detail-registration/{{ $x->pendaftaran->id_pendaftaran }}">{{ $x->pendaftaran->id_pendaftaran }}</a></td>
-                                            <td>{{ $x->tgl_pembayaran }}</td>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        @if ($x->status == 'Dibayar')
-                                                            <span class="badge badge-success">Dibayar<span class="ms-1 fa fa-check"></span></span>
-                                                        @elseif($x->status == 'Belum Bayar')
-                                                            <span class="badge badge-warning">Belum Dibayar<span class="ms-1 fas fa-stream"></span></span>
-                                                        @elseif($x->status == 'Tidak Sah')
-                                                            <span class="badge badge-danger">Tidak Sah<span class="ms-1 fa fa-ban"></span></span>
-                                                        @elseif ($x->status == 'Gratis')
-                                                            <span class="badge badge-success">Gratis<span class="ms-1 fa fa-check"></span></span>
-                                                        @endif
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="dropdown text-sans-serif">
-                                                            <button class="btn btn-primary tp-btn-light sharp" type="button" id="order-dropdown-7" data-bs-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
-                                                                <span>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
-                                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                            <rect x="0" y="0" width="24" height="24"></rect>
-                                                                            <circle fill="#000000" cx="5" cy="12" r="2"></circle>
-                                                                            <circle fill="#000000" cx="12" cy="12" r="2"></circle>
-                                                                            <circle fill="#000000" cx="19" cy="12" r="2"></circle>
-                                                                        </g>
-                                                                    </svg>
-                                                                </span>
-                                                            </button>
-                                                            <div class="dropdown-menu dropdown-menu-end border py-0" aria-labelledby="order-dropdown-7">
-                                                                <div class="py-2">
-                                                                    <a class="dropdown-item" href="/sipma/paid-payment/{{ $x->id_pembayaran }}">Bayar</a>
-                                                                    <a class="dropdown-item" href="/sipma/unpaid-payment/{{ $x->id_pembayaran }}">Belum Bayar</a>
-                                                                    <div class="dropdown-divider"></div>
-                                                                    <a class="dropdown-item text-danger" href="/sipma/invalid-payment/{{ $x->id_pembayaran }}">Tidak Sah</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                @if ($x->bukti_pembayaran != null)
-                                                    <a class="btn btn-light shadow btn-xs sharp me-1" title="Proof of Payment" href="{{ $x->bukti_pembayaran }}" download>
-                                                        <i class="fa fa-file-alt"></i>
-                                                    </a>
-                                                @else
-                                                    @if ($x->status == "Gratis")
-                                                        Gratis Biaya Pendaftaran
-                                                    @else
-                                                        Tidak tersedia
+                                    
+                                    <tr>
+                                        <td>{{ $no++ }}</td>
+                                        <td><a href="detail-registration/{{ $x->id_pendaftaran }}">{{ $x->id_pendaftaran }}</a></td>
+                                        <td>
+                                            @foreach($viewIdPendaftaran as $y)
+                                            @if($y->id_pendaftaran == $x->id_pendaftaran)
+                                                {{ $y->nama_siswa}}
+                                            @endif
+                                            @endforeach
+                                        </td>
+                                        <td>{{ $x->tgl_pembayaran }}</td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    @if ($x->status == 'Dibayar')
+                                                        <span class="badge badge-success">Dibayar<span class="ms-1 fa fa-check"></span></span>
+                                                    @elseif($x->status == 'Belum Bayar')
+                                                        <span class="badge badge-warning">Belum Dibayar<span class="ms-1 fas fa-stream"></span></span>
+                                                    @elseif($x->status == 'Tidak Sah')
+                                                        <span class="badge badge-danger">Tidak Sah<span class="ms-1 fa fa-ban"></span></span>
+                                                    @elseif ($x->status == 'Gratis')
+                                                        <span class="badge badge-success">Gratis<span class="ms-1 fa fa-check"></span></span>
                                                     @endif
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <div class="d-flex">
-                                                    <a class="btn btn-primary shadow btn-xs sharp me-1" title="Edit" data-bs-toggle="modal" data-bs-target=".edit{{ $x->id_pembayaran }}">
-                                                        <i class="fa fa-pencil-alt"></i>
-                                                    </a>
-                                                    <a class="btn btn-danger shadow btn-xs sharp">
-                                                        <i class="fa fa-trash" data-bs-toggle="modal" data-bs-target=".delete{{ $x->id_pembayaran }}"></i>
-                                                    </a>
-                                                    <div class="modal fade delete{{ $x->id_pembayaran }}" tabindex="-1" role="dialog" aria-hidden="true">
-                                                        <div class="modal-dialog modal-sm">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">Hapus Data</h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                                                </div>
-                                                                <div class="modal-body text-center">
-                                                                    <i class="fa fa-trash"></i><br>
-                                                                    Apakah anda yakin ingin menghapus data ini?<br>{{ $x->id_pembayaran }}
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Batalkan</button>
-                                                                    <a href="delete-payment/{{ $x->id_pembayaran }}">
-                                                                        <button type="submit" class="btn btn-danger shadow">Ya, Hapus Data!</button>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </div>
-                                            </td>
-                                        </tr>
-
-                                        <div class="modal fade edit{{ $x->id_pembayaran }}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Sunting Pembayaran</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form action="update-payment/{{ $x->id_pembayaran }}" method="POST" enctype="multipart/form-data">
-                                                            {{ csrf_field() }}
-                                                            <input type="hidden" name="userid" value="{{ auth()->user()->id }}">
-                                                            <div class="form-group">
-                                                                <div class="row">
-                                                                    <div class="col-xl-12">
-                                                                        <label for="iduser">ID Pembayaran</label>
-                                                                        <input type="text" class="form-control" id="nama" value="{{ $x->id_pembayaran }}" name="id" readonly>
-                                                                    </div>
-                                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="dropdown text-sans-serif">
+                                                        <button class="btn btn-primary tp-btn-light sharp" type="button" id="order-dropdown-7" data-bs-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
+                                                            <span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
+                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                        <rect x="0" y="0" width="24" height="24"></rect>
+                                                                        <circle fill="#000000" cx="5" cy="12" r="2"></circle>
+                                                                        <circle fill="#000000" cx="12" cy="12" r="2"></circle>
+                                                                        <circle fill="#000000" cx="19" cy="12" r="2"></circle>
+                                                                    </g>
+                                                                </svg>
+                                                            </span>
+                                                        </button>
+                                                        <div class="dropdown-menu dropdown-menu-end border py-0" aria-labelledby="order-dropdown-7">
+                                                            <div class="py-2">
+                                                                <a class="dropdown-item" href="/sipma/paid-payment/{{ $x->id_pembayaran }}">Bayar</a>
+                                                                <a class="dropdown-item" href="/sipma/unpaid-payment/{{ $x->id_pembayaran }}">Belum Bayar</a>
+                                                                <div class="dropdown-divider"></div>
+                                                                <a class="dropdown-item text-danger" href="/sipma/invalid-payment/{{ $x->id_pembayaran }}">Tidak Sah</a>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <div class="row">
-                                                                    <div class="col-xl-4">
-                                                                        <label for="iduser">ID Pendaftaran</label>
-                                                                        <select class="form-control wide" title="id pendaftaran" name="id_pendaftaran" required>
-                                                                            <option value="{{ $x->id_pendaftaran }}" selected>{{ $x->pendaftaran->id_pendaftaran }} || {{ $x->pendaftaran->nama_siswa }}</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="col-xl-8">
-                                                                        <label for="iduser">Status</label>
-                                                                        <select class="default-select form-control wide" title="status" name="status" required>
-                                                                            <option value="{{ $x->status }}" selected>{{ $x->status }}</option>
-                                                                            <option value="Dibayar">Dibayar</option>
-                                                                            <option value="Belum Bayar">Belum Bayar</option>
-                                                                            <option value="Tidak Sah">Tidak Sah</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="iduser">Bukti Pembayaran</label>
-                                                                <div class="input-group">
-                                                                    <span class="input-group-text">Upload</span>
-                                                                    <div class="form-file">
-                                                                        <input type="file" class="form-file-input form-control" name="bukti">
-                                                                        <input type="hidden" class="form-file-input form-control" name="pathnya" value="{{ $x->bukti_pembayaran }}">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer border-top-0 d-flex">
-                                                                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Tutup</button>
-                                                                <button type="submit" name="add" class="btn btn-primary">Perbaharui Data</button>
-                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </td>
+                                        <td class="text-center">
+                                            @if ($x->bukti_pembayaran != null)
+                                                <a class="btn btn-light shadow btn-xs sharp me-1" title="Proof of Payment" href="{{ $x->bukti_pembayaran }}" download>
+                                                    <i class="fa fa-file-alt"></i>
+                                                </a>
+                                            @else
+                                                @if ($x->status == "Gratis")
+                                                    Gratis Biaya Pendaftaran
+                                                @else
+                                                    Tidak tersedia
+                                                @endif
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($x->verifikasi == 0)
+                                            <a class="btn btn-primary shadow btn-xs  me-1" title="Verification of Payment" href="paid-payment/{{ $x->id_pembayaran }}">
+                                                Oke
+                                            </a>
+                                            @elseif($x->verifikasi == 1)
+                                            Terverifikasi
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a class="btn btn-primary shadow btn-xs sharp me-1" title="Edit" data-bs-toggle="modal" data-bs-target=".edit{{ $x->id_pembayaran }}">
+                                                    <i class="fa fa-pencil-alt"></i>
+                                                </a>
+                                                <a class="btn btn-danger shadow btn-xs sharp">
+                                                    <i class="fa fa-trash" data-bs-toggle="modal" data-bs-target=".delete{{ $x->id_pembayaran }}"></i>
+                                                </a>
+                                                <div class="modal fade delete{{ $x->id_pembayaran }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal-dialog modal-sm">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Hapus Data</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                            </div>
+                                                            <div class="modal-body text-center">
+                                                                <i class="fa fa-trash"></i><br>
+                                                                Apakah anda yakin ingin menghapus data ini?<br>{{ $x->id_pembayaran }}
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Batalkan</button>
+                                                                <a href="delete-payment/{{ $x->id_pembayaran }}">
+                                                                    <button type="submit" class="btn btn-danger shadow">Ya, Hapus Data!</button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <div class="modal fade edit{{ $x->id_pembayaran }}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Sunting Pembayaran</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="update-payment/{{ $x->id_pembayaran }}" method="POST" enctype="multipart/form-data">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" name="userid" value="{{ auth()->user()->id }}">
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <div class="col-xl-12">
+                                                                    <label for="iduser">ID Pembayaran</label>
+                                                                    <input type="text" class="form-control" id="nama" value="{{ $x->id_pembayaran }}" name="id" readonly>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <div class="col-xl-4">
+                                                                    <label for="iduser">ID Pendaftaran</label>
+                                                                    <select class="form-control wide" title="id pendaftaran" name="id_pendaftaran" required>
+                                                                        <option value="{{ $x->id_pendaftaran }}" selected>{{ $x->id_pendaftaran }}</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-xl-8">
+                                                                    <label for="iduser">Status</label>
+                                                                    <select class="default-select form-control wide" title="status" name="status" required>
+                                                                        <option value="{{ $x->status }}" selected>{{ $x->status }}</option>
+                                                                        <option value="Dibayar">Dibayar</option>
+                                                                        <option value="Belum Bayar">Belum Bayar</option>
+                                                                        <option value="Tidak Sah">Tidak Sah</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="iduser">Bukti Pembayaran</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-text">Upload</span>
+                                                                <div class="form-file">
+                                                                    <input type="file" class="form-file-input form-control" name="bukti">
+                                                                    <input type="hidden" class="form-file-input form-control" name="pathnya" value="{{ $x->bukti_pembayaran }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer border-top-0 d-flex">
+                                                            <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Tutup</button>
+                                                            <button type="submit" name="add" class="btn btn-primary">Perbaharui Data</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    @endif
+                                    </div>
                                 @endforeach
 
 

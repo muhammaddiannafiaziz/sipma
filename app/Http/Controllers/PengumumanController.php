@@ -37,7 +37,10 @@ class PengumumanController extends Controller
         $dataUser = ProfileUsers::all();
         $data = Pengumuman::with('pendaftaran')->get();
         $dataid = Pendaftaran::all();
-        return view ('pengumuman.data-pengumuman-admin',['viewDataUser' => $dataUser,'viewData' => $data,'viewIdPendaftaran' => $dataid]);
+        return view ('pengumuman.data-pengumuman-admin',['viewDataUser' => $dataUser,
+                                                            'viewData' => $data,
+                                                            'viewIdPendaftaran' => $dataid
+                                                        ]);
     }
 
     public function lihatpengumuman(Request $a)
@@ -46,8 +49,13 @@ class PengumumanController extends Controller
         $dataditemukan = Pengumuman::where("id_pendaftaran", $a->id_pendaftaran)->first();
         $data = Pengumuman::all();
         $dataid = Pendaftaran::where("id_pendaftaran", $a->id_pendaftaran)->first();
-        $datPembayaran = Pembayaran::where("id_pendaftaran",$dataid->id)->first();
-        return view ('pengumuman.data-pengumuman-view',['viewDataUser' => $dataUser,'viewData' => $data,'viewIdPendaftaran' => $dataid,'viewDataPembayaran' => $datPembayaran,'viewID' => $dataditemukan]);
+        $datPembayaran = Pembayaran::where("id_pendaftaran",$dataid->id_pendaftaran)->first();
+        return view ('pengumuman.data-pengumuman-view',['viewDataUser' => $dataUser,
+                                                        'viewData' => $data,
+                                                        'viewIdPendaftaran' => $dataid,
+                                                        'viewDataPembayaran' => $datPembayaran,
+                                                        'viewID' => $dataditemukan
+                                                    ]);
     }
 
 
@@ -96,9 +104,10 @@ class PengumumanController extends Controller
         //$dataUser = ProfileUsers::all();
         try {
             $data = Pengumuman::find($id_pengumuman);
+            $dataPengumuman = Pengumuman::where("id_pengumuman",$id_pengumuman)->first();
     
-            if ($data) {
-                $data->delete();
+            if ($dataPengumuman) {
+                $dataPengumuman->delete();
                 return redirect('/data-announcement')->with('success', 'Data Terhapus!!');
             } else {
                 return redirect()->back()->with('error', 'Data tidak ditemukan!');

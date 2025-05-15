@@ -42,9 +42,9 @@
                     <hr class="divider" />
                 </div>
                 <div class="col-lg-8 align-self-baseline">
-                    <p class="text-white-75 mb-5">Silahkan mendaftar terlebih dahulu!</p>
-                    <a class="btn btn-success btn-xl" href="register">DAFTAR</a>
-                    <hr class="divider" />
+                    <p class="text-white-75 mb-5">Pendaftaran DITUTUP!</p>
+                    {{-- <a class="btn btn-success btn-xl" href="register">DAFTAR</a> --}}
+                    {{-- <hr class="divider" /> --}}
                 </div>
             </div>
         </div>

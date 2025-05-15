@@ -29,21 +29,23 @@
                 <i class="fa fa-users"></i>
                 <span class="nav-text">Data User </span>
             </a>
-                {{-- <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <i class="fa fa-book"></i>
-                    <span class="nav-text">Data Master </span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{route('data-user')}}">Pengguna</a></li>
-                    <li><a href="{{route('data-sekolah')}}">Sekolah</a></li>
-                    <li><a href="{{route('data-prodi')}}">Program Studi</a></li>
-                    <li><a href="{{route('data-jadwal')}}">Jadwal Kegiatan</a></li>
-                </ul> --}}
             </li>
             <li>
                 <a href="{{route('data-registration')}}">
                     <i class="fa fa-book"></i>
                     <span class="nav-text">Pendaftaran </span>                    
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('tahun-akademik') }}">
+                    <i class="fas fa-calendar-alt"></i> 
+                    <span class="nav-text">Tahun Akademik</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('gelombang') }}">
+                    <i class="fas fa-layer-group"></i> 
+                    <span class="nav-text">Gelombang</span>
                 </a>
             </li>
             {{-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -94,7 +96,6 @@
 @endsection
 
 @section('content')
-    <!--Buat Admin-->
     @auth
         @if (auth()->user()->role == 'Administrator')
             @include('dashboard.dashboard-admin')

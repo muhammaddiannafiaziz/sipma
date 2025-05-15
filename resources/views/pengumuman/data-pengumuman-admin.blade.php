@@ -28,16 +28,6 @@ Pengumuman
                 <i class="fa fa-users"></i>
                 <span class="nav-text">Data User </span>
             </a>
-                {{-- <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <i class="fa fa-book"></i>
-                    <span class="nav-text">Data Master </span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{route('data-user')}}">Pengguna</a></li>
-                    <li><a href="{{route('data-sekolah')}}">Sekolah</a></li>
-                    <li><a href="{{route('data-prodi')}}">Program Studi</a></li>
-                    <li><a href="{{route('data-jadwal')}}">Jadwal Kegiatan</a></li>
-                </ul> --}}
             </li>
             <li>
                 <a href="{{route('data-registration')}}">
@@ -45,15 +35,18 @@ Pengumuman
                     <span class="nav-text">Pendaftaran </span>                    
                 </a>
             </li>
-            {{-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                <i class="fa fa-database"></i>
-                <span class="nav-text">Data Transaksi</span>
+            <li>
+                <a href="{{ route('tahun-akademik') }}">
+                    <i class="fas fa-calendar-alt"></i> 
+                    <span class="nav-text">Tahun Akademik</span>
                 </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{route('data-registration')}}">Pendaftaran</a></li>
-                    <li><a href="{{route('data-pembayaran')}}">Pembayaran</a></li>
-                </ul>
-            </li> --}}
+            </li>
+            <li>
+                <a href="{{ route('gelombang') }}">
+                    <i class="fas fa-layer-group"></i> 
+                    <span class="nav-text">Gelombang</span>
+                </a>
+            </li>
             <li><a href="{{route('data-pengumuman')}}" aria-expanded="false">
                     <i class="fa fa-file"></i>
                     <span class="nav-text">Pengumuman</span>
@@ -166,7 +159,7 @@ Pengumuman
                                     <tr>
                                         <th>No</th>
                                         <th>Id Pendaftaran</th>
-                                        {{-- <th>Nama</th> --}}
+                                        <th>Nama</th>
                                         <th>Hasil</th>
                                         <th>Nilai Interview</th>
                                         <th>Aksi</th>
@@ -178,7 +171,11 @@ Pengumuman
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td><a href="detail-registration/{{ $x->id_pendaftaran }}">{{ $x->id_pendaftaran }}</a></td>
-                                            {{-- <td>{{ $x->pendaftaran->nama_siswa }}</td> --}}
+                                            @foreach($viewIdPendaftaran as $y)
+                                            @if($x->id_pendaftaran == $y->id_pendaftaran)
+                                            <td>{{ $y->nama_siswa }}</td>
+                                            @endif
+                                            @endforeach
                                             {{-- @php
                                             dd($viewIdPendaftaran)
                                             @endphp --}}
@@ -194,10 +191,6 @@ Pengumuman
                                                         TIDAK LULUS
                                                     </span>
                                                 @endif
-                                            <td>@if ($x->hasil_seleksi == "LULUS" || $x->hasil_seleksi == "Lulus" || $x->hasil_seleksi == "lulus") 
-                                                {{-- {{ $x->prodi->nama_prodi }} --}}
-                                                @endif
-                                            </td>
                                             <td><strong>{{ $x->nilai_interview }}</strong></a></td>
                                             {{-- <td><strong>{{ $x->nilai_test }}</strong></a></td> --}}
                                             <td>

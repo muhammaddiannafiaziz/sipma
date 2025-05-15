@@ -78,7 +78,7 @@ Pendaftaran
 
 @section('content')
     <div class="row">
-        <form action="/update-registration/{{ $viewData->id_pendaftaran }}" method="POST" enctype="multipart/form-data">
+        <form action="/sipma/update-registration/{{ $viewData->id_pendaftaran }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="col-xl-12">
                 <div class="custom-accordion">
@@ -122,7 +122,7 @@ Pendaftaran
                                             <input type="text" value="{{ $viewData->nama_siswa }}" class="form-control" id="personal-data-name" name="nama"
                                                 placeholder="Enter Name" value="{{ old('nama') }}">
                                             @error('nama')
-                                                <div class="alert alert-warning" role="alert">
+                                                <div class="alert alert-danger" role="alert">
                                                     <strong>Peringatan!</strong>
                                                     {{ $message }}
                                                 </div>
@@ -145,7 +145,7 @@ Pendaftaran
                                             <input type="text" value="{{ $viewData->tempat_lahir }}" class="form-control" id="basicpill" name="tempatlahir"
                                                 placeholder="Masukkan Tempat Lahir" value="{{ old('tempatlahir') }}">
                                             @error('tempatlahir')
-                                                <div class="alert alert-warning" role="alert">
+                                                <div class="alert alert-danger" role="alert">
                                                     <strong>Peringatan!</strong>
                                                     {{ $message }}
                                                 </div>
@@ -158,7 +158,7 @@ Pendaftaran
                                             <input type="date" value="{{ $viewData->tanggal_lahir }}" class="form-control" id="basicpill" name="tanggallahir"
                                             placeholder="Masukkan Tanggal Lahir" value="{{ old('tanggallahir') }}">
                                             @error('tanggallahir')
-                                                <div class="alert alert-warning" role="alert">
+                                                <div class="alert alert-danger" role="alert">
                                                     <strong>Peringatan!</strong>
                                                     {{ $message }}
                                                 </div>
@@ -166,16 +166,65 @@ Pendaftaran
                                             <!--<input name="tanggallahir" class="datepicker-default form-control" id="datepicker" >-->
                                         </div>
                                     </div>
-                                    {{-- <div class="col-lg-4">
-                                        <div class="mb-0">
-                                            <label class="form-label" for="zip-code">Pas Foto</label>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label" for="billing-address">Alamat</label>
+                                    <textarea class="form-control" id="billing-address" rows="3" name="alamat"
+                                        placeholder="Masukkan Alamat">{{ $viewDataProfil->alamat }}</textarea>
+                                    @error('alamat')
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong>Peringatan!</strong>
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-top"></div>
+                        <a href="#berkas" class="text-dark" data-bs-toggle="collapse">
+                            <div class="p-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0 me-3"> <i class="uil uil-receipt text-primary h2"></i>
+                                    </div>
+                                    <div class="flex-grow-1 overflow-hidden">
+                                        <h5 class="font-size-16 mb-1">BERKAS PENDAFTARAN</h5>
+                                    </div>
+                                    <div class="flex-shrink-0"> <i
+                                        class="mdi mdi-chevron-up accor-down-icon font-size-24"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="collapse show" id="berkas">
+                            <div class="p-4 border-top">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label text-success" for="billing-address">Berkas Pendaftaran</label>
+                        
                                             <div class="input-group">
                                                 <span class="input-group-text">Upload</span>
                                                 <div class="form-file">
-                                                    <input type="file" class="form-file-input form-control" name="foto"
-                                                        value="{{ old('foto') }}">
-                                                    <input type="hidden" name="pathFoto" class="form-control-file"
-                                                        value="{{ $viewData->foto }}">
+                                                    <input type="file" class="form-file-input form-control"
+                                                        name="berkas_siswa" value="{{ $viewData->berkas_siswa }}" accept="application/pdf">
+                                                </div>
+                                            </div>
+                                            @error('berkas_siswa')
+                                                <div class="alert alert-danger" role="alert">
+                                                    <strong>Peringatan!</strong>
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="zip-code">Pas Photo</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">Upload</span>
+                                                <div class="form-file">
+                                                    <input type="file" class="form-file-input form-control"
+                                                        name="foto" value="{{ old('foto') }}" accept="image/png, image/jpg, image/jpeg">
                                                 </div>
                                             </div>
                                             @error('foto')
@@ -185,18 +234,7 @@ Pendaftaran
                                                 </div>
                                             @enderror
                                         </div>
-                                    </div> --}}
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label" for="billing-address">Alamat</label>
-                                    <textarea class="form-control" id="billing-address" rows="3" name="alamat"
-                                        placeholder="Masukkan Alamat">{{ $viewData->alamat }}</textarea>
-                                    @error('alamat')
-                                        <div class="alert alert-warning" role="alert">
-                                            <strong>Peringatan!</strong>
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
+                                    </div>
                                 </div>
                             </div>
                         </div>
